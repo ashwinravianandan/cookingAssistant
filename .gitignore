@@ -1,0 +1,6 @@
+# cscope database #
+###################
+cscope.out
+*.o
+*.out
+.ycm_extra_conf.pyc
