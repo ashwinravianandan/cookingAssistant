@@ -1,100 +1,135 @@
 #include <vector>
+#include <list>
 #include <string>
-#include <iostream>
-#include <json/json.h>
+#include "CFoodDatabase.h"
 #include "CFoodMenu.h"
-
+#include <fstream>
 using namespace std;
 using namespace JsonHandling;
 
 /*..............................................................................
- * @brief CFoodMenu
+ * @brief CFoodMenu 
  *
  * Input Parameters:
  *    @param: 
- *        Json::Value& FoodItems
  * Return Value:
  *    @returns 
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CFoodMenu::CFoodMenu ( const Json::Value& FoodItems ):scJsonKeyIngredient("ingredients"),
-   scJsonKeyBreakfast("breakfast"), scJsonKeyMainCourse("mainCourse"), scJsonKeyDish("dish")
+ CFoodMenu::CFoodMenu( )
 {
-   Json::Value breakfastItems, mealItems;
-   for( Json::Value anyDish: FoodItems )
-   {
-      if ( true == checkAndRetriveJsonData( anyDish, scJsonKeyBreakfast, Json::arrayValue, breakfastItems ) )
-      {
-         for( Json::Value breakfastItem: breakfastItems)
-         {
-            foodItem breakFastDish;
-            std::string dishName;
-            if ( true == checkAndRetriveJsonData( breakfastItem, scJsonKeyDish, Json::stringValue, dishName ) )
-            {
-               breakFastDish.mDish = dishName;
-               Json::Value dishIngredients;
-               if ( true == checkAndRetriveJsonData( 
-                        breakfastItem, scJsonKeyIngredient, Json::arrayValue, dishIngredients ) )
-               {
-                  for( Json::Value ingredient: dishIngredients )
-                  {
-                     breakFastDish.mIngredients.push_back( ingredient.asString() );
-                  }
-                  mBreakfastItems.push_back( breakFastDish );
-               }
-            }
-         }
-      }
-      else if ( true ==  checkAndRetriveJsonData( anyDish, scJsonKeyMainCourse, Json::arrayValue, mealItems ) )
-      {
-         for( Json::Value mealItem: mealItems)
-         {
-            foodItem mealDish;
-            std::string dishName;
-            if ( true == checkAndRetriveJsonData( mealItem, scJsonKeyDish, Json::stringValue, dishName ) )
-            {
-               mealDish.mDish = dishName;
-               Json::Value dishIngredients;
-               if ( true == checkAndRetriveJsonData( 
-                        mealItem, "ingredients", Json::arrayValue, dishIngredients ) )
-               {
-                  for( Json::Value ingredient: dishIngredients )
-                  {
-                     mealDish.mIngredients.push_back( ingredient.asString() );
-                  }
-                  mMainCourse.push_back( mealDish );
-               }
-            }
-         }
-      }
-      else
-      {
-         ;
-      }
-   }
+   mBreakfastMenu.clear();
+   mMealMenu.clear();
+   mIngredients.clear();
 }
 
-
-void CFoodMenu::DisplayFoodItems(void )
+/*..............................................................................
+ * @brief generateBreakfastMenu
+ *
+ * Input Parameters:
+ *    @param: foodDB, 
+ *        numberOfItems
+ * Return Value:
+ *    @returns bool
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+bool CFoodMenu::generateBreakfastMenu ( const CFoodDatabase& foodDB, 
+      const unsigned int& numberOfItems )
 {
-   for( foodItem dish: mBreakfastItems)
+   bool success = false;
+   for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
-      cout<<dish.mDish.c_str()<<std::endl;
-      for( std::string ingredients: dish.mIngredients)
+      foodItem item;
+      foodDB.getRandomFoodItem( enBreakfastItem, item );
+      mBreakfastMenu.push_back( item.mDish );
+      for( string ingredient: item.mIngredients )
       {
-         cout<<ingredients.c_str()<<"\t";
+         mIngredients.push_back( ingredient );
       }
    }
-   cout<<std::endl;
-   for( foodItem dish: mMainCourse)
+   return success;/*bool*/
+}
+
+/*..............................................................................
+ * @brief generateMealMenu
+ *
+ * Input Parameters:
+ *    @param: foodDB, 
+ *        intnumberOfItems
+ * Return Value:
+ *    @returns bool
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB, 
+      const unsigned int &numberOfItems )
+{
+   bool success = false;
+   for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
-      cout<<dish.mDish.c_str()<<std::endl;
-      for( std::string ingredients: dish.mIngredients)
+      foodItem item;
+      foodDB.getRandomFoodItem( enLunchItem, item );
+      mMealMenu.push_back( item.mDish );
+      for( string ingredient: item.mIngredients )
       {
-         cout<<ingredients.c_str()<<"\t";
+         mIngredients.push_back( ingredient );
       }
    }
+   return success;/*bool*/
+}
+
+/*..............................................................................
+ * @brief generateMenu
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns void
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+void CFoodMenu::generateMenu ( )
+{
+   ofstream foodMenu("menu.txt");
+   foodMenu<<"Breakfast Items"<<std::endl;
+   for( string item : mBreakfastMenu )
+   {
+      foodMenu<<"*\t"<<item.c_str()<<std::endl;
+   }
+   foodMenu<<"Meals"<<std::endl;
+   for( string item :  mMealMenu )
+   {
+      foodMenu<<"*\t"<<item.c_str();
+   }
+   foodMenu.close();
+}
+
+/*..............................................................................
+ * @brief generateGroceryList 
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns void
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+void CFoodMenu::generateGroceryList ( )
+{
+   ofstream groceryList("groceryList.txt");
+   mIngredients.sort();
+   mIngredients.unique();
+   for( string item : mIngredients )
+   {
+      groceryList<<"*\t"<<item.c_str()<<std::endl;
+   }
+   groceryList.close();
 }
 
