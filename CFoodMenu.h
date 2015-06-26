@@ -3,6 +3,7 @@
 #include <list>
 #include <string>
 #include "CFoodDatabase.h"
+#include <iostream>
 using namespace std;
 
 class CFoodMenu
@@ -17,7 +18,7 @@ class CFoodMenu
       virtual ~CFoodMenu() = default;
        bool generateBreakfastMenu( const CFoodDatabase& foodDB, const unsigned int& numberOfItems );
        bool generateMealMenu( const CFoodDatabase& foodDB, const unsigned int& numberOfItems );
-       void generateGroceryList( void );
-       void generateMenu( void );
+       void generateGroceryList( ostream& );
+       void generateMenu( ostream& );
 };
 

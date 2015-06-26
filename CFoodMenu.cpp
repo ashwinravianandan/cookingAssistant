@@ -98,22 +98,20 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CFoodMenu::generateMenu ( )
+void CFoodMenu::generateMenu ( ostream& outFile )
 {
-   ofstream foodMenu("menu.txt");
-   foodMenu<<"Breakfast Items"<<std::endl;
-   foodMenu<<"==============="<<std::endl;
+   outFile<<"Breakfast Items"<<std::endl;
+   outFile<<"==============="<<std::endl;
    for( string item : mBreakfastMenu )
    {
-      foodMenu<<"*   "<<item.c_str()<<std::endl;
+      outFile<<"*   "<<item.c_str()<<std::endl;
    }
-   foodMenu<<std::endl<<std::endl<<"Meals"<<std::endl;
-   foodMenu<<"====="<<std::endl;
+   outFile<<std::endl<<std::endl<<"Meals"<<std::endl;
+   outFile<<"====="<<std::endl;
    for( string item :  mMealMenu )
    {
-      foodMenu<<"*   "<<item.c_str();
+      outFile<<"*   "<<item.c_str();
    }
-   foodMenu.close();
 }
 
 /*..............................................................................
@@ -127,15 +125,13 @@ void CFoodMenu::generateMenu ( )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CFoodMenu::generateGroceryList ( )
+void CFoodMenu::generateGroceryList ( ostream& outFile )
 {
-   ofstream groceryList("groceryList.txt");
    mIngredients.sort();
    mIngredients.unique();
    for( string item : mIngredients )
    {
-      groceryList<<"*   "<<item.c_str()<<std::endl;
+      outFile<<"*   "<<item.c_str()<<std::endl;
    }
-   groceryList.close();
 }
 
