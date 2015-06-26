@@ -1,4 +1,3 @@
-
 {
    "babyMenu": [ 
    { "breakfast": [ 
@@ -21,6 +20,30 @@
       { "breakfast": [
          { "dish": "semiya upma", "ingredients": [
             "semiya","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
+               ]
+         },
+         { "dish": "sambar idli", "ingredients": [
+            "idli rice", "urad dal", "sambar power", "sambar vegetable", "toor dal", "tomatoes", "hing", "tamarind", "refined oil", "mustard seeds", "curry leaves", "red chilly", "turmeric powder", "danya powder", "red chilly powder", "onions", "coriander leaves"
+               ]
+         },
+         { "dish": "ven pongal", "ingredients": [
+            "moong dal", "rice", "ghee", "jeera", "green chilly", "pepper corn", "hing", "curry leaves"
+               ]
+         },
+         { "dish": "Idli Chutney", "ingredients": [
+            "idli rice", "urad dal", "coconut", "jeera", "green chilly", "coriander leaves", "ginger", "mustard seeds", "red chillies"
+               ]
+         },
+         { "dish": "Rava Idli", "ingredients": [
+            "rava idli mix", "curd"
+               ]
+         },
+         { "dish": "Pohe", "ingredients": [
+            "Pohe","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
+               ]
+         },
+         { "dish": "rava upma", "ingredients": [
+            "sooji","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
                ]
          }
          ]

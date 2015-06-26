@@ -85,13 +85,14 @@ CFoodDatabase::CFoodDatabase ( const Json::Value& FoodItems ):scJsonKeyIngredien
  *        itemType
  *        randomItem
  * Return Value:
- *    @returns void
+ *    @returns bool
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CFoodDatabase::getRandomFoodItem ( const enFoodItemType& itemType, foodItem& randomItem ) const
+bool CFoodDatabase::getRandomFoodItem ( const enFoodItemType& itemType, foodItem& randomItem ) const
 {
+   bool success = true;
    if ( ( itemType == enBreakfastItem ) && ( mBreakfastItems.size() > 0 ) )
    {
       unsigned int randomItemIdx = rand() % mBreakfastItems.size();
@@ -107,9 +108,10 @@ void CFoodDatabase::getRandomFoodItem ( const enFoodItemType& itemType, foodItem
       /**
        * @todo: process other categories   
        */
+      success = false;
+
    }
-   
-   return ;/*void*/
+   return success;/*bool*/
 }
 
 

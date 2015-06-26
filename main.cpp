@@ -4,6 +4,7 @@
 #include <string>
 #include "CFoodDatabase.h"
 #include "CFoodMenu.h"
+#include <unistd.h>
 
 using namespace std;
 using namespace JsonHandling;
@@ -11,10 +12,10 @@ using namespace JsonHandling;
 
 int main()
 {
-   ifstream jsonDatabase( "menu.json" );
+   //ifstream jsonDatabase( "menu.json" );
 
    Json::Value Jval;
-   jsonDatabase>>Jval;
+   cin>>Jval;
 
    Json::Value babyFood, adultMenu;
    ( void )checkAndRetriveJsonData( Jval, "babyMenu", Json::arrayValue, babyFood );
@@ -22,8 +23,8 @@ int main()
    CFoodDatabase childRecipies( babyFood  );
    CFoodDatabase adultRecipeies( adultMenu  );
    CFoodMenu weeklyMenu;
-   weeklyMenu.generateBreakfastMenu( adultRecipeies, 5 );
-   weeklyMenu.generateMealMenu( adultRecipeies, 5 );
+   weeklyMenu.generateBreakfastMenu( adultRecipeies, 7 );
+   weeklyMenu.generateMealMenu( adultRecipeies, 7 );
 
    std::cout<<"generating menu and list"<<std::endl;
    weeklyMenu.generateMenu();

@@ -33,7 +33,7 @@ class CFoodDatabase
       virtual ~CFoodDatabase() = default;
       explicit CFoodDatabase( const Json::Value& babyMenuItems );
       void DisplayFoodItems( void );
-      void getRandomFoodItem( const enFoodItemType& ,foodItem& )const;
+      bool getRandomFoodItem( const enFoodItemType& ,foodItem& )const;
 };
 
 namespace JsonHandling

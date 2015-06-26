@@ -44,11 +44,13 @@ bool CFoodMenu::generateBreakfastMenu ( const CFoodDatabase& foodDB,
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
-      foodDB.getRandomFoodItem( enBreakfastItem, item );
-      mBreakfastMenu.push_back( item.mDish );
-      for( string ingredient: item.mIngredients )
+      if( true == foodDB.getRandomFoodItem( enBreakfastItem, item ) )
       {
-         mIngredients.push_back( ingredient );
+         mBreakfastMenu.push_back( item.mDish );
+         for( string ingredient: item.mIngredients )
+         {
+            mIngredients.push_back( ingredient );
+         }
       }
    }
    return success;/*bool*/
@@ -73,11 +75,13 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
-      foodDB.getRandomFoodItem( enLunchItem, item );
-      mMealMenu.push_back( item.mDish );
-      for( string ingredient: item.mIngredients )
+      if( true == foodDB.getRandomFoodItem( enLunchItem, item ) )
       {
-         mIngredients.push_back( ingredient );
+         mMealMenu.push_back( item.mDish );
+         for( string ingredient: item.mIngredients )
+         {
+            mIngredients.push_back( ingredient );
+         }
       }
    }
    return success;/*bool*/
@@ -98,14 +102,16 @@ void CFoodMenu::generateMenu ( )
 {
    ofstream foodMenu("menu.txt");
    foodMenu<<"Breakfast Items"<<std::endl;
+   foodMenu<<"==============="<<std::endl;
    for( string item : mBreakfastMenu )
    {
-      foodMenu<<"*\t"<<item.c_str()<<std::endl;
+      foodMenu<<"*   "<<item.c_str()<<std::endl;
    }
-   foodMenu<<"Meals"<<std::endl;
+   foodMenu<<std::endl<<std::endl<<"Meals"<<std::endl;
+   foodMenu<<"====="<<std::endl;
    for( string item :  mMealMenu )
    {
-      foodMenu<<"*\t"<<item.c_str();
+      foodMenu<<"*   "<<item.c_str();
    }
    foodMenu.close();
 }
@@ -128,7 +134,7 @@ void CFoodMenu::generateGroceryList ( )
    mIngredients.unique();
    for( string item : mIngredients )
    {
-      groceryList<<"*\t"<<item.c_str()<<std::endl;
+      groceryList<<"*   "<<item.c_str()<<std::endl;
    }
    groceryList.close();
 }
