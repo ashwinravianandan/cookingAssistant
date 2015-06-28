@@ -11,7 +11,7 @@ class CFoodMenu
    private:
       std::vector<string> mBreakfastMenu;
       std::vector<string> mMealMenu;
-      std::list<string> mIngredients;
+      static std::list<string> mIngredients;
 
    public:
       CFoodMenu();

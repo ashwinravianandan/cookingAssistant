@@ -4,13 +4,49 @@
       { "dish":"banana", "ingredients": [ 
          "banana"
             ]
+      },
+      { "dish":"avacado", "ingredients": [ 
+         "avacado"
+            ]
       } 
       ] 
    }, 
 
    { "mainCourse": [ 
-      { "dish":"patty", "ingredients": [ 
-         "besan", "rice flour", "oil", "carrot", "beetroot"
+      { "dish":" beetroot patty", "ingredients": [ 
+         "besan", "rice flour", "oil", "beetroot", "wheat flour"
+            ]
+      },
+      { "dish":"oats tikki", "ingredients": [ 
+         "oats", "any veggie suitable for tikki", "jeera", "mustard seeds", "lemons"
+            ]
+      },
+      { "dish":"dal patty", "ingredients": [ 
+         "toor dal", "moong dal", "rice flour"
+            ]
+      },
+      { "dish":"dal palak", "ingredients": [ 
+         "urad dal", "moong dal", "spinach", "jeera", "tomatoes", "tamarind", "green chilly"
+            ]
+      },
+      { "dish":"dalia kichadi", "ingredients": [ 
+         "broken wheat", "mixed dal", "goda masala", "kala masala", "turmeric powder"
+            ]
+      },
+      { "dish":"corn soup", "ingredients": [ 
+         "sweet corn", "pepper corn"
+            ]
+      },
+      { "dish":"boiled vegetables", "ingredients": [ 
+         "beans", "gourds", "cucumber", "potato"
+            ]
+      },
+      { "dish":"guacamole", "ingredients": [ 
+         "avacado", "white onions", "tomoatoes", "coriander", "lime", "pepper corn"
+            ]
+      },
+      { "dish":"dosa", "ingredients": [ 
+         "besan", "rice flour", "wheat flour", "veggies suitable for dosa"
             ]
       } 
       ] 
@@ -44,6 +80,14 @@
          },
          { "dish": "rava upma", "ingredients": [
             "sooji","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
+               ]
+         }
+         ]
+      },
+      {
+         "mainCourse": [
+         { "dish": "dal Palak + Roti", "ingredients": [
+            "toor dal", "palak", "green chillies", "jeera", "onions", "tamarind", "tomato", "wheat flour"
                ]
          }
          ]

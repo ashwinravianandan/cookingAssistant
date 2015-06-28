@@ -7,6 +7,8 @@
 using namespace std;
 using namespace JsonHandling;
 
+std::list<string> CFoodMenu::mIngredients;
+
 /*..............................................................................
  * @brief CFoodMenu 
  *
@@ -110,7 +112,7 @@ void CFoodMenu::generateMenu ( ostream& outFile )
    outFile<<"====="<<std::endl;
    for( string item :  mMealMenu )
    {
-      outFile<<"*   "<<item.c_str();
+      outFile<<"*   "<<item.c_str()<<std::endl;
    }
 }
 

@@ -12,3 +12,7 @@ CFoodMenu.o: CFoodMenu.cpp
 
 CFoodDatabase.o: CFoodDatabase.cpp
 	g++ -std=c++11 -c CFoodDatabase.cpp -o CFoodDatabase.o
+
+clean:
+	rm *.o
+	rm *.out

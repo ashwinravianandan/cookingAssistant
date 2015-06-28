@@ -69,18 +69,25 @@ int main(int argc, char* argv[] )
    CFoodDatabase childRecipies( babyFood  );
    CFoodDatabase adultRecipeies( adultMenu  );
 
-   CFoodMenu weeklyMenu;
-   weeklyMenu.generateBreakfastMenu( adultRecipeies, 7 );
-   weeklyMenu.generateMealMenu( adultRecipeies, 7 );
+   CFoodMenu weeklyMenu, weeklyMenuAdult;
+   weeklyMenu.generateBreakfastMenu( childRecipies, 5 );
+   weeklyMenu.generateMealMenu( childRecipies, 10 );
+
+   weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 5 );
+   weeklyMenuAdult.generateMealMenu( adultRecipeies, 5 );
 
    if ( "" == menuFile )
    {
       weeklyMenu.generateMenu(std::cout);
+      cout<<"\n\nAdult Menu:\n";
+      weeklyMenuAdult.generateMenu( std::cout );
    }
    else
    {
       ofstream menuObj( menuFile.c_str() );
       weeklyMenu.generateMenu( menuObj );
+      menuObj<<"\n\nAdult Menu:\n";
+      weeklyMenuAdult.generateMenu( menuObj );
       menuObj.close();
    }
 
