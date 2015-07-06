@@ -4,3 +4,4 @@ cscope.out
 *.o
 *.out
 *.txt
+*.pyc

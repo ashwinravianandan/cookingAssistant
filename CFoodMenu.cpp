@@ -4,6 +4,7 @@
 #include "CFoodDatabase.h"
 #include "CFoodMenu.h"
 #include <fstream>
+#include <algorithm>
 using namespace std;
 using namespace JsonHandling;
 
@@ -43,11 +44,20 @@ bool CFoodMenu::generateBreakfastMenu ( const CFoodDatabase& foodDB,
       const unsigned int& numberOfItems )
 {
    bool success = false;
+   bool allowDuplicates = (numberOfItems > foodDB.getNumberOfRecipes ( enBreakfastItem ) ) ? true : false;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
       if( true == foodDB.getRandomFoodItem( enBreakfastItem, item ) )
       {
+         if ( false == allowDuplicates )
+         {
+            if( mBreakfastMenu.end() != std::find( begin( mBreakfastMenu ), end( mBreakfastMenu ), item.mDish ) )
+            {
+               --i;
+               continue;
+            }
+         }
          mBreakfastMenu.push_back( item.mDish );
          for( string ingredient: item.mIngredients )
          {
@@ -74,11 +84,20 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
       const unsigned int &numberOfItems )
 {
    bool success = false;
+   bool allowDuplicates = (numberOfItems > foodDB.getNumberOfRecipes ( enLunchItem ) ) ? true : false;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
       if( true == foodDB.getRandomFoodItem( enLunchItem, item ) )
       {
+         if ( false == allowDuplicates )
+         {
+            if( mMealMenu.end() != std::find( begin( mMealMenu ), end( mMealMenu ), item.mDish ) )
+            {
+               --i;
+               continue;
+            }
+         }
          mMealMenu.push_back( item.mDish );
          for( string ingredient: item.mIngredients )
          {

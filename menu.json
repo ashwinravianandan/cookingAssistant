@@ -5,6 +5,22 @@
          "banana"
             ]
       },
+      { "dish":"mango", "ingredients": [ 
+         "mango"
+            ]
+      },
+      { "dish":"sapota", "ingredients": [ 
+         "sapota"
+            ]
+      },
+      { "dish":"idli", "ingredients": [ 
+         "idli rice", "urad dal"
+            ]
+      },
+      { "dish":"dosa", "ingredients": [ 
+         "idli rice", "urad dal"
+            ]
+      },
       { "dish":"avacado", "ingredients": [ 
          "avacado"
             ]
@@ -13,8 +29,8 @@
    }, 
 
    { "mainCourse": [ 
-      { "dish":" beetroot patty", "ingredients": [ 
-         "besan", "rice flour", "oil", "beetroot", "wheat flour"
+      { "dish":"beetroot patty", "ingredients": [ 
+         "potato", "rice flour", "oil", "beetroot"
             ]
       },
       { "dish":"oats tikki", "ingredients": [ 
@@ -42,7 +58,11 @@
             ]
       },
       { "dish":"guacamole", "ingredients": [ 
-         "avacado", "white onions", "tomoatoes", "coriander", "lime", "pepper corn"
+         "avacado", "white onions", "tomatoes", "coriander", "lime", "pepper corn"
+            ]
+      },
+      { "dish":"ragi dosa", "ingredients": [ 
+         "raagi"
             ]
       },
       { "dish":"dosa", "ingredients": [ 
@@ -67,7 +87,7 @@
                ]
          },
          { "dish": "Idli Chutney", "ingredients": [
-            "idli rice", "urad dal", "coconut", "jeera", "green chilly", "coriander leaves", "ginger", "mustard seeds", "red chillies"
+            "idli rice", "urad dal", "coconut", "jeera", "green chilly", "coriander leaves", "ginger", "mustard seeds", "red chilly"
                ]
          },
          { "dish": "Rava Idli", "ingredients": [
@@ -87,7 +107,7 @@
       {
          "mainCourse": [
          { "dish": "dal Palak + Roti", "ingredients": [
-            "toor dal", "palak", "green chillies", "jeera", "onions", "tamarind", "tomato", "wheat flour"
+            "toor dal", "palak", "green chillies", "jeera", "onions", "tamarind", "tomatoes", "wheat flour"
                ]
          }
          ]

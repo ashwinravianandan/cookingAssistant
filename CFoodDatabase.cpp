@@ -126,6 +126,35 @@ bool CFoodDatabase::getRandomFoodItem ( const enFoodItemType& itemType, foodItem
    return success;/*bool*/
 }
 
+/*..............................................................................
+ * @brief getNumberOfRecipes
+ *
+ * Input Parameters:
+ *    @param: 
+ *        enFoodItemType& itemType
+ * Return Value:
+ *    @returns unsigned int
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+unsigned int CFoodDatabase::getNumberOfRecipes ( const enFoodItemType& itemType )const
+{
+   unsigned int numberOfItems = 0;
+   if ( itemType == enBreakfastItem )
+   {
+      mBreakfastItems.size();
+   }
+   else if (itemType == enLunchItem )
+   {
+      mMainCourse.size();
+   }
+   else
+   {
+   }
+   return numberOfItems;/*void*/
+}
+
 
 void CFoodDatabase::DisplayFoodItems(void )
 {

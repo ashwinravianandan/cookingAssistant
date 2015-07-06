@@ -34,6 +34,7 @@ class CFoodDatabase
       explicit CFoodDatabase( const Json::Value& babyMenuItems );
       void DisplayFoodItems( void );
       bool getRandomFoodItem( const enFoodItemType& ,foodItem& )const;
+      unsigned int getNumberOfRecipes ( const enFoodItemType& itemType )const;
 };
 
 namespace JsonHandling

@@ -19,7 +19,10 @@ int main(int argc, char* argv[] )
    int c = 0;
    std::string menuFile, groceryFile, inputFile;
 
-   while( ( c = getopt(argc, argv, "m:g:i:") ) != -1)
+   bool generateBabyMenu = false;
+   bool generateAdultMenu = false;
+
+   while( ( c = getopt(argc, argv, "m:g:i:ab") ) != -1)
    {
       switch (c )
       {
@@ -36,6 +39,16 @@ int main(int argc, char* argv[] )
          case 'i':
             {
                inputFile = optarg;
+            }
+            break;
+         case 'b':
+            {
+               generateBabyMenu = true;
+            }
+            break;
+         case 'a':
+            {
+               generateAdultMenu = true;
             }
             break;
          case '?':
@@ -70,36 +83,60 @@ int main(int argc, char* argv[] )
    CFoodDatabase adultRecipeies( adultMenu  );
 
    CFoodMenu weeklyMenu, weeklyMenuAdult;
-   weeklyMenu.generateBreakfastMenu( childRecipies, 5 );
-   weeklyMenu.generateMealMenu( childRecipies, 10 );
+   if ( true == generateBabyMenu )
+   {
+      weeklyMenu.generateBreakfastMenu( childRecipies, 5 );
+      weeklyMenu.generateMealMenu( childRecipies, 10 );
+   }
 
-   weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 5 );
-   weeklyMenuAdult.generateMealMenu( adultRecipeies, 5 );
+   if ( true == generateAdultMenu )
+   {
+      weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 5 );
+      weeklyMenuAdult.generateMealMenu( adultRecipeies, 5 );
+   }
 
    if ( "" == menuFile )
    {
-      weeklyMenu.generateMenu(std::cout);
-      cout<<"\n\nAdult Menu:\n";
-      weeklyMenuAdult.generateMenu( std::cout );
+      if ( true == generateBabyMenu )
+      {
+         cout<<"Baby Menu:\n";
+         weeklyMenu.generateMenu(std::cout);
+      }
+      if ( true == generateAdultMenu )
+      {
+         cout<<"\n\nAdult Menu:\n";
+         weeklyMenuAdult.generateMenu( std::cout );
+      }
    }
    else
    {
       ofstream menuObj( menuFile.c_str() );
-      weeklyMenu.generateMenu( menuObj );
-      menuObj<<"\n\nAdult Menu:\n";
-      weeklyMenuAdult.generateMenu( menuObj );
+      if ( true == generateBabyMenu )
+      {
+         menuObj<<"Baby Menu:\n";
+         weeklyMenu.generateMenu( menuObj );
+      }
+      if ( true == generateAdultMenu )
+      {
+         menuObj<<"\n\nAdult Menu:\n";
+         weeklyMenuAdult.generateMenu( menuObj );
+      }
       menuObj.close();
    }
 
-   if ( "" == groceryFile )
+   if( ( true == generateBabyMenu) || ( true == generateAdultMenu ) )
    {
-      weeklyMenu.generateGroceryList(std::cout);
-   }
-   else
-   {
-      ofstream groceryObj( groceryFile.c_str() );
-      weeklyMenu.generateGroceryList( groceryObj );
-      groceryObj.close();
+      if ( "" == groceryFile )
+      {
+         cout<<"\n\nGrocery List:\n=============\n";
+         weeklyMenu.generateGroceryList(std::cout);
+      }
+      else
+      {
+         ofstream groceryObj( groceryFile.c_str() );
+         weeklyMenu.generateGroceryList( groceryObj );
+         groceryObj.close();
+      }
    }
 
    return 0;
