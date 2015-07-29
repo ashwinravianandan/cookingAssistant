@@ -1,18 +1,6 @@
 {
    "babyMenu": [ 
    { "breakfast": [ 
-      { "dish":"banana", "ingredients": [ 
-         "banana"
-            ]
-      },
-      { "dish":"mango", "ingredients": [ 
-         "mango"
-            ]
-      },
-      { "dish":"sapota", "ingredients": [ 
-         "sapota"
-            ]
-      },
       { "dish":"idli", "ingredients": [ 
          "idli rice", "urad dal"
             ]
@@ -21,8 +9,56 @@
          "idli rice", "urad dal"
             ]
       },
-      { "dish":"avacado", "ingredients": [ 
-         "avacado"
+      { "dish": "ven pongal", "ingredients": [
+         "moong dal", "rice", "ghee", "jeera", "green chilly", "pepper corn", "hing", "curry leaves", "cashew"
+            ]
+      },
+      { "dish": "semiya upma", "ingredients": [
+         "semiya","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
+            ]
+      },
+      { "dish": "rava upma", "ingredients": [
+         "sooji","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
+            ]
+      },
+      { "dish": "Rava Idli", "ingredients": [
+         "rava", "curd", "mustard", "bengal gram", "curry leaves", "green chilly"
+            ]
+      },
+      { "dish": "Rava dosa", "ingredients": [
+         "rava", "rice flour", "jeera"
+            ]
+      },
+      { "dish": "wheat dosa", "ingredients": [
+         "wheat flour"
+            ]
+      },
+      { "dish": "ragi dosa", "ingredients": [
+         "ragi flour"
+            ]
+      },
+      { "dish": "hash brown - potatoes", "ingredients": [
+         "potatoes", "refined oil", "jeera", "coriander leaves"
+            ]
+      },
+      { "dish": "hash brown - sweet potatoes", "ingredients": [
+         "sweet potatoes", "refined oil", "jeera", "coriander leaves"
+            ]
+      },
+      { "dish": "mashed potatoes", "ingredients": [
+         "potatoes", "jeera", "coriander leaves"
+            ]
+      },
+      { "dish": "ada dosa", "ingredients": [
+         "bengal gram", "toor dal", "urad dal", "green chilly", "red chilly", "curry leaves", "onion", "pepper corn", "jeera", "hing", "raw rice", "idli rice"
+            ]
+      },
+      { "dish": "sprouts salad", "ingredients": [
+         "green gram", "tomatoes", "coriander", "onion"
+            ]
+      },
+      { "dish":"oats-bannana pan cake", "ingredients": [ 
+         "oats", "bannana", "flak seeds", "cinamon", "nutmeg"
             ]
       } 
       ] 
@@ -31,6 +67,58 @@
    { "snack": [ 
       { "dish": "cooked corn", "ingredients": [
          "corn"
+            ]
+      },
+      { "dish": "Avacado", "ingredients": [
+         "Avacado"
+            ]
+      },
+      { "dish": "Apple", "ingredients": [
+         "Apple"
+            ]
+      },
+      { "dish": "Pomogranate", "ingredients": [
+         "Pomogranate"
+            ]
+      },
+      { "dish": "Papaya", "ingredients": [
+         "Papaya"
+            ]
+      },
+      { "dish": "Green Peas", "ingredients": [
+         "Green Peas"
+            ]
+      },
+      { "dish": "Sweet Potatoes", "ingredients": [
+         "Sweet Potatoes"
+            ]
+      },
+      { "dish": "Tapioca", "ingredients": [
+         "Tapioca"
+            ]
+      },
+      { "dish": "cooked peanuts", "ingredients": [
+         "peanuts"
+            ]
+      },
+      { "dish": "raw bannana - boiled", "ingredients": [
+         "raw bannana"
+            ]
+      },
+      { "dish": "kerala bannana - boiled", "ingredients": [
+         "kerala bannana"
+            ]
+      },
+      { "dish": "Sundal - chickpeas", "ingredients": [
+         "chick peas", "coconut", "mustard seeds", "bengal gram", "curry leaves", "red chilly"
+            ]
+      },
+      { "dish": "Sundal - peanuts", "ingredients": [
+         "peanuts", "coconut", "mustard seeds", "bengal gram", "curry leaves", "red chilly"
+            ]
+      },
+      { "dish": "seasonal fruit", "ingredients": [
+         "any seasonal fruit"
             ]
       }
       ] 
@@ -41,42 +129,82 @@
          "potato", "rice flour", "oil", "beetroot"
             ]
       },
-      { "dish":"oats tikki", "ingredients": [ 
-         "oats", "any veggie suitable for tikki", "jeera", "mustard seeds", "lemons"
+      { "dish":"dal-palak patty", "ingredients": [ 
+         "toor dal", "moong dal", "rice flour", "spinach"
             ]
       },
-      { "dish":"dal patty", "ingredients": [ 
-         "toor dal", "moong dal", "rice flour"
-            ]
-      },
-      { "dish":"dal palak", "ingredients": [ 
-         "urad dal", "moong dal", "spinach", "jeera", "tomatoes", "tamarind", "green chilly"
+      { "dish":"chapathi - dal palak", "ingredients": [ 
+         "urad dal", "moong dal", "spinach", "jeera", "tomatoes", "tamarind", "green chilly", "wheat flour"
             ]
       },
       { "dish":"dalia kichadi", "ingredients": [ 
          "broken wheat", "mixed dal", "goda masala", "kala masala", "turmeric powder"
             ]
       },
-      { "dish":"corn soup", "ingredients": [ 
-         "sweet corn", "pepper corn"
-            ]
-      },
       { "dish":"boiled vegetables", "ingredients": [ 
-         "beans", "gourds", "cucumber", "potato"
+         "beans", "gourds", "cucumber", "potato", "carrots", "pumkin"
             ]
       },
-      { "dish":"guacamole", "ingredients": [ 
-         "avacado", "white onions", "tomatoes", "coriander", "lime", "pepper corn"
-            ]
-      },
-      { "dish":"ragi dosa", "ingredients": [ 
-         "raagi"
+      { "dish":"chapathi - guacamole", "ingredients": [ 
+         "avacado", "white onions", "tomatoes", "coriander", "lime", "pepper corn", "wheat flour"
             ]
       },
       { "dish":"dosa", "ingredients": [ 
-         "besan", "rice flour", "wheat flour", "veggies suitable for dosa"
+         "idli rice", "urad dal"
             ]
-      } 
+      },
+      { "dish": "Rava dosa", "ingredients": [
+         "rava", "rice flour", "jeera"
+            ]
+      },
+      { "dish": "wheat dosa", "ingredients": [
+         "wheat flour"
+            ]
+      },
+      { "dish": "ragi dosa", "ingredients": [
+         "ragi flour"
+            ]
+      },
+      { "dish": "ada dosa", "ingredients": [
+         "bengal gram", "toor dal", "urad dal", "green chilly", "red chilly", "curry leaves", "onion", "pepper corn", "jeera", "hing", "raw rice", "idli rice"
+            ]
+      },
+      { "dish":"idli", "ingredients": [ 
+         "idli rice", "urad dal"
+            ]
+      },
+      { "dish":"chapathi - rajma", "ingredients": [ 
+         "wheat flour", "rajma", "onion", "cardamom", "tomatoes", "ginger", "garlic", "jeera", "cloves", "cinamon", "bey leaves"
+            ]
+      },
+      { "dish":"chapathi - aloo methi", "ingredients": [ 
+         "wheat flour", "aloo", "methi", "onion", "jeera", "garlic", "green chilly"
+            ]
+      },
+      { "dish":"chapathi - chickpeas", "ingredients": [ 
+         "wheat flour", "kabul channa", "onion", "cardamom", "tomatoes", "ginger", "garlic", "jeera", "cloves", "cinamon", "bey leaves", "coconut"
+            ]
+      },
+      { "dish":"chapathi - humus", "ingredients": [ 
+         "wheat flour", "kabul channa", "humus ingredients"
+            ]
+      },
+      { "dish":"aloo paratha", "ingredients": [ 
+         "wheat flour", "aloo", "green chilly", "dhanya powder", "coriander", "garam masala"
+            ]
+      },
+      { "dish":"gobi paratha", "ingredients": [ 
+         "wheat flour", "Cauliflower", "green chilly", "dhanya powder", "coriander", "garam masala"
+            ]
+      },
+      { "dish":"methi", "ingredients": [ 
+         "wheat flour", "methi", "green chilly", "dhanya powder", "coriander", "garam masala"
+            ]
+      },
+      { "dish": "Rava Idli", "ingredients": [
+         "rava", "curd", "mustard", "bengal gram", "curry leaves", "green chilly"
+            ]
+      }
       ] 
    }
    ],

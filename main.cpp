@@ -22,7 +22,7 @@ int main(int argc, char* argv[] )
    bool generateBabyMenu = false;
    bool generateAdultMenu = false;
 
-   while( ( c = getopt(argc, argv, "m:g:i:ab") ) != -1)
+   while( ( c = getopt(argc, argv, "m:g:i:abh") ) != -1)
    {
       switch (c )
       {
@@ -49,6 +49,12 @@ int main(int argc, char* argv[] )
          case 'a':
             {
                generateAdultMenu = true;
+            }
+            break;
+         case 'h':
+            {
+               cout<<"supported commands are:\n\t-m: output menu-file\n\t-g: output grocery file\n\t-i: input json database\n\t-b: generate baby menu\n\t-a: generate adult menu\n\t-h: shows this help menu"<<std::endl;
+               exit( 0 );
             }
             break;
          case '?':
@@ -85,16 +91,16 @@ int main(int argc, char* argv[] )
    CFoodMenu weeklyMenu, weeklyMenuAdult;
    if ( true == generateBabyMenu )
    {
-      weeklyMenu.generateBreakfastMenu( childRecipies, 5 );
-      weeklyMenu.generateMealMenu( childRecipies, 10 );
-      weeklyMenu.generateSnackMenu( childRecipies, 5 );
+      weeklyMenu.generateBreakfastMenu( childRecipies, 7 );
+      weeklyMenu.generateMealMenu( childRecipies, 14 );
+      weeklyMenu.generateSnackMenu( childRecipies, 7 );
    }
 
    if ( true == generateAdultMenu )
    {
-      weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 5 );
-      weeklyMenuAdult.generateMealMenu( adultRecipeies, 5 );
-      weeklyMenuAdult.generateSnackMenu( adultRecipeies, 5 );
+      weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 7 );
+      weeklyMenuAdult.generateMealMenu( adultRecipeies, 14 );
+      weeklyMenuAdult.generateSnackMenu( adultRecipeies, 7 );
    }
 
    if ( "" == menuFile )
