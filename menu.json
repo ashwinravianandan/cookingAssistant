@@ -28,6 +28,14 @@
       ] 
    }, 
 
+   { "snack": [ 
+      { "dish": "cooked corn", "ingredients": [
+         "corn"
+            ]
+      }
+      ] 
+   }, 
+
    { "mainCourse": [ 
       { "dish":"beetroot patty", "ingredients": [ 
          "potato", "rice flour", "oil", "beetroot"
@@ -104,6 +112,13 @@
          }
          ]
       },
+      { "snack": [ 
+         { "dish":"onion pakoda", "ingredients": [ 
+            "onion", "refined oil", "besan", "chilly powder", "salt"
+               ]
+         }
+         ] 
+      }, 
       {
          "mainCourse": [
          { "dish": "dal Palak + Roti", "ingredients": [

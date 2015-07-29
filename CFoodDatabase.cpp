@@ -34,9 +34,9 @@ T getRandIterator( T begin, T end )
  *    @extern
  *............................................................................*/
 CFoodDatabase::CFoodDatabase ( const Json::Value& FoodItems ):scJsonKeyIngredient("ingredients"),
-   scJsonKeyBreakfast("breakfast"), scJsonKeyMainCourse("mainCourse"), scJsonKeyDish("dish")
+   scJsonKeyBreakfast("breakfast"), scJsonKeyMainCourse("mainCourse"), scJsonKeyDish("dish"),scJsonKeySnack("snack")
 {
-   Json::Value breakfastItems, mealItems;
+   Json::Value breakfastItems, mealItems, snackItems;
    for( Json::Value anyDish: FoodItems )
    {
       if ( true == checkAndRetriveJsonData( anyDish, scJsonKeyBreakfast, Json::arrayValue, breakfastItems ) )
@@ -72,13 +72,35 @@ CFoodDatabase::CFoodDatabase ( const Json::Value& FoodItems ):scJsonKeyIngredien
                mealDish.mDish = dishName;
                Json::Value dishIngredients;
                if ( true == checkAndRetriveJsonData( 
-                        mealItem, "ingredients", Json::arrayValue, dishIngredients ) )
+                        mealItem, scJsonKeyIngredient, Json::arrayValue, dishIngredients ) )
                {
                   for( Json::Value ingredient: dishIngredients )
                   {
                      mealDish.mIngredients.push_back( ingredient.asString() );
                   }
                   mMainCourse.push_back( mealDish );
+               }
+            }
+         }
+      }
+      else if ( true ==  checkAndRetriveJsonData( anyDish, scJsonKeySnack, Json::arrayValue, snackItems ) )
+      {
+         for( Json::Value snackItem: snackItems)
+         {
+            foodItem mealDish;
+            std::string dishName;
+            if ( true == checkAndRetriveJsonData( snackItem, scJsonKeyDish, Json::stringValue, dishName ) )
+            {
+               mealDish.mDish = dishName;
+               Json::Value dishIngredients;
+               if ( true == checkAndRetriveJsonData( 
+                        snackItem, scJsonKeyIngredient, Json::arrayValue, dishIngredients ) )
+               {
+                  for( Json::Value ingredient: dishIngredients )
+                  {
+                     mealDish.mIngredients.push_back( ingredient.asString() );
+                  }
+                  mSnacks.push_back( mealDish );
                }
             }
          }
@@ -115,6 +137,10 @@ bool CFoodDatabase::getRandomFoodItem ( const enFoodItemType& itemType, foodItem
    {
       randomItem = *getRandIterator( mMainCourse.begin(), mMainCourse.end() );
    }
+   else if ( ( itemType == enSnacks ) && ( mSnacks.size() > 0 ) )
+   {
+      randomItem = *getRandIterator( mSnacks.begin(), mSnacks.end() );
+   }
    else
    {
       /**
@@ -143,37 +169,21 @@ unsigned int CFoodDatabase::getNumberOfRecipes ( const enFoodItemType& itemType 
    unsigned int numberOfItems = 0;
    if ( itemType == enBreakfastItem )
    {
-      mBreakfastItems.size();
+      numberOfItems = mBreakfastItems.size();
    }
    else if (itemType == enLunchItem )
    {
-      mMainCourse.size();
+      numberOfItems = mMainCourse.size();
+   }
+   else if ( itemType == enSnacks )
+   {
+      numberOfItems = mSnacks.size();
    }
    else
    {
+
    }
    return numberOfItems;/*void*/
 }
 
-
-void CFoodDatabase::DisplayFoodItems(void )
-{
-   for( foodItem dish: mBreakfastItems)
-   {
-      cout<<dish.mDish.c_str()<<std::endl;
-      for( std::string ingredients: dish.mIngredients)
-      {
-         cout<<ingredients.c_str()<<"\t";
-      }
-   }
-   cout<<std::endl;
-   for( foodItem dish: mMainCourse)
-   {
-      cout<<dish.mDish.c_str()<<std::endl;
-      for( std::string ingredients: dish.mIngredients)
-      {
-         cout<<ingredients.c_str()<<"\t";
-      }
-   }
-}
 

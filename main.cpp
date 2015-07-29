@@ -87,12 +87,14 @@ int main(int argc, char* argv[] )
    {
       weeklyMenu.generateBreakfastMenu( childRecipies, 5 );
       weeklyMenu.generateMealMenu( childRecipies, 10 );
+      weeklyMenu.generateSnackMenu( childRecipies, 5 );
    }
 
    if ( true == generateAdultMenu )
    {
       weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 5 );
       weeklyMenuAdult.generateMealMenu( adultRecipeies, 5 );
+      weeklyMenuAdult.generateSnackMenu( adultRecipeies, 5 );
    }
 
    if ( "" == menuFile )

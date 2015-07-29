@@ -11,6 +11,7 @@ class CFoodMenu
    private:
       std::vector<string> mBreakfastMenu;
       std::vector<string> mMealMenu;
+      std::vector<string> mSnackMenu;
       static std::list<string> mIngredients;
 
    public:
@@ -18,6 +19,7 @@ class CFoodMenu
       virtual ~CFoodMenu() = default;
        bool generateBreakfastMenu( const CFoodDatabase& foodDB, const unsigned int& numberOfItems );
        bool generateMealMenu( const CFoodDatabase& foodDB, const unsigned int& numberOfItems );
+       bool generateSnackMenu( const CFoodDatabase& foodDB, const unsigned int& numberOfItems );
        void generateGroceryList( ostream& );
        void generateMenu( ostream& );
 };

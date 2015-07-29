@@ -24,15 +24,16 @@ class CFoodDatabase
       const char* scJsonKeyBreakfast;
       const char* scJsonKeyMainCourse;
       const char* scJsonKeyDish;
+      const char* scJsonKeySnack;
 
       std::vector<foodItem> mBreakfastItems;
       std::vector<foodItem> mMainCourse;
+      std::vector<foodItem> mSnacks;
 
    public:
       CFoodDatabase() = delete;
       virtual ~CFoodDatabase() = default;
       explicit CFoodDatabase( const Json::Value& babyMenuItems );
-      void DisplayFoodItems( void );
       bool getRandomFoodItem( const enFoodItemType& ,foodItem& )const;
       unsigned int getNumberOfRecipes ( const enFoodItemType& itemType )const;
 };

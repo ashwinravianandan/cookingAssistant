@@ -44,7 +44,7 @@ bool CFoodMenu::generateBreakfastMenu ( const CFoodDatabase& foodDB,
       const unsigned int& numberOfItems )
 {
    bool success = false;
-   bool allowDuplicates = (numberOfItems < foodDB.getNumberOfRecipes ( enBreakfastItem ) ) ? true : false;
+   bool allowDuplicates = (numberOfItems <= foodDB.getNumberOfRecipes ( enBreakfastItem ) ) ? false : true;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
@@ -84,7 +84,7 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
       const unsigned int &numberOfItems )
 {
    bool success = false;
-   bool allowDuplicates = (numberOfItems < foodDB.getNumberOfRecipes ( enLunchItem ) ) ? true : false;
+   bool allowDuplicates = (numberOfItems <= foodDB.getNumberOfRecipes ( enLunchItem ) ) ? false : true;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
@@ -103,6 +103,50 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
          {
             mIngredients.push_back( ingredient );
          }
+      }
+   }
+   return success;/*bool*/
+}
+
+/*..............................................................................
+ * @brief generateSnackMenu
+ *
+ * Input Parameters:
+ *    @param: 
+ *        CFoodDatabase& foodDB, 
+ *        unsignedint& numberOfItems
+ * Return Value:
+ *    @returns bool
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+bool CFoodMenu::generateSnackMenu ( const CFoodDatabase& foodDB, const unsigned int& numberOfItems )
+{
+   bool success = false;
+   bool allowDuplicates = (numberOfItems <= foodDB.getNumberOfRecipes ( enSnacks ) ) ? false : true;
+   for ( unsigned int i = 0; i < numberOfItems; ++i )
+   {
+      foodItem item;
+      if( true == foodDB.getRandomFoodItem( enSnacks, item ) )
+      {
+         if ( false == allowDuplicates )
+         {
+            if( mSnackMenu.end() != std::find( begin( mSnackMenu ), end( mSnackMenu ), item.mDish ) )
+            {
+               --i;
+               continue;
+            }
+         }
+         mSnackMenu.push_back( item.mDish );
+         for( string ingredient: item.mIngredients )
+         {
+            mIngredients.push_back( ingredient );
+         }
+      }
+      else
+      {
+         break;
       }
    }
    return success;/*bool*/
@@ -130,6 +174,12 @@ void CFoodMenu::generateMenu ( ostream& outFile )
    outFile<<std::endl<<std::endl<<"Meals"<<std::endl;
    outFile<<"====="<<std::endl;
    for( string item :  mMealMenu )
+   {
+      outFile<<"*   "<<item.c_str()<<std::endl;
+   }
+   outFile<<std::endl<<std::endl<<"Snacks"<<std::endl;
+   outFile<<"======"<<std::endl;
+   for( string item :  mSnackMenu )
    {
       outFile<<"*   "<<item.c_str()<<std::endl;
    }
