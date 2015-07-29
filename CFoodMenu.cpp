@@ -44,7 +44,7 @@ bool CFoodMenu::generateBreakfastMenu ( const CFoodDatabase& foodDB,
       const unsigned int& numberOfItems )
 {
    bool success = false;
-   bool allowDuplicates = (numberOfItems > foodDB.getNumberOfRecipes ( enBreakfastItem ) ) ? true : false;
+   bool allowDuplicates = (numberOfItems < foodDB.getNumberOfRecipes ( enBreakfastItem ) ) ? true : false;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
@@ -84,7 +84,7 @@ bool CFoodMenu::generateMealMenu ( const CFoodDatabase& foodDB,
       const unsigned int &numberOfItems )
 {
    bool success = false;
-   bool allowDuplicates = (numberOfItems > foodDB.getNumberOfRecipes ( enLunchItem ) ) ? true : false;
+   bool allowDuplicates = (numberOfItems < foodDB.getNumberOfRecipes ( enLunchItem ) ) ? true : false;
    for ( unsigned int i = 0; i < numberOfItems; ++i )
    {
       foodItem item;
