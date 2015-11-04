@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "CMealDB.h"
 #include "CFoodDatabase.h"
 #include "CFoodMenu.h"
 #include <unistd.h>
@@ -13,7 +14,6 @@ using namespace JsonHandling;
 int main(int argc, char* argv[] )
 {
    //ifstream jsonDatabase( "menu.json" );
-
    opterr = 0;
 
    int c = 0;
@@ -87,6 +87,8 @@ int main(int argc, char* argv[] )
 
    CFoodDatabase childRecipies( babyFood  );
    CFoodDatabase adultRecipeies( adultMenu  );
+
+   CMealDB mealDatabase( Jval );
 
    CFoodMenu weeklyMenu, weeklyMenuAdult;
    if ( true == generateBabyMenu )
