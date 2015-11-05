@@ -45,4 +45,7 @@ class CMealDB
       CMealDB( );
       CMealDB( const Json::Value& );
       virtual ~CMealDB( );
+      vector< sides > getSides( ) const ;
+      vector< mealItem > getMealItems( ) const ;
+      vector< recipeGroup > getRecipeGroups( ) const ;
 };

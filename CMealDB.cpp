@@ -209,4 +209,50 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
    populateSides( jsonDB );
 }
 
+/*..............................................................................
+ * @brief getSides
+ *
+ * Input Parameters:
+ *    @param: 
+ * Return Value:
+ *    @returns vector< sides > 
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+vector< sides > CMealDB::getSides (  ) const
+{
+   return mSideDishes;/*vector< sides > CMealDB*/
+}
 
+/*..............................................................................
+ * @brief getMealItems
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns vector< mealItem >
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+vector< mealItem > CMealDB::getMealItems (  ) const
+{
+   return mMealItems;/*vector< mealItem >*/
+}
+
+/*..............................................................................
+ * @brief getRecipeGroups
+ *
+ * Input Parameters:
+ *    @param: 
+ * Return Value:
+ *    @returns vector< recipeGroup >
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+vector< recipeGroup > CMealDB::getRecipeGroups (  ) const
+{
+   return mRecipeGroups;/*vector< recipeGroup >*/
+}
