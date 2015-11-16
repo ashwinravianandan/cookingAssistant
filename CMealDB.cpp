@@ -256,3 +256,4 @@ vector< recipeGroup > CMealDB::getRecipeGroups (  ) const
 {
    return mRecipeGroups;/*vector< recipeGroup >*/
 }
+
