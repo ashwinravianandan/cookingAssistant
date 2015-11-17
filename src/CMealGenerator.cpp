@@ -63,16 +63,16 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
     */
    bool success = false;
    meal randomMeal;
-   vector< mealItem >::iterator randomMealItem;
+   vector< MealItem >::iterator randomMealItem;
    if ( enBread == cat )
    {
       /**
        * @todo: look for side category Chapathi 
        */
-      vector< mealItem > mealItems = mMealDatabase.getMealItems();
+      vector< MealItem > mealItems = mMealDatabase.getMealItems();
 
-      vector< mealItem >::iterator it = std::partition( 
-            begin( mealItems ), end( mealItems ), []( mealItem mealFromDB ) 
+      vector< MealItem >::iterator it = std::partition( 
+            begin( mealItems ), end( mealItems ), []( MealItem mealFromDB ) 
             { if( mealFromDB.mSideCategory == "withChapathi"  || mealFromDB.mSideCategory == "" ) 
             return true; else return false; } );
 
@@ -99,7 +99,7 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
             {
             auto recipeGrps = mMealDatabase.getRecipeGroups();
             auto it = find_if( begin( recipeGrps ), end( recipeGrps ),
-                  [=]( recipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
+                  [=]( RecipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
             if( it != end( recipeGrps ) )
             {
             randomMeal.mIngredients.reserve( randomMeal.mIngredients.size() + it->mIngredients.size() );
@@ -111,11 +111,11 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
 
       if ( true == randomMealItem->mNeedsSide )
       {
-         vector< sides >::iterator randSide;
+         vector< Sides >::iterator randSide;
          string sideCat = randomMealItem->mSideCategory;
-         vector< sides > sidesFromDB = mMealDatabase.getSides();
-         vector< sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
-               [ = ] ( sides fromDB ) -> bool
+         vector< Sides > sidesFromDB = mMealDatabase.getSides();
+         vector< Sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
+               [ = ] ( Sides fromDB ) -> bool
                { if ( fromDB.mCategories.end() != std::find( fromDB.mIngredients.begin(), 
                         fromDB.mIngredients.end(), randomMealItem->mSideCategory ) )
                return true; else return false;

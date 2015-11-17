@@ -9,7 +9,7 @@ typedef struct _recipeGroup
 {
    string mGroupName;
    vector< string > mIngredients;
-}recipeGroup;
+}RecipeGroup;
 
 typedef struct _mealItem
 {
@@ -18,7 +18,7 @@ typedef struct _mealItem
    string mSideCategory; // this attribute makes sense only if the dish needs a side
    vector< string > mIngredients;
    vector< string > mRecipeGroups; // list of recipe groups
-}mealItem;
+}MealItem;
 
 typedef struct _sides
 {
@@ -26,14 +26,14 @@ typedef struct _sides
    vector< string > mIngredients;
    vector< string > mRecipeGroups; // list of recipe groups
    vector< string > mCategories;
-}sides;
+}Sides;
 
 class CMealDB
 {
    private:
-      vector< recipeGroup > mRecipeGroups;
-      vector< mealItem > mMealItems;
-      vector< sides > mSideDishes;
+      vector< RecipeGroup > mRecipeGroups;
+      vector< MealItem > mMealItems;
+      vector< Sides > mSideDishes;
 
       void populateRecipeGroups ( const Json::Value& jsonDB );
       void populateMealItems ( const Json::Value& jsonDB );
@@ -45,7 +45,7 @@ class CMealDB
       CMealDB( );
       CMealDB( const Json::Value& );
       virtual ~CMealDB( );
-      vector< sides > getSides( ) const ;
-      vector< mealItem > getMealItems( ) const ;
-      vector< recipeGroup > getRecipeGroups( ) const ;
+      vector< Sides > getSides( ) const ;
+      vector< MealItem > getMealItems( ) const ;
+      vector< RecipeGroup > getRecipeGroups( ) const ;
 };

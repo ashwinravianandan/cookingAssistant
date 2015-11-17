@@ -50,7 +50,7 @@ void CMealDB::populateRecipeGroups ( const Json::Value& jsonDB )
 
    if ( true == checkAndRetriveJsonData( jsonDB, "recipeGroups", Json::arrayValue, recipeGroups ) )
    {
-      recipeGroup grpFromDB;
+      RecipeGroup grpFromDB;
       for( auto grp: recipeGroups )
       {
          Json::Value ingredients( Json::arrayValue );
@@ -89,7 +89,7 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
    {
       for( auto item: mealItems )
       {
-         mealItem itemsFromDB;
+         MealItem itemsFromDB;
          if ( true == checkAndRetriveJsonData( 
                   item, "dishName", Json::stringValue, itemsFromDB.mDishName ) )
          {
@@ -147,7 +147,7 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
    Json::Value jsonSides;
    if ( true == checkAndRetriveJsonData( jsonDB, "sides", Json::arrayValue, jsonSides ) )
    {
-      sides sideFromDB;
+      Sides sideFromDB;
       for( auto side: jsonSides )
       {
          if ( true == checkAndRetriveJsonData( 
@@ -205,7 +205,7 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
    // populate meal items
    populateMealItems( jsonDB );
 
-   // populate sides
+   // populate Sides
    populateSides( jsonDB );
 }
 
@@ -215,14 +215,14 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
  * Input Parameters:
  *    @param: 
  * Return Value:
- *    @returns vector< sides > 
+ *    @returns vector< Sides > 
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-vector< sides > CMealDB::getSides (  ) const
+vector< Sides > CMealDB::getSides (  ) const
 {
-   return mSideDishes;/*vector< sides > CMealDB*/
+   return mSideDishes;/*vector< Sides > CMealDB*/
 }
 
 /*..............................................................................
@@ -231,14 +231,14 @@ vector< sides > CMealDB::getSides (  ) const
  * Input Parameters:
  *    @param:  parameters
  * Return Value:
- *    @returns vector< mealItem >
+ *    @returns vector< MealItem >
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-vector< mealItem > CMealDB::getMealItems (  ) const
+vector< MealItem > CMealDB::getMealItems (  ) const
 {
-   return mMealItems;/*vector< mealItem >*/
+   return mMealItems;/*vector< MealItem >*/
 }
 
 /*..............................................................................
@@ -247,13 +247,13 @@ vector< mealItem > CMealDB::getMealItems (  ) const
  * Input Parameters:
  *    @param: 
  * Return Value:
- *    @returns vector< recipeGroup >
+ *    @returns vector< RecipeGroup >
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-vector< recipeGroup > CMealDB::getRecipeGroups (  ) const
+vector< RecipeGroup > CMealDB::getRecipeGroups (  ) const
 {
-   return mRecipeGroups;/*vector< recipeGroup >*/
+   return mRecipeGroups;/*vector< RecipeGroup >*/
 }
 
