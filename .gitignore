@@ -5,3 +5,6 @@ cscope.out
 *.out
 *.txt
 *.pyc
+.deps
+.deps/*
+*.log
