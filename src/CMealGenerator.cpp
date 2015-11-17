@@ -64,7 +64,7 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
    bool success = false;
    meal randomMeal;
    vector< MealItem >::iterator randomMealItem;
-   if ( enBread == cat )
+   if ( tenMealCategory::BREAD == cat )
    {
       /**
        * @todo: look for side category Chapathi 
@@ -82,7 +82,7 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
          success = true;
       }
    }
-   else if ( enRice == cat )
+   else if ( tenMealCategory::RICE == cat )
    {
    }
    else

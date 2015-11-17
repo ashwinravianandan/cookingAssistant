@@ -28,7 +28,7 @@ typedef struct _sides
    vector< string > mCategories;
 }Sides;
 
-class CMealDB
+class CMealDB final
 {
    private:
       vector< RecipeGroup > mRecipeGroups;

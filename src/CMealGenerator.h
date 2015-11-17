@@ -6,13 +6,13 @@ typedef struct _meal
    vector< string > mIngredients;
 }meal;
 
-typedef enum _mealCategory
+enum class tenMealCategory
 {
-   enBread,
-   enRice
-} tenMealCategory;
+   BREAD,
+   RICE
+};
 
-class CMealGenerator
+class CMealGenerator final
 {
    private:
       CMealDB mMealDatabase;
