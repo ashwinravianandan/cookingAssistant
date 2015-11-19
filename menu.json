@@ -6,13 +6,13 @@
    ],
 
    "mealItems": [
-      { "dishName": "chapathi", "eatWith": { "category" : "withChapathi" } , "ingredients": [ "wheat flour", "salt" ] },
-      { "dishName": "aloo paratha", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes" ] },
-      { "dishName": "gobi paratha", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" ] },
-      { "dishName": "methi paratha", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] }
+      { "dishName": "chapathi", "category": "bread", "eatWith": { "category" : "withChapathi" } , "ingredients": [ "wheat flour", "salt" ] },
+      { "dishName": "aloo paratha","category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes" ] },
+      { "dishName": "gobi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" ] },
+      { "dishName": "methi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] }
    ],
    "sides": [
-      { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], "ingredients": [ "palak", "toor dal, tomatoes", "tamarind" ], "recipeGroup": [ "seasoning" ] },
+      { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], "ingredients": [ "palak", "toor dal", "tomatoes", "tamarind" ], "recipeGroup": [ "seasoning" ] },
       { "dishName": "rajma masala", "category" : ["withChapathi", "withRice" ], "ingredients": ["tomatoes", "rajma" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic"] },
       { "dishName": "channa masala", "category" : ["withChapathi" ], "ingredients": ["tomatoes", "chickpeas" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic"] }
    ],

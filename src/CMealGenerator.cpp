@@ -50,49 +50,43 @@ CMealGenerator::~CMealGenerator (  )
  * Input Parameters:
  *    @param: cat
  * Return Value:
- *    @returns meal
+ *    @returns Meal
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
+bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  )
 {
-   /**
-    * @todo: refactor method to return error and implement 
-    * random iterator for rice based items 
-    */
    bool success = false;
-   meal randomMeal;
    vector< MealItem >::iterator randomMealItem;
-   if ( tenMealCategory::BREAD == cat )
+   vector< MealItem > mealItems = mMealDatabase.getMealItems();
+
+   auto partitionBasedOnCategory = [ cat ]( MealItem mealFromDB ) -> bool
    {
-      /**
-       * @todo: look for side category Chapathi 
-       */
-      vector< MealItem > mealItems = mMealDatabase.getMealItems();
-
-      vector< MealItem >::iterator it = std::partition( 
-            begin( mealItems ), end( mealItems ), []( MealItem mealFromDB ) 
-            { if( mealFromDB.mSideCategory == "withChapathi"  || mealFromDB.mSideCategory == "" ) 
-            return true; else return false; } );
-
-      if( it != begin( mealItems ) )
+      if ( mealFromDB.mMealCategory == cat )
       {
-         randomMealItem = getRandIterator( begin( mealItems ), it );
-         success = true;
+         return true;
       }
-   }
-   else if ( tenMealCategory::RICE == cat )
+      else
+      {
+         return false;
+      }
+   };
+
+   auto it = std::partition( begin( mealItems ), end( mealItems ),partitionBasedOnCategory );
+
+   if( it != begin( mealItems ) )
    {
+      randomMealItem = getRandIterator( begin( mealItems ), it );
+      success = true;
    }
-   else
-   {
-      ;
-   }
+
    if ( true == success )
    {
       randomMeal.mRecipeName = randomMealItem->mDishName;
-      randomMeal.mIngredients = randomMealItem->mIngredients;
+      std::for_each( begin( randomMealItem->mIngredients ), end( randomMealItem->mIngredients ),
+            [ &randomMeal ]( string ingredient ) { randomMeal.mIngredients.insert( ingredient ); } );
+
       std::for_each( randomMealItem->mRecipeGroups.begin(), 
             randomMealItem->mRecipeGroups.end(),
             [ & ]( string recipeGrp )
@@ -102,15 +96,14 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
                   [=]( RecipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
             if( it != end( recipeGrps ) )
             {
-            randomMeal.mIngredients.reserve( randomMeal.mIngredients.size() + it->mIngredients.size() );
-            randomMeal.mIngredients.insert( randomMeal.mIngredients.end(),
-                  it->mIngredients.begin(), it->mIngredients.end() );
+            randomMeal.mIngredients.insert(it->mIngredients.begin(), it->mIngredients.end() );
             }
             }
             );
 
       if ( true == randomMealItem->mNeedsSide )
       {
+         success = false;
          vector< Sides >::iterator randSide;
          string sideCat = randomMealItem->mSideCategory;
          vector< Sides > sidesFromDB = mMealDatabase.getSides();
@@ -123,11 +116,27 @@ meal CMealGenerator::generateRandomMeal( tenMealCategory cat  )
                );
          if( begin( sidesFromDB ) != it )
          {
+            success = true;
             randSide = getRandIterator( begin( sidesFromDB ), it );
+            randomMeal.mSide = randSide->mDishName;
+            randomMeal.mIngredients.insert( begin( randSide->mIngredients ), end( randSide->mIngredients ) );
+            std::for_each( begin( randSide->mRecipeGroups ), 
+                  end( randSide->mRecipeGroups ),
+                  [ & ]( string recipeGrp )
+                  {
+                  auto recipeGrps = mMealDatabase.getRecipeGroups();
+                  auto it = find_if( begin( recipeGrps ), end( recipeGrps ),
+                        [=]( RecipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
+                  if( it != end( recipeGrps ) )
+                  {
+                  randomMeal.mIngredients.insert( it->mIngredients.begin(), it->mIngredients.end() );
+                  }
+                  }
+                  );
+
          }
       }
    }
-
-   return randomMeal;/*meal*/
+   return success;/*Meal*/
 }
 

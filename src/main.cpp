@@ -3,10 +3,11 @@
 #include <fstream>
 #include <string>
 #include "CMealDB.h"
+#include "CMealGenerator.h"
 #include "CFoodDatabase.h"
 #include "CFoodMenu.h"
 #include <unistd.h>
-
+#include <algorithm>
 using namespace std;
 using namespace JsonHandling;
 
@@ -89,6 +90,17 @@ int main(int argc, char* argv[] )
    CFoodDatabase adultRecipeies( adultMenu  );
 
    CMealDB mealDatabase( Jval );
+
+   CMealGenerator gen( mealDatabase );
+
+   Meal randomMeal;
+   if ( gen.generateRandomMeal( randomMeal, tenMealCategory::BREAD ) )
+   {
+      cout<<"successfully retrieved random meal"<<endl;
+      std::cout<<randomMeal.mRecipeName<<"\t"<<randomMeal.mSide<<endl;
+      std::for_each( begin( randomMeal.mIngredients ), end( randomMeal.mIngredients ),
+            []( string ing ) { cout<< ing.c_str()<<endl; } );
+   }
 
    CFoodMenu weeklyMenu, weeklyMenuAdult;
    if ( true == generateBabyMenu )

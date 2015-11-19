@@ -105,22 +105,38 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
             {
                itemsFromDB.mNeedsSide = false;
             }
-         }
-         Json::Value recipeGrp;
-         if ( true == checkAndRetriveJsonData( item, "recipeGroup", Json::arrayValue,  recipeGrp ) )
-         {
-            for( auto recipeGrpItem: recipeGrp )
+            Json::Value recipeGrp;
+            if ( true == checkAndRetriveJsonData( item, "recipeGroup", Json::arrayValue,  recipeGrp ) )
             {
-               itemsFromDB.mRecipeGroups.push_back( recipeGrpItem.asString() );
+               for( auto recipeGrpItem: recipeGrp )
+               {
+                  itemsFromDB.mRecipeGroups.push_back( recipeGrpItem.asString() );
+               }
             }
-         }
-         Json::Value ingredients( Json::arrayValue );
-         if (true == checkAndRetriveJsonData( 
-               item, "ingredients", Json::arrayValue, ingredients ) )
-         {
-            for( auto ingredient: ingredients )
+            Json::Value ingredients( Json::arrayValue );
+            if (true == checkAndRetriveJsonData( 
+                  item, "ingredients", Json::arrayValue, ingredients ) )
             {
-               itemsFromDB.mIngredients.push_back( ingredient.asString() );
+               for( auto ingredient: ingredients )
+               {
+                  itemsFromDB.mIngredients.push_back( ingredient.asString() );
+               }
+            }
+            string mealCat;
+            if ( true == checkAndRetriveJsonData( item, "category", Json::stringValue, mealCat ) )
+            {
+               if ( mealCat == "bread" )
+               {
+                  itemsFromDB.mMealCategory = tenMealCategory::BREAD;
+               }
+               else if ( mealCat == "rice" )
+               {
+                  itemsFromDB.mMealCategory = tenMealCategory::RICE;
+               }
+               else
+               {
+                  ;
+               }
             }
          }
          mMealItems.push_back( itemsFromDB );
@@ -147,9 +163,9 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
    Json::Value jsonSides;
    if ( true == checkAndRetriveJsonData( jsonDB, "sides", Json::arrayValue, jsonSides ) )
    {
-      Sides sideFromDB;
       for( auto side: jsonSides )
       {
+         Sides sideFromDB;
          if ( true == checkAndRetriveJsonData( 
                   side, "dishName", Json::stringValue, sideFromDB.mDishName ) )
          {
@@ -202,7 +218,7 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
    // populate recipe groups
    populateRecipeGroups( jsonDB );
 
-   // populate meal items
+   // populate Meal items
    populateMealItems( jsonDB );
 
    // populate Sides

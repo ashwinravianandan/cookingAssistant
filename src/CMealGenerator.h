@@ -1,16 +1,13 @@
 #include "CMealDB.h"
+#include <set>
+using namespace std;
 
 typedef struct _meal
 {
    string mRecipeName;
-   vector< string > mIngredients;
-}meal;
-
-enum class tenMealCategory
-{
-   BREAD,
-   RICE
-};
+   string mSide;
+   set< string > mIngredients;
+}Meal;
 
 class CMealGenerator final
 {
@@ -22,5 +19,5 @@ class CMealGenerator final
       CMealGenerator( ) = delete ;
       CMealGenerator( const CMealDB& );
       virtual ~CMealGenerator( );
-      meal generateRandomMeal( tenMealCategory );
+      bool generateRandomMeal( Meal& randomMeal, tenMealCategory cat  );
 };
