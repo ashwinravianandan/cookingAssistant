@@ -5,6 +5,7 @@
 #include "CMealDB.h"
 #include "CMealGenerator.h"
 #include "CFoodDatabase.h"
+#include "COptionsHandler.h"
 #include "CFoodMenu.h"
 #include <unistd.h>
 #include <algorithm>
@@ -18,63 +19,17 @@ int main(int argc, char* argv[] )
    opterr = 0;
 
    int c = 0;
-   std::string menuFile, groceryFile, inputFile;
 
-   bool generateBabyMenu = false;
-   bool generateAdultMenu = false;
-
-   while( ( c = getopt(argc, argv, "m:g:i:abh") ) != -1)
-   {
-      switch (c )
-      {
-         case 'm':
-            {
-               menuFile = optarg;
-            }
-            break;
-         case 'g':
-            {
-               groceryFile = optarg;
-            }
-            break;
-         case 'i':
-            {
-               inputFile = optarg;
-            }
-            break;
-         case 'b':
-            {
-               generateBabyMenu = true;
-            }
-            break;
-         case 'a':
-            {
-               generateAdultMenu = true;
-            }
-            break;
-         case 'h':
-            {
-               cout<<"supported commands are:\n\t-m: output menu-file\n\t-g: output grocery file\n\t-i: input json database\n\t-b: generate baby menu\n\t-a: generate adult menu\n\t-h: shows this help menu"<<std::endl;
-               exit( 0 );
-            }
-            break;
-         case '?':
-            {
-               cerr<<"invalid command line args"<<std::endl;
-               exit( 0 );
-            }
-            break;
-      }
-   }
+   COptionsHandler::getInstance().initialize( argc, argv );
 
    Json::Value Jval;
-   if ( "" == inputFile )
+   if ( "" == COptionsHandler::getInstance().getDatabasePath() )
    {
       cin>>Jval;
    }
    else
    {
-      ifstream dbFile( inputFile.c_str() );
+      ifstream dbFile( COptionsHandler::getInstance().getDatabasePath().c_str() );
       if (true == dbFile.is_open() )
       {
          dbFile>>Jval;
@@ -103,62 +58,29 @@ int main(int argc, char* argv[] )
    }
 
    CFoodMenu weeklyMenu, weeklyMenuAdult;
-   if ( true == generateBabyMenu )
+   if ( true == COptionsHandler::getInstance().generateBabyMenu() )
    {
       weeklyMenu.generateBreakfastMenu( childRecipies, 7 );
       weeklyMenu.generateMealMenu( childRecipies, 14 );
       weeklyMenu.generateSnackMenu( childRecipies, 7 );
+
+      COptionsHandler::getInstance().menuFile()<<"Baby Menu:\n";
+      weeklyMenu.generateMenu( COptionsHandler::getInstance().menuFile() );
    }
 
-   if ( true == generateAdultMenu )
+   if ( true == COptionsHandler::getInstance().generateAdultMenu() )
    {
       weeklyMenuAdult.generateBreakfastMenu( adultRecipeies, 7 );
       weeklyMenuAdult.generateMealMenu( adultRecipeies, 14 );
       weeklyMenuAdult.generateSnackMenu( adultRecipeies, 7 );
+      COptionsHandler::getInstance().menuFile()<<"Adult Menu:\n";
+      weeklyMenuAdult.generateMenu( COptionsHandler::getInstance().menuFile() );
    }
-
-   if ( "" == menuFile )
+   if ( ( true == COptionsHandler::getInstance().generateBabyMenu() ) || 
+   ( true == COptionsHandler::getInstance().generateAdultMenu() ) )
    {
-      if ( true == generateBabyMenu )
-      {
-         cout<<"Baby Menu:\n";
-         weeklyMenu.generateMenu(std::cout);
-      }
-      if ( true == generateAdultMenu )
-      {
-         cout<<"\n\nAdult Menu:\n";
-         weeklyMenuAdult.generateMenu( std::cout );
-      }
-   }
-   else
-   {
-      ofstream menuObj( menuFile.c_str() );
-      if ( true == generateBabyMenu )
-      {
-         menuObj<<"Baby Menu:\n";
-         weeklyMenu.generateMenu( menuObj );
-      }
-      if ( true == generateAdultMenu )
-      {
-         menuObj<<"\n\nAdult Menu:\n";
-         weeklyMenuAdult.generateMenu( menuObj );
-      }
-      menuObj.close();
-   }
-
-   if( ( true == generateBabyMenu) || ( true == generateAdultMenu ) )
-   {
-      if ( "" == groceryFile )
-      {
-         cout<<"\n\nGrocery List:\n=============\n";
-         weeklyMenu.generateGroceryList(std::cout);
-      }
-      else
-      {
-         ofstream groceryObj( groceryFile.c_str() );
-         weeklyMenu.generateGroceryList( groceryObj );
-         groceryObj.close();
-      }
+      COptionsHandler::getInstance().groceryFile()<<"\n\nGrocery List:\n=============\n";
+      weeklyMenu.generateGroceryList(COptionsHandler::getInstance().groceryFile());
    }
 
    return 0;

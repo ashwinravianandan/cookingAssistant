@@ -84,8 +84,8 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  
    if ( true == success )
    {
       randomMeal.mRecipeName = randomMealItem->mDishName;
-      std::for_each( begin( randomMealItem->mIngredients ), end( randomMealItem->mIngredients ),
-            [ &randomMeal ]( string ingredient ) { randomMeal.mIngredients.insert( ingredient ); } );
+      randomMeal.mIngredients.insert( begin( randomMealItem->mIngredients ), 
+            end( randomMealItem->mIngredients ) );
 
       std::for_each( randomMealItem->mRecipeGroups.begin(), 
             randomMealItem->mRecipeGroups.end(),
