@@ -29,3 +29,4 @@ class COptionsHandler final
       bool generateAdultMenu() const;
       string getDatabasePath() const;
 };
+

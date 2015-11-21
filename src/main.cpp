@@ -1,12 +1,10 @@
 #include <json/json.h>
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "CMealDB.h"
 #include "CMealGenerator.h"
 #include "COptionsHandler.h"
 #include "CListGenerator.h"
-#include <unistd.h>
 #include <algorithm>
 using namespace std;
 using namespace JsonHandling;
@@ -34,14 +32,15 @@ int main(int argc, char* argv[] )
    CMealDB mealDatabase( Jval );
    CMealGenerator gen( mealDatabase );
    CListGenerator listGen;
-   listGen.addListCriteria( std::make_pair( tenMealCategory::BREAD, 0 ) );
+   listGen.addListCriteria( std::make_pair( tenMealCategory::BREAD, 10 ) );
+   listGen.addListCriteria( std::make_pair( tenMealCategory::RICE, 4 ) );
+   
    if ( listGen.generateMenu( gen ) )
    {
       cout<< "successfully generated menu";
       listGen.exportMenu( COptionsHandler::getInstance().menuFile() );
       listGen.exportGroceryList( COptionsHandler::getInstance().groceryFile() );
    }
-
    return 0;
 }
 

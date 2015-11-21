@@ -109,8 +109,7 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  
          vector< Sides > sidesFromDB = mMealDatabase.getSides();
          vector< Sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
                [ = ] ( Sides fromDB ) -> bool
-               { if ( fromDB.mCategories.end() != std::find( fromDB.mIngredients.begin(), 
-                        fromDB.mIngredients.end(), randomMealItem->mSideCategory ) )
+               { if ( end( fromDB.mCategories ) != find( begin( fromDB.mCategories ), end( fromDB.mCategories ), sideCat ) )
                return true; else return false;
                }
                );

@@ -4,7 +4,7 @@
 #include <set>
 using namespace std;
 
-class CListGenerator
+class CListGenerator final
 {
    private:
       std::set< std::pair< tenMealCategory, unsigned int > > mListOptions;
