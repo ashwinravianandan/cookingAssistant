@@ -55,7 +55,7 @@ CMealGenerator::~CMealGenerator (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  )
+bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  )const
 {
    bool success = false;
    vector< MealItem >::iterator randomMealItem;
@@ -138,5 +138,52 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  
       }
    }
    return success;/*Meal*/
+}
+
+/*..............................................................................
+ * @brief getNrOfDishesByCat
+ *
+ * Input Parameters:
+ *    @param: 
+ *        tenMealCategory& cat
+ * Return Value:
+ *    @returns unsigned int
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+unsigned int CMealGenerator::getNrOfDishesByCat ( const tenMealCategory& cat )const
+{
+   unsigned int nrOfDishes = 0;
+   auto mealItems = mMealDatabase.getMealItems();
+   auto sides = mMealDatabase.getSides();
+
+   auto countMeals = [ &nrOfDishes, sides, cat ]( MealItem meal )
+   {
+      if(  cat == meal.mMealCategory )
+      {
+         if( false == meal.mNeedsSide )
+         {
+            ++ nrOfDishes;
+         } 
+         else
+         {
+            string sideCat = meal.mSideCategory;
+            for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
+                  {
+                     if( end( side.mCategories ) != find_if( begin( side.mCategories ),
+                              end( side.mCategories ), [ &nrOfDishes, sideCat ]( string sideCategory )
+                              { return sideCategory == sideCat; }) )
+                     {
+                        ++nrOfDishes;
+                     }
+                  } );
+         }
+      }
+   };
+
+   for_each( begin( mealItems ), end( mealItems ), countMeals );
+
+   return nrOfDishes;/*unsigned int*/
 }
 

@@ -61,9 +61,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_chef_OBJECTS = CFoodDatabase.$(OBJEXT) CFoodMenu.$(OBJEXT) \
-	CMealDB.$(OBJEXT) CMealGenerator.$(OBJEXT) main.$(OBJEXT) \
-	COptionsHandler.$(OBJEXT)
+am_chef_OBJECTS = CMealDB.$(OBJEXT) CMealGenerator.$(OBJEXT) \
+	main.$(OBJEXT) COptionsHandler.$(OBJEXT) \
+	CListGenerator.$(OBJEXT)
 chef_OBJECTS = $(am_chef_OBJECTS)
 chef_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -180,7 +180,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -Wall -std=c++11 --pedantic
-chef_SOURCES = CFoodDatabase.cpp CFoodDatabase.h CFoodMenu.cpp CFoodMenu.h CMealDB.cpp CMealDB.h CMealGenerator.cpp CMealGenerator.h main.cpp COptionsHandler.cpp COptionsHandler.h
+chef_SOURCES = CMealDB.cpp CMealDB.h CMealGenerator.cpp CMealGenerator.h main.cpp COptionsHandler.cpp COptionsHandler.h CListGenerator.cpp CListGenerator.h
 all: all-am
 
 .SUFFIXES:
@@ -265,8 +265,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CFoodDatabase.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CFoodMenu.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CListGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CMealDB.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CMealGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/COptionsHandler.Po@am__quote@

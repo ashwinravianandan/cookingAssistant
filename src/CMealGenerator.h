@@ -1,12 +1,13 @@
+#pragma once
 #include "CMealDB.h"
-#include <set>
+#include <unordered_set>
 using namespace std;
 
 typedef struct _meal
 {
    string mRecipeName;
    string mSide;
-   set< string > mIngredients;
+   unordered_set< string > mIngredients;
 }Meal;
 
 class CMealGenerator final
@@ -19,5 +20,7 @@ class CMealGenerator final
       CMealGenerator( ) = delete ;
       CMealGenerator( const CMealDB& );
       virtual ~CMealGenerator( );
-      bool generateRandomMeal( Meal& randomMeal, tenMealCategory cat  );
+      bool generateRandomMeal( Meal& randomMeal, tenMealCategory cat  ) const;
+      unsigned int getNrOfDishesByCat( const tenMealCategory& ) const;
 };
+

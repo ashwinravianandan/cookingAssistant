@@ -1,5 +1,4 @@
 #pragma once
-#include "CFoodDatabase.h"
 #include <string>
 #include <vector>
 #include <json/json.h>
@@ -56,3 +55,45 @@ class CMealDB final
       vector< MealItem > getMealItems( ) const ;
       vector< RecipeGroup > getRecipeGroups( ) const ;
 };
+
+namespace JsonHandling
+{
+   class CJsonValue: public Json::Value
+   {
+      /**
+       * @todo: extend to all types 
+       */
+
+      public:
+         CJsonValue( const Json::Value& JVal ):Json::Value( JVal ){}
+         operator unsigned int()
+         {
+            return this->asUInt();
+         }
+         operator std::string() 
+         {
+            return this->asString();
+         }
+         operator  int()
+         {
+            return this->asInt();
+         }
+         operator bool()
+         {
+            return this->asBool();
+         }
+   };
+   template <typename T>
+      bool checkAndRetriveJsonData( Json::Value JVal, const char* key, Json::ValueType valType, T& data )
+      {
+         bool retVal = false;
+         if ( valType == JVal[ key ].type() )
+         {
+            CJsonValue Val = JVal[ key ];
+            retVal = true;
+            data = static_cast<T>( Val );
+         }
+         return retVal;
+      }
+}
+
