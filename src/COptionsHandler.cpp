@@ -105,13 +105,13 @@ bool COptionsHandler::initialize ( int argc, char* argv[] )
          case 'h':
             {
                cout<<"supported commands are:\n\t-m: output menu-file\n\t-g: output grocery file\n\t-i: input json database\n\t-b: generate baby menu\n\t-a: generate adult menu\n\t-h: shows this help menu"<<std::endl;
-               exit( 0 );
+               return 0;
             }
             break;
          case '?':
             {
                cerr<<"invalid command line args"<<std::endl;
-               exit( 0 );
+               return 0;
             }
             break;
       }

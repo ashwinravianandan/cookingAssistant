@@ -12,8 +12,10 @@ using namespace JsonHandling;
 
 int main(int argc, char* argv[] )
 {
-   COptionsHandler::getInstance().initialize( argc, argv );
-
+   if( !COptionsHandler::getInstance().initialize( argc, argv ) )
+   {
+      exit( 0 );
+   }
    Json::Value Jval;
    if ( "" == COptionsHandler::getInstance().getDatabasePath() )
    {
