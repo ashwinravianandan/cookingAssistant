@@ -1,259 +1,54 @@
 {
-   "babyMenu": [ 
-   { "breakfast": [ 
-      { "dish":"idli", "ingredients": [ 
-         "idli rice", "urad dal"
-            ]
-      },
-      { "dish":"dosa", "ingredients": [ 
-         "idli rice", "urad dal"
-            ]
-      },
-      { "dish": "ven pongal", "ingredients": [
-         "moong dal", "rice", "ghee", "jeera", "green chilly", "pepper corn", "hing", "curry leaves", "cashew"
-            ]
-      },
-      { "dish": "semiya upma", "ingredients": [
-         "semiya","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
-            ]
-      },
-      { "dish": "rava upma", "ingredients": [
-         "sooji","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
-            ]
-      },
-      { "dish": "Rava Idli", "ingredients": [
-         "rava", "curd", "mustard", "bengal gram", "curry leaves", "green chilly"
-            ]
-      },
-      { "dish": "Rava dosa", "ingredients": [
-         "rava", "rice flour", "jeera"
-            ]
-      },
-      { "dish": "wheat dosa", "ingredients": [
-         "wheat flour"
-            ]
-      },
-      { "dish": "ragi dosa", "ingredients": [
-         "ragi flour"
-            ]
-      },
-      { "dish": "hash brown - potatoes", "ingredients": [
-         "potatoes", "refined oil", "jeera", "coriander leaves"
-            ]
-      },
-      { "dish": "hash brown - sweet potatoes", "ingredients": [
-         "sweet potatoes", "refined oil", "jeera", "coriander leaves"
-            ]
-      },
-      { "dish": "mashed potatoes", "ingredients": [
-         "potatoes", "jeera", "coriander leaves"
-            ]
-      },
-      { "dish": "ada dosa", "ingredients": [
-         "bengal gram", "toor dal", "urad dal", "green chilly", "red chilly", "curry leaves", "onion", "pepper corn", "jeera", "hing", "raw rice", "idli rice"
-            ]
-      },
-      { "dish": "sprouts salad", "ingredients": [
-         "green gram", "tomatoes", "coriander", "onion"
-            ]
-      },
-      { "dish":"oats-bannana pan cake", "ingredients": [ 
-         "oats", "bannana", "flak seeds", "cinamon", "nutmeg"
-            ]
-      } 
-      ] 
-   }, 
-
-   { "snack": [ 
-      { "dish": "cooked corn", "ingredients": [
-         "corn"
-            ]
-      },
-      { "dish": "Avacado", "ingredients": [
-         "Avacado"
-            ]
-      },
-      { "dish": "Apple", "ingredients": [
-         "Apple"
-            ]
-      },
-      { "dish": "Pomogranate", "ingredients": [
-         "Pomogranate"
-            ]
-      },
-      { "dish": "Papaya", "ingredients": [
-         "Papaya"
-            ]
-      },
-      { "dish": "Green Peas", "ingredients": [
-         "Green Peas"
-            ]
-      },
-      { "dish": "Sweet Potatoes", "ingredients": [
-         "Sweet Potatoes"
-            ]
-      },
-      { "dish": "Tapioca", "ingredients": [
-         "Tapioca"
-            ]
-      },
-      { "dish": "cooked peanuts", "ingredients": [
-         "peanuts"
-            ]
-      },
-      { "dish": "raw bannana - boiled", "ingredients": [
-         "raw bannana"
-            ]
-      },
-      { "dish": "kerala bannana - boiled", "ingredients": [
-         "kerala bannana"
-            ]
-      },
-      { "dish": "Sundal - chickpeas", "ingredients": [
-         "chick peas", "coconut", "mustard seeds", "bengal gram", "curry leaves", "red chilly"
-            ]
-      },
-      { "dish": "Sundal - peanuts", "ingredients": [
-         "peanuts", "coconut", "mustard seeds", "bengal gram", "curry leaves", "red chilly"
-            ]
-      },
-      { "dish": "seasonal fruit", "ingredients": [
-         "any seasonal fruit"
-            ]
-      }
-      ] 
-   }, 
-
-   { "mainCourse": [ 
-      { "dish":"beetroot patty", "ingredients": [ 
-         "potato", "rice flour", "oil", "beetroot"
-            ]
-      },
-      { "dish":"dal-palak patty", "ingredients": [ 
-         "toor dal", "moong dal", "rice flour", "spinach"
-            ]
-      },
-      { "dish":"chapathi - dal palak", "ingredients": [ 
-         "urad dal", "moong dal", "spinach", "jeera", "tomatoes", "tamarind", "green chilly", "wheat flour"
-            ]
-      },
-      { "dish":"dalia kichadi", "ingredients": [ 
-         "broken wheat", "mixed dal", "goda masala", "kala masala", "turmeric powder"
-            ]
-      },
-      { "dish":"boiled vegetables", "ingredients": [ 
-         "beans", "gourds", "cucumber", "potato", "carrots", "pumkin"
-            ]
-      },
-      { "dish":"chapathi - guacamole", "ingredients": [ 
-         "avacado", "white onions", "tomatoes", "coriander", "lime", "pepper corn", "wheat flour"
-            ]
-      },
-      { "dish":"dosa", "ingredients": [ 
-         "idli rice", "urad dal"
-            ]
-      },
-      { "dish": "Rava dosa", "ingredients": [
-         "rava", "rice flour", "jeera"
-            ]
-      },
-      { "dish": "wheat dosa", "ingredients": [
-         "wheat flour"
-            ]
-      },
-      { "dish": "ragi dosa", "ingredients": [
-         "ragi flour"
-            ]
-      },
-      { "dish": "ada dosa", "ingredients": [
-         "bengal gram", "toor dal", "urad dal", "green chilly", "red chilly", "curry leaves", "onion", "pepper corn", "jeera", "hing", "raw rice", "idli rice"
-            ]
-      },
-      { "dish":"idli", "ingredients": [ 
-         "idli rice", "urad dal"
-            ]
-      },
-      { "dish":"chapathi - rajma", "ingredients": [ 
-         "wheat flour", "rajma", "onion", "cardamom", "tomatoes", "ginger", "garlic", "jeera", "cloves", "cinamon", "bey leaves"
-            ]
-      },
-      { "dish":"chapathi - aloo methi", "ingredients": [ 
-         "wheat flour", "aloo", "methi", "onion", "jeera", "garlic", "green chilly"
-            ]
-      },
-      { "dish":"chapathi - chickpeas", "ingredients": [ 
-         "wheat flour", "kabul channa", "onion", "cardamom", "tomatoes", "ginger", "garlic", "jeera", "cloves", "cinamon", "bey leaves", "coconut"
-            ]
-      },
-      { "dish":"chapathi - humus", "ingredients": [ 
-         "wheat flour", "kabul channa", "humus ingredients"
-            ]
-      },
-      { "dish":"aloo paratha", "ingredients": [ 
-         "wheat flour", "aloo", "green chilly", "dhanya powder", "coriander", "garam masala"
-            ]
-      },
-      { "dish":"gobi paratha", "ingredients": [ 
-         "wheat flour", "Cauliflower", "green chilly", "dhanya powder", "coriander", "garam masala"
-            ]
-      },
-      { "dish":"methi", "ingredients": [ 
-         "wheat flour", "methi", "green chilly", "dhanya powder", "coriander", "garam masala"
-            ]
-      },
-      { "dish": "Rava Idli", "ingredients": [
-         "rava", "curd", "mustard", "bengal gram", "curry leaves", "green chilly"
-            ]
-      }
-      ] 
-   }
+   "recipeGroups": [
+      { "groupName":"seasoning", "ingredients": [ "curry leaves", "mustard seeds", "jeera", "green chilly", "red chilly", "turmeric powder", "coriander leaves", "refined oil" ] },
+      { "groupName": "spices", "ingredients": [ "cloves", "bey leaves", "cardamom" ] },
+      { "groupName": "chillyDhanya", "ingredients": [ "red chilly powder", "danya powder" ] },
+      { "groupName":"gingerGarlic", "ingredients": [ "ginger", "garlic" ] }
    ],
-      "adultMenu": [
-      { "breakfast": [
-         { "dish": "semiya upma", "ingredients": [
-            "semiya","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
-               ]
-         },
-         { "dish": "sambar idli", "ingredients": [
-            "idli rice", "urad dal", "sambar power", "sambar vegetable", "toor dal", "tomatoes", "hing", "tamarind", "refined oil", "mustard seeds", "curry leaves", "red chilly", "turmeric powder", "danya powder", "red chilly powder", "onions", "coriander leaves"
-               ]
-         },
-         { "dish": "ven pongal", "ingredients": [
-            "moong dal", "rice", "ghee", "jeera", "green chilly", "pepper corn", "hing", "curry leaves"
-               ]
-         },
-         { "dish": "Idli Chutney", "ingredients": [
-            "idli rice", "urad dal", "coconut", "jeera", "green chilly", "coriander leaves", "ginger", "mustard seeds", "red chilly"
-               ]
-         },
-         { "dish": "Rava Idli", "ingredients": [
-            "rava idli mix", "curd"
-               ]
-         },
-         { "dish": "Pohe", "ingredients": [
-            "Pohe","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
-               ]
-         },
-         { "dish": "rava upma", "ingredients": [
-            "sooji","curry leaves","green chilly", "mustard seeds", "jeera", "refined oil", "bengal gram" 
-               ]
-         }
-         ]
-      },
-      { "snack": [ 
-         { "dish":"onion pakoda", "ingredients": [ 
-            "onion", "refined oil", "besan", "chilly powder", "salt"
-               ]
-         }
-         ] 
-      }, 
-      {
-         "mainCourse": [
-         { "dish": "dal Palak + Roti", "ingredients": [
-            "toor dal", "palak", "green chilly", "jeera", "onions", "tamarind", "tomatoes", "wheat flour"
-               ]
-         }
-         ]
-      }
+
+   "mealItems": [
+      { "dishName": "chapathi", "category": "bread", "eatWith": { "category" : "withChapathi" } , "ingredients": [ "wheat flour", "salt" ] },
+      { "dishName": "aloo paratha","category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
+      { "dishName": "gobi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" , "onion"] },
+      { "dishName": "white rice", "category": "rice", "eatWith": { "category": "withRice" }, "ingredients": [ "rice" ] },
+      { "dishName": "ven pongal", "category": "rice", "eatWith": {"category":"sambar"}, "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] },
+      { "dishName": "bisi bele bath", "category": "rice", "eatWith": {}, "ingredients": [ "rice", "toor dal", "beans", "carrot", "ghee", "bisi bele bath masala"], "recipeGroup": ["seasoning"] },
+      { "dishName": "pulao", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "beans", "carrot", "peas", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
+      { "dishName": "tomato bath", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "tomatoes", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
+      { "dishName": "methi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] }
+   ],
+   "sides": [
+      { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], "ingredients": [ "palak", "toor dal", "tomatoes", "tamarind" , "onion"], "recipeGroup": [ "seasoning" ] },
+      { "dishName": "rajma masala", "category" : ["withChapathi", "withRice" ], "ingredients": ["tomatoes", "rajma", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] },
+      { "dishName": "channa masala", "category" : ["withChapathi" ], "ingredients": ["tomatoes", "chickpeas", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] },
+      { "dishName": "peas masala", "category" : ["withChapathi" ], "ingredients": ["tomatoes", "peas", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] },
+      { "dishName": "tomato gojju", "category" : ["withChapathi" ], "ingredients": ["tomatoes", "onion", "red chilly powder"], "recipeGroup": ["seasoning"] },
+      { "dishName": "lady finger gojju", "category" : ["withChapathi" ], "ingredients": [ "lady finger", "tomatoes", "onion", "red chilly powder"], "recipeGroup": ["seasoning"] },
+      { "dishName": "brinjal masala", "category" : ["withChapathi" ], "ingredients": [ "brinjal", "tomatoes", "onion", "red chilly powder"], "recipeGroup": ["seasoning"] },
+      { "dishName": "green gram masala", "category" : ["withChapathi" ], "ingredients": [ "green gram", "onion", "red chilly powder"]  },
+      { "dishName": "red pumkin subzi", "category" : ["withChapathi" ], "ingredients": [ "kara mani", "red pumkin", "coconut", "red chilly powder", "jeera"], "recipeGroup": ["seasoning"]  },
+      { "dishName": "gourds", "category" : ["withChapathi", "withRice" ], "ingredients": [ "gourd", "toor dal", "coconut", "red chilly powder", "jeera"], "recipeGroup": ["seasoning"]  },
+      { "dishName": "colocasia sambar", "category" : [ "withRice" ], "ingredients": [ "colocasia", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "colocasia dry", "category" : [ "withChapathi" ], "ingredients": [ "colocasia", "red chilly powder" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "aloo sagu", "category" : [ "withChapathi" ], "ingredients": [ "potatoes", "onions", "red chilly powder", "tomatoes" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "raw bannana sagu", "category" : [ "withChapathi" ], "ingredients": [ "raw bannana", "onions", "red chilly powder", "tomatoes" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "aloo palya", "category" : [ "withChapathi" ], "ingredients": [ "potatoes", "onions"], "recipeGroup": ["seasoning"]  },
+      { "dishName": "beetroot subzi", "category" : [ "withChapathi" ], "ingredients": [ "beetroot", "onions" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "cabbage subzi", "category" : [ "withChapathi" ], "ingredients": [ "cabbage" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "beans subzi", "category" : [ "withChapathi" ], "ingredients": [ "beans", "coconut", "red chilly powder" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "cauliflower subzi", "category" : [ "withChapathi" ], "ingredients": [ "cauliflower", "red chilly powder", "onion" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "colocasia dry", "category" : [ "withChapathi" ], "ingredients": [ "colocasia", "red chilly powder" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "aloo gobi", "category" : [ "withChapathi", "withRice" ], "ingredients": [ "cauliflower", "tomato", "onion", "potatoes", "coconut", "jeera", "cashewnut" ], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic"]  },
+      { "dishName": "aloo mutter", "category" : [ "withChapathi", "withRice" ], "ingredients": [ "peas", "tomato", "onion", "potatoes", "coconut", "jeera", "cashewnut" ], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic"]  },
+      { "dishName": "aloo palak", "category" : [ "withChapathi", "withRice" ], "ingredients": [ "potatoes", "onions", "palak" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "aloo methi", "category" : [ "withChapathi", "withRice" ], "ingredients": [ "potatoes", "onions", "methi" ], "recipeGroup": ["seasoning"]  },
+      { "dishName": "drumstick sambar", "category" : [ "withRice", "sambar" ], "ingredients": [ "drumstick", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "lady finger sambar", "category" : [ "withRice", "sambar" ], "ingredients": [ "lady finder", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "raddish sambar", "category" : [ "withRice", "sambar" ], "ingredients": [ "raddish", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "khol khol sambar", "category" : [ "withRice", "sambar" ], "ingredients": [ "khol khol", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "brinjal sambar", "category" : [ "withRice", "sambar" ], "ingredients": [ "brinjal", "sambar powder", "tamarind", "tomatoes", "onion", "fenugreek seeds", "hing"], "recipeGroup": ["seasoning", "chillyDhanya"]  },
+      { "dishName": "yenai brinjal", "category" : [ "masalaSide" ], "ingredients": [ "brinjal", "tomatoes", "onion", "coconut", "jeera"], "recipeGroup": ["seasoning", "gingerGarlic" ,"chillyDhanya"]  },
+      { "dishName": "dal fry", "category" : ["withChapathi", "withRice" ], "ingredients": ["tomatoes", "onion", "urad dal" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya" ] }
    ]
 }
+
