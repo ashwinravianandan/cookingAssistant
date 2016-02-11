@@ -138,10 +138,8 @@ algorithm would not pair it with a side dish. Below is an example of a valid
 meal item definition.
 
     "mealItems": [
-      { "dishName": "aloo paratha","category": "bread", "eatWith": {}, 
-    "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
-      { "dishName": "ven pongal", "category": "rice", "eatWith": {"category":"sambar"},
-    "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] }
+      { "dishName": "aloo paratha","category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
+      { "dishName": "ven pongal", "category": "rice", "eatWith": {"category":"sambar"}, "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] }
     ]
 
 
@@ -151,10 +149,8 @@ explanatory. The array of strings referred to by category defines different tags
 that can be used by meal items. A side can have more than one category.  Below is an example of a valid definition of sides.
 
     "sides": [
-      { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], 
-    "ingredients": [ "palak", "toor dal", "tomatoes", "tamarind" , "onion"], "recipeGroup": [ "seasoning" ] },
-      { "dishName": "rajma masala", "category" : ["withChapathi", "withRice" ], "ingredients": 
-    ["tomatoes", "rajma", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] }
+      { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], "ingredients": [ "palak", "toor dal", "tomatoes", "tamarind" , "onion"], "recipeGroup": [ "seasoning" ] },
+      { "dishName": "rajma masala", "category" : ["withChapathi", "withRice" ], "ingredients": ["tomatoes", "rajma", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] }
     ]
 
 ## Open Items
