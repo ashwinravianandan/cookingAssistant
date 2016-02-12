@@ -3,13 +3,13 @@
 ## Introduction
 Cooking assistant, packaged as _chef_ is a list generator that processes a Json
 meal database and generates a list of randomized meals. In addition to this, it
-generates a grocery list needed to execute the menu. Very often one gets in to
+generates a grocery list needed to prepare the menu. Very often one gets in to
 the rut of cooking the same dishes over an over in spite of having a wide range
 of recipes to choose from. This command line utility encourages you to prepare
 something new everyday thereby ensuring a balanced diet and a refreshing meal.
 
 ## Installation
-_chef_ would have to be built from sources but has not external dependencies. So
+_chef_ would have to be built from sources but has no external dependencies. So
 building a installing should be straight forward provided you have a modern c++
 compiler. Please follow the below steps to build and install _chef_.
 
@@ -122,8 +122,7 @@ recipe.  Below is a sample definition of valid recipe groups.
 
     "recipeGroups": [
        { "groupName":"seasoning", "ingredients": [ "curry leaves", "mustard seeds",
-    "jeera", "green chilly", "red chilly", "turmeric powder", "coriander leaves", "refined oil" ] },
-       { "groupName":"gingerGarlic", "ingredients": [ "ginger", "garlic" ] }
+    "jeera", "green chilly", "red chilly", "turmeric powder", "coriander leaves", "refined oil" ] }, { "groupName":"gingerGarlic", "ingredients": [ "ginger", "garlic" ] }
     ]
 
 ### Meal Items
