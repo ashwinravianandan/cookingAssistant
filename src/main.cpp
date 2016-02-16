@@ -34,8 +34,8 @@ int main(int argc, char* argv[] )
    CMealDB mealDatabase( Jval );
    CMealGenerator gen( mealDatabase );
    CListGenerator listGen;
-   listGen.addListCriteria( std::make_pair( tenMealCategory::BREAD, 10 ) );
-   listGen.addListCriteria( std::make_pair( tenMealCategory::RICE, 4 ) );
+   listGen.addListCriteria( std::make_pair( "bread", 10 ) );
+   listGen.addListCriteria( std::make_pair( "rice", 4 ) );
    
    if ( listGen.generateMenu( gen ) )
    {

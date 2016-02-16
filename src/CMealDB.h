@@ -10,16 +10,10 @@ typedef struct _recipeGroup
    vector< string > mIngredients;
 }RecipeGroup;
 
-enum class tenMealCategory
-{
-   BREAD,
-   RICE
-};
-
 typedef struct _mealItem
 {
    string mDishName;
-   tenMealCategory mMealCategory;
+   string mMealCategory;
    bool mNeedsSide;
    string mSideCategory; // this attribute makes sense only if the dish needs a side
    vector< string > mIngredients;

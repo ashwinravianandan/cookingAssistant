@@ -122,22 +122,8 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
                   itemsFromDB.mIngredients.push_back( ingredient.asString() );
                }
             }
-            string mealCat;
-            if ( true == checkAndRetriveJsonData( item, "category", Json::stringValue, mealCat ) )
-            {
-               if ( mealCat == "bread" )
-               {
-                  itemsFromDB.mMealCategory = tenMealCategory::BREAD;
-               }
-               else if ( mealCat == "rice" )
-               {
-                  itemsFromDB.mMealCategory = tenMealCategory::RICE;
-               }
-               else
-               {
-                  ;
-               }
-            }
+            (void)checkAndRetriveJsonData( item, "category", 
+                     Json::stringValue, itemsFromDB.mMealCategory );
          }
          mMealItems.push_back( itemsFromDB );
       }
