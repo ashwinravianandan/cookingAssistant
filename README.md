@@ -35,9 +35,12 @@ So chef could be invoked using the below syntax.
     cat menu.json | chef
     chef < menu.json
 
-Chef currently generate ten meal items of the category _bread_ and four of the
-category _rice_. Currently only these to meal categories are supported. Chef
-would output the results on stdout.  Below is a sample response.
+The number of meal times along with category can be specified using the command
+line argument _-c_. This argument needs a parameter and should be a comma
+separated list of _category:number_ Chef would output the results on stdout.
+Below is a sample invocation and response response.
+
+    chef -i menu.json -c bread:10,rice:4
 
     -----MENU-----
              aloo paratha
@@ -127,14 +130,15 @@ recipe.  Below is a sample definition of valid recipe groups.
 
 ### Meal Items
 _Meal Items_ are used to describe the main course items of a meal. They are
-broadly classified into two categories, _bread_ and _rice_. These categories
-are used in the list generation algorithm. Most attributes in the meal item
-structure are self explanatory. The value of the _category_ attribute under the
-_eatWith_ attribute is of special interest. It is this value that binds a meal
-item to a side dish. If the _eatWith_ attribute is an empty json attribute,
-it is assumed that the meal item needs no side dish. In that case the search
-algorithm would not pair it with a side dish. Below is an example of a valid
-meal item definition.
+broadly classified into two categories, _bread_ and _rice_ in the sample
+database. New categories can be defined on the fly by adding an entry of
+the desired category to the database. These categories are used in the list
+generation algorithm. Most attributes in the meal item structure are self
+explanatory. The value of the _category_ attribute under the _eatWith_ attribute
+is of special interest. It is this value that binds a meal item to a side dish.
+If the _eatWith_ attribute is an empty json attribute, it is assumed that the
+meal item needs no side dish. In that case the search algorithm would not pair
+it with a side dish. Below is an example of a valid meal item definition.
 
     "mealItems": [
       { "dishName": "aloo paratha","category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
@@ -155,6 +159,4 @@ that can be used by meal items. A side can have more than one category.  Below i
 ## Open Items
 The following features will be supported in future
 
-   * Meal item categories should be dynamically definable instead of being restricted to _bread_ and _rice_
-   * It should be possible to specify the number of meal items of a desired category to be generated via the command line
    * It should be possible to add and remove entries from the json database using the tool rather than having to edit it manually
