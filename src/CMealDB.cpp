@@ -93,13 +93,16 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
          if ( true == checkAndRetriveJsonData( 
                   item, "dishName", Json::stringValue, itemsFromDB.mDishName ) )
          {
-            Json::Value sideCategory;
-            if( true == checkAndRetriveJsonData( 
-                     item, "eatWith", Json::objectValue, sideCategory ) &&
-             true == checkAndRetriveJsonData( 
-                sideCategory, "category", Json::stringValue, itemsFromDB.mSideCategory ) )
+            Json::Value sideCategory(Json::arrayValue );
+            if( ( true == checkAndRetriveJsonData( 
+                        item, "eatWith", Json::arrayValue, sideCategory ) ) &&
+                  ( 0 != sideCategory.size() ) )
             {
                itemsFromDB.mNeedsSide = true;
+               for( auto side: sideCategory )
+               {
+                  itemsFromDB.mSideCategories.push_back( side.asString() );
+               }
             }
             else
             {

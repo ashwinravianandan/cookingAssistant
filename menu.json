@@ -7,25 +7,25 @@
    ],
 
    "mealItems": [
-      { "dishName": "chapathi", "category": "bread", "eatWith": { "category" : "withChapathi" } , "ingredients": [ "wheat flour", "salt" ] },
-      { "dishName": "aloo paratha","category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
-      { "dishName": "gobi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" , "onion"] },
-      { "dishName": "white rice", "category": "rice", "eatWith": { "category": "withRice" }, "ingredients": [ "rice" ] },
-      { "dishName": "ven pongal", "category": "rice", "eatWith": {"category":"sambar"}, "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] },
-      { "dishName": "bisi bele bath", "category": "rice", "eatWith": {}, "ingredients": [ "rice", "toor dal", "beans", "carrot", "ghee", "bisi bele bath masala"], "recipeGroup": ["seasoning"] },
-      { "dishName": "pulao", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "beans", "carrot", "peas", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
-      { "dishName": "tomato bath", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "tomatoes", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
-      { "dishName": "methi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] },
-      { "dishName": "vegetable au gratin", "category": "exotic", "eatWith": {},  "ingredients": [ "butter", "cheese", "milk", "atta", "cauliflower", "beans", "carrots", "broccoli" ] },
-      { "dishName": "puttu kadala", "category": "exotic", "eatWith": {}, "recipeGroup": ["chillyDhanya", "seasoning"], "ingredients": ["black channa", "coconut", "puttu podi"] },
-      { "dishName": "aapam", "category": "exotic", "eatWith": {"category":"withAapam"},  "ingredients": ["coconut", "rice", "sugar", "salt", "coconut water"] },
-      { "dishName": "sannas", "category": "exotic", "eatWith": {"category":"withAapam"},  "ingredients": ["idli rice", "boiled rice", "urad dal", "sugar", "salt", "coconut water"] },
-      { "dishName": "nombu ada", "category": "exotic", "eatWith": {},  "ingredients": ["rice", "jaggery", "kara mani"] },
-      { "dishName": "kuzhi paniharam", "category": "exotic", "eatWith": {},  "ingredients": ["idli rice", "urad dal", "onion"], "recipeGroup":["seasoning"] },
-      { "dishName": "idiaapam", "category": "exotic", "eatWith": {"category": "chutney"},  "ingredients": ["rice", "salt"] },
-      { "dishName": "raagi roti", "category": "exotic", "eatWith": {"category": "chutney"},  "ingredients": ["raagi", "onion", "green chilly", "curry leaves", "coriander leaves"] },
-      { "dishName": "kambu koozhu", "category": "exotic", "eatWith": {},  "ingredients": ["pearl millet", "butter milk", "onion", "green chilly"] },
-      { "dishName": "pasta", "category": "exotic", "eatWith": {"category": "pastaSauce"}, "ingredients": ["olive oil", "pasta",  "oregano", "fresh cream"] }
+      { "dishName": "chapathi", "category": "bread", "eatWith": [ "withChapathi" ] , "ingredients": [ "wheat flour", "salt" ] },
+      { "dishName": "aloo paratha","category": "bread", "eatWith": [], "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
+      { "dishName": "gobi paratha", "category": "bread", "eatWith": [], "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" , "onion"] },
+      { "dishName": "white rice", "category": "rice", "eatWith": [ "withRice" ], "ingredients": [ "rice" ] },
+      { "dishName": "ven pongal", "category": "rice", "eatWith": [ "sambar" ], "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] },
+      { "dishName": "bisi bele bath", "category": "rice", "eatWith": [], "ingredients": [ "rice", "toor dal", "beans", "carrot", "ghee", "bisi bele bath masala"], "recipeGroup": ["seasoning"] },
+      { "dishName": "pulao", "category": "rice", "eatWith": [ "masalaSide" ], "ingredients": [ "rice", "beans", "carrot", "peas", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
+      { "dishName": "tomato bath", "category": "rice", "eatWith": [ "masalaSide" ], "ingredients": [ "rice", "tomatoes", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
+      { "dishName": "methi paratha", "category": "bread", "eatWith": [], "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] },
+      { "dishName": "vegetable au gratin", "category": "exotic", "eatWith": [],  "ingredients": [ "butter", "cheese", "milk", "atta", "cauliflower", "beans", "carrots", "broccoli" ] },
+      { "dishName": "puttu kadala", "category": "exotic", "eatWith": [], "recipeGroup": ["chillyDhanya", "seasoning"], "ingredients": ["black channa", "coconut", "puttu podi"] },
+      { "dishName": "aapam", "category": "exotic", "eatWith": [ "chutney", "stew" ],  "ingredients": ["coconut", "rice", "sugar", "salt", "coconut water"] },
+      { "dishName": "sannas", "category": "exotic", "eatWith": [ "stew"],  "ingredients": ["idli rice", "boiled rice", "urad dal", "sugar", "salt", "coconut water"] },
+      { "dishName": "nombu ada", "category": "exotic", "eatWith": [],  "ingredients": ["rice", "jaggery", "kara mani"] },
+      { "dishName": "kuzhi paniharam", "category": "exotic", "eatWith": [],  "ingredients": ["idli rice", "urad dal", "onion"], "recipeGroup":["seasoning"] },
+      { "dishName": "idiaapam", "category": "exotic", "eatWith": [ "chutney" ],  "ingredients": ["rice", "salt"] },
+      { "dishName": "raagi roti", "category": "exotic", "eatWith": [ "chutney" ],  "ingredients": ["raagi", "onion", "green chilly", "curry leaves", "coriander leaves"] },
+      { "dishName": "kambu koozhu", "category": "exotic", "eatWith": [],  "ingredients": ["pearl millet", "butter milk", "onion", "green chilly"] },
+      { "dishName": "pasta", "category": "exotic", "eatWith": [  "pastaSauce" ], "ingredients": ["olive oil", "pasta",  "oregano", "fresh cream"] }
    ],
 
    "sides": [
@@ -63,7 +63,7 @@
       { "dishName": "avial", "category": ["withRice"],  "recipeGroup":["seasoning"], "ingredients": ["raw bannana", "red pumkin", "white pumkin", "yam", "potatoes", "cluster beans", "coconut", "butter milk"] },
       { "dishName": "pesto sauce", "category" : ["pastaSauce" ], "ingredients": ["pesto sauce"] },
       { "dishName": "coconut chutney", "category" : ["chutney" ], "ingredients": ["coconut", "gram dal", "ginger", "green chilly" ], "recipeGroup":[ "seasoning" ] },
-      { "dishName": "stew", "category" : ["withAapam" ], "ingredients": ["coconut", "potato", "onion", "green chilly", "ginger", "curry leaves", "coconut oil"] },
+      { "dishName": "stew", "category" : ["stew" ], "ingredients": ["coconut", "potato", "onion", "green chilly", "ginger", "curry leaves", "coconut oil"] },
       { "dishName": "arabiata sauce", "category" : ["pastaSauce" ], "ingredients": ["tomatoes", "garlic", "oregano", "onion", "olive oil"] }
    ]
 }

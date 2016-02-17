@@ -15,7 +15,7 @@ typedef struct _mealItem
    string mDishName;
    string mMealCategory;
    bool mNeedsSide;
-   string mSideCategory; // this attribute makes sense only if the dish needs a side
+   vector< string > mSideCategories; // this attribute makes sense only if the dish needs a side
    vector< string > mIngredients;
    vector< string > mRecipeGroups; // list of recipe groups
 }MealItem;

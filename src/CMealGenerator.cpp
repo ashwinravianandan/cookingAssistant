@@ -105,7 +105,7 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
       {
          success = false;
          vector< Sides >::iterator randSide;
-         string sideCat = randomMealItem->mSideCategory;
+         string sideCat = *getRandIterator( begin( randomMealItem->mSideCategories ), end( randomMealItem->mSideCategories ) );
          vector< Sides > sidesFromDB = mMealDatabase.getSides();
          vector< Sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
                [ = ] ( Sides fromDB ) -> bool
@@ -167,16 +167,18 @@ unsigned int CMealGenerator::getNrOfDishesByCat ( const string& cat )const
          } 
          else
          {
-            string sideCat = meal.mSideCategory;
-            for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
-                  {
+            for( auto sideCat : meal.mSideCategories )
+            {
+               for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
+                     {
                      if( end( side.mCategories ) != find_if( begin( side.mCategories ),
                               end( side.mCategories ), [ &nrOfDishes, sideCat ]( string sideCategory )
                               { return sideCategory == sideCat; }) )
                      {
-                        ++nrOfDishes;
+                     ++nrOfDishes;
                      }
-                  } );
+                     } );
+            }
          }
       }
    };
