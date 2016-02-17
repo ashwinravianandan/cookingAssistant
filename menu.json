@@ -15,8 +15,14 @@
       { "dishName": "bisi bele bath", "category": "rice", "eatWith": {}, "ingredients": [ "rice", "toor dal", "beans", "carrot", "ghee", "bisi bele bath masala"], "recipeGroup": ["seasoning"] },
       { "dishName": "pulao", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "beans", "carrot", "peas", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
       { "dishName": "tomato bath", "category": "rice", "eatWith": {"category":"masalaSide"}, "ingredients": [ "rice", "tomatoes", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },
-      { "dishName": "methi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] }
+      { "dishName": "methi paratha", "category": "bread", "eatWith": {}, "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "methi" ] },
+      { "dishName": "vegetable au gratin", "category": "exotic", "eatWith": {},  "ingredients": [ "butter", "cheese", "milk", "atta", "cauliflower", "beans", "carrots", "broccoli" ] },
+      { "dishName": "puttu kadala", "category": "exotic", "eatWith": {}, "recipeGroup": ["chillyDhanya", "seasoning"], "ingredients": ["black channa", "coconut", "puttu podi"] },
+      { "dishName": "aapam", "category": "exotic", "eatWith": {},  "ingredients": ["urad dal", "rice"] },
+      { "dishName": "avial", "category": "exotic", "eatWith": {},  "recipeGroup":["seasoning"], "ingredients": ["raw bannana", "red pumkin", "white pumkin", "yam", "potatoes", "cluster beans", "coconut", "butter milk"] },
+      { "dishName": "pasta", "category": "exotic", "eatWith": {}, "ingredients": ["olive oil", "pasta", "tomatoes", "oregano", "fresh cream", "pesto sauce"] }
    ],
+
    "sides": [
       { "dishName": "dal palak", "category" : ["withChapathi", "withRice" ], "ingredients": [ "palak", "toor dal", "tomatoes", "tamarind" , "onion"], "recipeGroup": [ "seasoning" ] },
       { "dishName": "rajma masala", "category" : ["withChapathi", "withRice" ], "ingredients": ["tomatoes", "rajma", "onion" ], "recipeGroup": ["seasoning", "spices", "gingerGarlic", "chillyDhanya"] },
