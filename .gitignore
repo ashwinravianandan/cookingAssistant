@@ -3,7 +3,6 @@
 cscope.out
 *.o
 *.out
-*.txt
 *.pyc
 .deps
 .deps/*
