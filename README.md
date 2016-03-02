@@ -15,7 +15,8 @@ compiler. Please follow the below steps to build and install _chef_.
 
     git clone https://github.com/ashwinravianandan/cookingAssistant.git
     cd cookingAssistant
-    ./configure && make
+    cmake .
+    make
     sudo make install
 
 Once installed, you should be able to invoke chef from the command line.
