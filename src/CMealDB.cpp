@@ -93,13 +93,16 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
          if ( true == checkAndRetriveJsonData( 
                   item, "dishName", Json::stringValue, itemsFromDB.mDishName ) )
          {
-            Json::Value sideCategory;
-            if( true == checkAndRetriveJsonData( 
-                     item, "eatWith", Json::objectValue, sideCategory ) &&
-             true == checkAndRetriveJsonData( 
-                sideCategory, "category", Json::stringValue, itemsFromDB.mSideCategory ) )
+            Json::Value sideCategory(Json::arrayValue );
+            if( ( true == checkAndRetriveJsonData( 
+                        item, "eatWith", Json::arrayValue, sideCategory ) ) &&
+                  ( 0 != sideCategory.size() ) )
             {
                itemsFromDB.mNeedsSide = true;
+               for( auto side: sideCategory )
+               {
+                  itemsFromDB.mSideCategories.push_back( side.asString() );
+               }
             }
             else
             {
@@ -122,22 +125,8 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
                   itemsFromDB.mIngredients.push_back( ingredient.asString() );
                }
             }
-            string mealCat;
-            if ( true == checkAndRetriveJsonData( item, "category", Json::stringValue, mealCat ) )
-            {
-               if ( mealCat == "bread" )
-               {
-                  itemsFromDB.mMealCategory = tenMealCategory::BREAD;
-               }
-               else if ( mealCat == "rice" )
-               {
-                  itemsFromDB.mMealCategory = tenMealCategory::RICE;
-               }
-               else
-               {
-                  ;
-               }
-            }
+            (void)checkAndRetriveJsonData( item, "category", 
+                     Json::stringValue, itemsFromDB.mMealCategory );
          }
          mMealItems.push_back( itemsFromDB );
       }

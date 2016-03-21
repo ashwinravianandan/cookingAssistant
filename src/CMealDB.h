@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <json/json.h>
+#include "json.h"
 using namespace std;
 
 typedef struct _recipeGroup
@@ -10,18 +10,12 @@ typedef struct _recipeGroup
    vector< string > mIngredients;
 }RecipeGroup;
 
-enum class tenMealCategory
-{
-   BREAD,
-   RICE
-};
-
 typedef struct _mealItem
 {
    string mDishName;
-   tenMealCategory mMealCategory;
+   string mMealCategory;
    bool mNeedsSide;
-   string mSideCategory; // this attribute makes sense only if the dish needs a side
+   vector< string > mSideCategories; // this attribute makes sense only if the dish needs a side
    vector< string > mIngredients;
    vector< string > mRecipeGroups; // list of recipe groups
 }MealItem;

@@ -20,7 +20,7 @@ class CMealGenerator final
       CMealGenerator( ) = delete ;
       CMealGenerator( const CMealDB& );
       virtual ~CMealGenerator( );
-      bool generateRandomMeal( Meal& randomMeal, tenMealCategory cat  ) const;
-      unsigned int getNrOfDishesByCat( const tenMealCategory& ) const;
+      bool generateRandomMeal( Meal& randomMeal, string cat  ) const;
+      unsigned int getNrOfDishesByCat( const string& ) const;
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 #include <string>
+#include <set>
 using namespace std;
 class COptionsHandler final
 {
@@ -10,10 +11,10 @@ class COptionsHandler final
       string mDatabaseFile;
       ofstream mMenuFileHandle;
       ofstream mGroceryFileHandle;
-      bool mGenerateBabyMenu;
-      bool mGenerateAdultMenu;
+      set< pair<string, unsigned int >> mListCriteria;
 
       COptionsHandler( );
+      bool interpretListCriteria ( string listArgument );
    protected:
    public:
       virtual ~COptionsHandler( );
@@ -25,8 +26,7 @@ class COptionsHandler final
       bool initialize( int, char* [] );
       ostream& groceryFile( );
       ostream& menuFile ( );
-      bool generateBabyMenu() const;
-      bool generateAdultMenu() const;
       string getDatabasePath() const;
+      set< pair<string, unsigned int >> getListCriteria( )const;
 };
 

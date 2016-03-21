@@ -37,15 +37,14 @@ using namespace std;
  *
  * Input Parameters:
  *    @param: 
- *        set< pair< tenMealCategory, 
- *        int>>& listOpts
+ *        set< pair< string,int>>& listOpts
  * Return Value:
  *    @returns 
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CListGenerator::CListGenerator ( const set< pair< tenMealCategory,
+CListGenerator::CListGenerator ( const set< pair< string,
       unsigned int >>& listOpts )
 {
    mListOptions = listOpts;
@@ -56,7 +55,7 @@ CListGenerator::CListGenerator ( const set< pair< tenMealCategory,
  *
  * Input Parameters:
  *    @param: 
- *        std::pair< tenMealCategory, 
+ *        std::pair< string, 
  *        int>& listOpt
  * Return Value:
  *    @returns void
@@ -64,7 +63,7 @@ CListGenerator::CListGenerator ( const set< pair< tenMealCategory,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const std::pair< tenMealCategory,
+void CListGenerator::addListCriteria ( const std::pair< string,
       unsigned int>& listOpt )
 {
    mListOptions.insert( listOpt );
@@ -75,7 +74,7 @@ void CListGenerator::addListCriteria ( const std::pair< tenMealCategory,
  *
  * Input Parameters:
  *    @param: 
- *        set< pair< tenMealCategory, 
+ *        set< pair< string, 
  *        int>> listOpts
  * Return Value:
  *    @returns void
@@ -83,7 +82,7 @@ void CListGenerator::addListCriteria ( const std::pair< tenMealCategory,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const set< pair< tenMealCategory,
+void CListGenerator::addListCriteria ( const set< pair< string,
       unsigned int>>& listOpts )
 {
    mListOptions.insert( begin( listOpts ), end( listOpts ) );

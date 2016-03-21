@@ -1,4 +1,4 @@
-#include <json/json.h>
+#include "json.h"
 #include <iostream>
 #include <fstream>
 #include "CMealDB.h"
@@ -34,8 +34,7 @@ int main(int argc, char* argv[] )
    CMealDB mealDatabase( Jval );
    CMealGenerator gen( mealDatabase );
    CListGenerator listGen;
-   listGen.addListCriteria( std::make_pair( tenMealCategory::BREAD, 10 ) );
-   listGen.addListCriteria( std::make_pair( tenMealCategory::RICE, 4 ) );
+   listGen.addListCriteria( COptionsHandler::getInstance().getListCriteria() );
    
    if ( listGen.generateMenu( gen ) )
    {

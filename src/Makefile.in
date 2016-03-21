@@ -63,7 +63,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_chef_OBJECTS = CMealDB.$(OBJEXT) CMealGenerator.$(OBJEXT) \
 	main.$(OBJEXT) COptionsHandler.$(OBJEXT) \
-	CListGenerator.$(OBJEXT)
+	CListGenerator.$(OBJEXT) jsoncpp.$(OBJEXT)
 chef_OBJECTS = $(am_chef_OBJECTS)
 chef_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -119,7 +119,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = -ljsoncpp
+LIBS = @LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -180,7 +180,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -Wall -std=c++11 --pedantic
-chef_SOURCES = CMealDB.cpp CMealDB.h CMealGenerator.cpp CMealGenerator.h main.cpp COptionsHandler.cpp COptionsHandler.h CListGenerator.cpp CListGenerator.h
+chef_SOURCES = CMealDB.cpp CMealDB.h CMealGenerator.cpp CMealGenerator.h main.cpp COptionsHandler.cpp COptionsHandler.h CListGenerator.cpp CListGenerator.h jsoncpp.cpp json-forwards.h json.h
 all: all-am
 
 .SUFFIXES:
@@ -194,9 +194,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu src/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu src/Makefile
+	  $(AUTOMAKE) --foreign src/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -269,6 +269,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CMealDB.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CMealGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/COptionsHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/jsoncpp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cpp.o:

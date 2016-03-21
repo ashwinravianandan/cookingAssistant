@@ -14,7 +14,7 @@
  *    @extern
  *............................................................................*/
  COptionsHandler::COptionsHandler (  ):mMenuFile( "" ), mGroceryFile( "" ), 
-   mDatabaseFile( "" ), mGenerateBabyMenu( false ), mGenerateAdultMenu( false )
+   mDatabaseFile( "" )
 {
    ;
 }
@@ -73,7 +73,7 @@ bool COptionsHandler::initialize ( int argc, char* argv[] )
 {
    bool success = true;
    int c = 0;
-   while( ( c = getopt(argc, argv, "m:g:i:abh") ) != -1)
+   while( ( c = getopt(argc, argv, "m:g:i:c:abh") ) != -1)
    {
       switch (c )
       {
@@ -92,19 +92,17 @@ bool COptionsHandler::initialize ( int argc, char* argv[] )
                mDatabaseFile = optarg;
             }
             break;
-         case 'b':
+         case 'c':
             {
-               mGenerateBabyMenu = true;
-            }
-            break;
-         case 'a':
-            {
-               mGenerateAdultMenu = true;
+               if( true != interpretListCriteria( optarg ))
+               {
+                  return 0;
+               }
             }
             break;
          case 'h':
             {
-               cout<<"supported commands are:\n\t-m: output menu-file\n\t-g: output grocery file\n\t-i: input json database\n\t-b: generate baby menu\n\t-a: generate adult menu\n\t-h: shows this help menu"<<std::endl;
+               cout<<"supported commands are:\n\t-m: output menu-file\n\t-g: output grocery file\n\t-i: input json database\n\t-c comman seperated values of category:number for list generation\n\t-h: shows this help menu"<<std::endl;
                return 0;
             }
             break;
@@ -162,39 +160,7 @@ ostream& COptionsHandler::menuFile (  )
 }
 
 /*..............................................................................
- * @brief generateBabyMenu
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns bool
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-bool COptionsHandler::generateBabyMenu(  )const
-{
-   return mGenerateBabyMenu;
-}
-
-/*..............................................................................
- * @brief generateAdultMenu
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns bool
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-bool COptionsHandler::generateAdultMenu(  )const
-{
-   return mGenerateAdultMenu;
-}
-
-/*..............................................................................
- * @brief getDat
+ * @brief getDatabasePath 
  *
  * Input Parameters:
  *    @param:  parameters
@@ -208,4 +174,94 @@ string COptionsHandler::getDatabasePath ( )const
 {
    return mDatabaseFile;/*string*/
 }
+
+/*..............................................................................
+ * @brief interpretListCriteria
+ *
+ * Input Parameters:
+ *    @param: 
+ *        listArgument
+ * Return Value:
+ *    @returns bool
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+bool COptionsHandler::interpretListCriteria ( string listArgument )
+{
+   bool success = false;
+   bool finalEntry = false;
+   do
+   {
+      size_t pos = listArgument.find( ',');
+      string criteria;
+      if ( string::npos == pos )
+      {
+         if ( listArgument.empty() )
+         {
+            /// code shouldn't reach here
+            break;
+         }
+         else
+         {
+            finalEntry = true;
+            criteria = listArgument;
+         }
+      }
+      else
+      {
+         criteria = listArgument.substr( 0, pos );
+      }
+      size_t colon = 0;
+      if ( string::npos != ( colon = criteria.find( ':' ) ) )
+      {
+         string category = criteria.substr( 0, colon );
+         string nrOfItems = criteria.substr( colon+1, criteria.length());
+         if( category.empty() || nrOfItems.empty() )
+         {
+            cerr<<"could not parse "<<criteria<<endl;
+         }
+         else
+         {
+            mListCriteria.insert( std::make_pair(category, 
+                     atoi( nrOfItems.c_str())));
+            success = true;
+         }
+      }
+      else
+      {
+         cerr<<"could not parse "<<criteria<<endl;
+      }
+      if( false == finalEntry )
+      {
+         if( pos < listArgument.length() )
+         {
+            listArgument = listArgument.substr( pos+1, listArgument.length() );
+         }
+         else
+         {
+            break;
+         }
+      }
+   }while( !finalEntry );
+   return success;/*bool*/
+}
+
+/*..............................................................................
+ * @brief getListCriteria 
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns vector< pair< string,int>>
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+set< pair< string,unsigned int>> COptionsHandler::getListCriteria (  )const
+{
+   return mListCriteria;/*set< pair< string,int>>*/
+}
+
+
 

@@ -55,7 +55,7 @@ CMealGenerator::~CMealGenerator (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  )const
+bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
 {
    bool success = false;
    vector< MealItem >::iterator randomMealItem;
@@ -105,7 +105,7 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  
       {
          success = false;
          vector< Sides >::iterator randSide;
-         string sideCat = randomMealItem->mSideCategory;
+         string sideCat = *getRandIterator( begin( randomMealItem->mSideCategories ), end( randomMealItem->mSideCategories ) );
          vector< Sides > sidesFromDB = mMealDatabase.getSides();
          vector< Sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
                [ = ] ( Sides fromDB ) -> bool
@@ -144,14 +144,14 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, tenMealCategory cat  
  *
  * Input Parameters:
  *    @param: 
- *        tenMealCategory& cat
+ *        string& cat
  * Return Value:
  *    @returns unsigned int
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-unsigned int CMealGenerator::getNrOfDishesByCat ( const tenMealCategory& cat )const
+unsigned int CMealGenerator::getNrOfDishesByCat ( const string& cat )const
 {
    unsigned int nrOfDishes = 0;
    auto mealItems = mMealDatabase.getMealItems();
@@ -167,16 +167,18 @@ unsigned int CMealGenerator::getNrOfDishesByCat ( const tenMealCategory& cat )co
          } 
          else
          {
-            string sideCat = meal.mSideCategory;
-            for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
-                  {
+            for( auto sideCat : meal.mSideCategories )
+            {
+               for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
+                     {
                      if( end( side.mCategories ) != find_if( begin( side.mCategories ),
                               end( side.mCategories ), [ &nrOfDishes, sideCat ]( string sideCategory )
                               { return sideCategory == sideCat; }) )
                      {
-                        ++nrOfDishes;
+                     ++nrOfDishes;
                      }
-                  } );
+                     } );
+            }
          }
       }
    };
