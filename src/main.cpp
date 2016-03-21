@@ -6,6 +6,10 @@
 #include "COptionsHandler.h"
 #include "CListGenerator.h"
 #include <algorithm>
+#include "Print.h"
+#include "MenuFilePrinter.h"
+#include "ConsoleMenuPrinter.h"
+#include <memory>
 using namespace std;
 using namespace JsonHandling;
 
@@ -35,11 +39,20 @@ int main(int argc, char* argv[] )
    CMealGenerator gen( mealDatabase );
    CListGenerator listGen;
    listGen.addListCriteria( COptionsHandler::getInstance().getListCriteria() );
-   
    if ( listGen.generateMenu( gen ) )
    {
       cout<< "successfully generated menu";
-      listGen.exportMenu( COptionsHandler::getInstance().menuFile() );
+
+      string menuFilePath = COptionsHandler::getInstance().getMenuFilePath();
+      
+      typedef vector<pair<string,string>> MenuItems;
+
+      unique_ptr<IPrint<MenuItems>> uptr = ( menuFilePath.empty() )?
+         unique_ptr<IPrint<MenuItems>>{ new ConsoleMenuPrinter{}}:
+         unique_ptr<IPrint<MenuItems>>{ new MenuFilePrinter{menuFilePath}};
+
+      uptr->print( listGen.getMealMenu() );
+
       listGen.exportGroceryList( COptionsHandler::getInstance().groceryFile() );
    }
    return 0;

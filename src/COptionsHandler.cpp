@@ -48,10 +48,6 @@ COptionsHandler& COptionsHandler::getInstance (  )
  *............................................................................*/
  COptionsHandler::~COptionsHandler (  )
 {
-   if( mMenuFileHandle.is_open() )
-   {
-      mMenuFileHandle.close();
-   }
    if( mGroceryFileHandle.is_open() )
    {
       mGroceryFileHandle.close();
@@ -139,25 +135,6 @@ ostream& COptionsHandler::groceryFile (  )
    return ( mGroceryFileHandle.is_open() )? mGroceryFileHandle: std::cout ;
 }
 
-/*..............................................................................
- * @brief menuFile
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns ostream&
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-ostream& COptionsHandler::menuFile (  )
-{
-   if ( ( "" != mMenuFile ) && (!mMenuFileHandle.is_open() ))
-   {
-      mMenuFileHandle.open( mMenuFile.c_str() );
-   }
-   return ( mMenuFileHandle.is_open() )? mMenuFileHandle: std::cout ;
-}
 
 /*..............................................................................
  * @brief getDatabasePath 
@@ -261,6 +238,22 @@ bool COptionsHandler::interpretListCriteria ( string listArgument )
 set< pair< string,unsigned int>> COptionsHandler::getListCriteria (  )const
 {
    return mListCriteria;/*set< pair< string,int>>*/
+}
+
+/*..............................................................................
+ * @brief getMen
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns string
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+string COptionsHandler::getMenuFilePath ( )const
+{
+   return mMenuFile;/*string*/
 }
 
 
