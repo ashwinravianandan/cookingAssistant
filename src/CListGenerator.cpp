@@ -149,31 +149,19 @@ bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
 }
 
 /*..............................................................................
- * @brief exportMenu
+ * @brief getMealMenu
  *
  * Input Parameters:
- *    @param: ostream& outFile
+ *    @param: 
  * Return Value:
- *    @returns void
+ *    @returns vector<pair<string, string>>
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::exportMenu ( ostream& outFile )const
+vector<pair<string, string>>& CListGenerator::getMealMenu (  )
 {
-   outFile<<"\n-----MENU-----\n";
-   for( auto mealItem : mMealMenu )
-   {
-      outFile<<"\t "<<mealItem.first.c_str();
-      if( "" != mealItem.second )
-      {
-         outFile<<" - "<<mealItem.second.c_str()<<"\n";
-      }
-      else
-      {
-         outFile<<endl;
-      }
-   } 
+   return mMealMenu;/*vector<pair<string, string>>*/
 }
 
 /*..............................................................................
