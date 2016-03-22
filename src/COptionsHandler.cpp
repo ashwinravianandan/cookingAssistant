@@ -48,10 +48,6 @@ COptionsHandler& COptionsHandler::getInstance (  )
  *............................................................................*/
  COptionsHandler::~COptionsHandler (  )
 {
-   if( mGroceryFileHandle.is_open() )
-   {
-      mGroceryFileHandle.close();
-   }
 }
 /*..............................................................................
  * @brief initialize
@@ -112,27 +108,6 @@ bool COptionsHandler::initialize ( int argc, char* argv[] )
    }
    
    return success;/*bool*/
-}
-
-/*..............................................................................
- * @brief groceryFile
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns ostream&
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-ostream& COptionsHandler::groceryFile (  )
-{
-
-   if ( ( "" != mGroceryFile ) && ( !mGroceryFileHandle.is_open() ) )
-   {
-      mGroceryFileHandle.open( mGroceryFile.c_str() );
-   }
-   return ( mGroceryFileHandle.is_open() )? mGroceryFileHandle: std::cout ;
 }
 
 
@@ -254,6 +229,21 @@ set< pair< string,unsigned int>> COptionsHandler::getListCriteria (  )const
 string COptionsHandler::getMenuFilePath ( )const
 {
    return mMenuFile;/*string*/
+}
+/*..............................................................................
+ * @brief getGr
+ *
+ * Input Parameters:
+ *    @param:  parameters
+ * Return Value:
+ *    @returns string 
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+string  COptionsHandler::getGroceryFilePath ( )const
+{
+   return mGroceryFile;/*string */
 }
 
 

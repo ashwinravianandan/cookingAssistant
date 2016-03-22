@@ -19,6 +19,6 @@ class CListGenerator final
       void addListCriteria( const std::pair< string, unsigned int >& );
       void addListCriteria( const std::set< std::pair< string, unsigned int > >& );
       bool generateMenu( const CMealGenerator& );
-      std::vector< pair<string, string>>& getMealMenu( void );
-      void exportGroceryList(  ostream& outFile ) const;
+      const std::vector< pair<string, string>>& getMealMenu( void )const;
+      const std::unordered_set<string>& getGroceryList( void )const;
 };

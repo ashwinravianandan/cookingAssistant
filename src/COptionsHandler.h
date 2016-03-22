@@ -9,7 +9,6 @@ class COptionsHandler final
       string mMenuFile;
       string mGroceryFile;
       string mDatabaseFile;
-      ofstream mGroceryFileHandle;
       set< pair<string, unsigned int >> mListCriteria;
 
       COptionsHandler( );
@@ -23,9 +22,9 @@ class COptionsHandler final
 
       static COptionsHandler& getInstance( void );
       bool initialize( int, char* [] );
-      ostream& groceryFile( );
       string getDatabasePath() const;
       string getMenuFilePath() const;
+      string getGroceryFilePath()const;
       set< pair<string, unsigned int >> getListCriteria( )const;
 };
 
