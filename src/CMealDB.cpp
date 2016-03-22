@@ -1,4 +1,5 @@
 #include "CMealDB.h"
+#include "MealBuilder.h"
 using namespace JsonHandling;
 
 
@@ -89,31 +90,29 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
    {
       for( auto item: mealItems )
       {
-         MealItem itemsFromDB;
+         MainCourse mealItem;
+         string dishName;
+         MainCourseBuilder builder{ mealItem, *this };
          if ( true == checkAndRetriveJsonData( 
-                  item, "dishName", Json::stringValue, itemsFromDB.mDishName ) )
+                  item, "dishName", Json::stringValue, dishName ) )
          {
+            builder.setName( dishName );
             Json::Value sideCategory(Json::arrayValue );
             if( ( true == checkAndRetriveJsonData( 
                         item, "eatWith", Json::arrayValue, sideCategory ) ) &&
                   ( 0 != sideCategory.size() ) )
             {
-               itemsFromDB.mNeedsSide = true;
                for( auto side: sideCategory )
                {
-                  itemsFromDB.mSideCategories.push_back( side.asString() );
+                  builder.eatWith( side.asString() );
                }
-            }
-            else
-            {
-               itemsFromDB.mNeedsSide = false;
             }
             Json::Value recipeGrp;
             if ( true == checkAndRetriveJsonData( item, "recipeGroup", Json::arrayValue,  recipeGrp ) )
             {
                for( auto recipeGrpItem: recipeGrp )
                {
-                  itemsFromDB.mRecipeGroups.push_back( recipeGrpItem.asString() );
+                  builder.addRecipeGrp( recipeGrpItem.asString() );
                }
             }
             Json::Value ingredients( Json::arrayValue );
@@ -122,13 +121,15 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
             {
                for( auto ingredient: ingredients )
                {
-                  itemsFromDB.mIngredients.push_back( ingredient.asString() );
+                  builder.addIngredient( ingredient.asString() );
                }
             }
+            string mealCategory;
             (void)checkAndRetriveJsonData( item, "category", 
-                     Json::stringValue, itemsFromDB.mMealCategory );
+                     Json::stringValue, mealCategory );
+            builder.setMealCategory( mealCategory );
          }
-         mMealItems.push_back( itemsFromDB );
+         mMainCourseItems.push_back( builder );
       }
    }
    return ;/*void*/
@@ -154,16 +155,19 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
    {
       for( auto side: jsonSides )
       {
-         Sides sideFromDB;
+         SideDish mealItem;
+         SideDishBuilder builder{ mealItem, *this };
+         string dishName;
          if ( true == checkAndRetriveJsonData( 
-                  side, "dishName", Json::stringValue, sideFromDB.mDishName ) )
+                  side, "dishName", Json::stringValue, dishName ) )
          {
+            builder.setName( dishName );
             Json::Value recipeGrp;
             if ( true == checkAndRetriveJsonData( side, "recipeGroup", Json::arrayValue,  recipeGrp ) )
             {
                for( auto recipeGrpItem: recipeGrp )
                {
-                  sideFromDB.mRecipeGroups.push_back( recipeGrpItem.asString() );
+                  builder.addRecipeGrp( recipeGrpItem.asString() );
                }
             }
             Json::Value categories;
@@ -172,7 +176,10 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
             {
                for( auto cat : categories )
                {
-                  sideFromDB.mCategories.push_back( cat.asString() );
+                  /*
+                   * @todo : build tag database here
+                   */
+                  //sideFromDB.mCategories.push_back( cat.asString() );
                }
             }
             Json::Value ingredients( Json::arrayValue );
@@ -181,10 +188,10 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
             {
                for( auto ingredient: ingredients )
                {
-                  sideFromDB.mIngredients.push_back( ingredient.asString() );
+                  builder.addIngredient( ingredient.asString() );
                }
             }
-            mSideDishes.push_back( sideFromDB );
+            mSideDishes.push_back( builder );
          }
       }
    }
@@ -212,38 +219,6 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
 
    // populate Sides
    populateSides( jsonDB );
-}
-
-/*..............................................................................
- * @brief getSides
- *
- * Input Parameters:
- *    @param: 
- * Return Value:
- *    @returns vector< Sides > 
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-vector< Sides > CMealDB::getSides (  ) const
-{
-   return mSideDishes;/*vector< Sides > CMealDB*/
-}
-
-/*..............................................................................
- * @brief getMealItems
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns vector< MealItem >
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
-vector< MealItem > CMealDB::getMealItems (  ) const
-{
-   return mMealItems;/*vector< MealItem >*/
 }
 
 /*..............................................................................

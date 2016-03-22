@@ -1,3 +1,4 @@
+#include "CMealDB.h"
 #include "CListGenerator.h"
 #include <algorithm>
 using namespace std;
