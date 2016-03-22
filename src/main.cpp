@@ -7,8 +7,8 @@
 #include "CListGenerator.h"
 #include <algorithm>
 #include "Print.h"
-#include "MenuFilePrinter.h"
-#include "ConsoleMenuPrinter.h"
+#include "MealMenuPrinter.h"
+#include "GroceryListPrinter.h"
 #include <memory>
 using namespace std;
 using namespace JsonHandling;
@@ -38,12 +38,15 @@ int main(int argc, char* argv[] )
    CMealDB mealDatabase( Jval );
    CMealGenerator gen( mealDatabase );
    CListGenerator listGen;
+
    listGen.addListCriteria( COptionsHandler::getInstance().getListCriteria() );
+   
    if ( listGen.generateMenu( gen ) )
    {
       cout<< "successfully generated menu";
 
       string menuFilePath = COptionsHandler::getInstance().getMenuFilePath();
+      string groceryFilePath = COptionsHandler::getInstance().getGroceryFilePath();
       
       typedef vector<pair<string,string>> MenuItems;
 
@@ -51,9 +54,12 @@ int main(int argc, char* argv[] )
          unique_ptr<IPrint<MenuItems>>{ new ConsoleMenuPrinter{}}:
          unique_ptr<IPrint<MenuItems>>{ new MenuFilePrinter{menuFilePath}};
 
-      uptr->print( listGen.getMealMenu() );
+      unique_ptr<IPrint<unordered_set<string>>> glPrinter = (groceryFilePath.empty())?
+         unique_ptr<IPrint<unordered_set<string>>>{ new GroceryListConsolePrinter{}}:
+         unique_ptr<IPrint<unordered_set<string>>>{ new GroceryListFilePrinter{groceryFilePath}};
 
-      listGen.exportGroceryList( COptionsHandler::getInstance().groceryFile() );
+      uptr->print( listGen.getMealMenu() );
+      glPrinter->print( listGen.getGroceryList() );
    }
    return 0;
 }

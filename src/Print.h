@@ -7,7 +7,7 @@ template <typename T>
 class IPrint
 {
    public:
-      virtual bool print( T& ) = 0;
+      virtual bool print( const T& ) = 0;
       virtual ~IPrint(){}
 };
 

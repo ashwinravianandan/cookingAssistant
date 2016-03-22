@@ -159,28 +159,23 @@ bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-vector<pair<string, string>>& CListGenerator::getMealMenu (  )
+const vector<pair<string, string>>& CListGenerator::getMealMenu (  )const
 {
    return mMealMenu;/*vector<pair<string, string>>*/
 }
 
 /*..............................................................................
- * @brief exportGroceryList
+ * @brief geGr
  *
  * Input Parameters:
- *    @param: ostream& outFile
+ *    @param:  parameters
  * Return Value:
- *    @returns void
+ *    @returns const unordered_set<string>
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::exportGroceryList ( ostream& outFile )const
+const unordered_set<string>& CListGenerator::getGroceryList ( )const
 {
-   outFile<<"\n-----GROCERY-LIST-----\n";
-   for( auto ingredient : mIngredients )
-   {
-      outFile<<"\t* "<<ingredient.c_str()<<"\n";
-   }
+   return mIngredients;/*const unordered_set<string>*/
 }
-
