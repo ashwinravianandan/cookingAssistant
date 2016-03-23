@@ -168,7 +168,7 @@ unsigned int CMealGenerator::getNrOfDishesByCat ( const string& category )const
    auto it = std::partition( begin( mainCourseItems) , end( mainCourseItems),
          [ category ](const MainCourse& item ){ return item.getCategory() == category;});
 
-   auto cntMeals = std::bind( &CMealGenerator::countMeals, this, nrOfDishes, _1 );
+   auto cntMeals = std::bind( &CMealGenerator::countMeals, this, std::ref(nrOfDishes), _1 );
 
    for_each( begin( mainCourseItems ), it , cntMeals );
 
