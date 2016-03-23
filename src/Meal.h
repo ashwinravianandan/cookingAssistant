@@ -5,10 +5,11 @@
 #include <unordered_set>
 using namespace std;
 
+enum class MealType { MainCourse, Side, Desert, Salad };
+
 class MealItem
 {
-   enum class MealType { MainCourse, Side, Desert, Salad };
-   private:
+   protected:
    string mName;
    unordered_set<string> mIngredients;
 
@@ -32,11 +33,10 @@ class MainCourse: public MealItem
    protected:
 
    public:
-      MainCourse() = default;
       using MealItem::MealItem;
-      void setMealCategory( const string& mealCategory );
-      void setEatWithCategory( const vector<string>& eatWith );
       virtual bool needsSide( void )const override;
+      string getCategory( )const;
+      vector<string> canBeEatenWith()const;
       virtual ~MainCourse( );
 };
 
@@ -48,9 +48,7 @@ class SideDish : public MealItem
    protected:
 
    public:
-      SideDish() = default;
       using MealItem::MealItem;
-      explicit SideDish( string name, unordered_set<string> ingredients, vector<string> categories);
       virtual ~SideDish( );
       virtual bool needsSide( void )const override;
 };

@@ -10,6 +10,7 @@
 #include "MealMenuPrinter.h"
 #include "GroceryListPrinter.h"
 #include <memory>
+#include "Database.h"
 using namespace std;
 using namespace JsonHandling;
 
@@ -21,19 +22,11 @@ int main(int argc, char* argv[] )
       exit( 0 );
    }
    Json::Value Jval;
-   if ( "" == COptionsHandler::getInstance().getDatabasePath() )
-   {
-      cin>>Jval;
-   }
-   else
-   {
-      ifstream dbFile( COptionsHandler::getInstance().getDatabasePath().c_str() );
-      if (true == dbFile.is_open() )
-      {
-         dbFile>>Jval;
-         dbFile.close();
-      }
-   }
+   unique_ptr<IInputDatabase<Json::Value>> db = ( COptionsHandler::getInstance().getDatabasePath().empty() )?
+      unique_ptr<IInputDatabase<Json::Value>>{ new JsonConsoleDatabase{} }: 
+      unique_ptr<IInputDatabase<Json::Value>>{ new JsonFileDatabase{COptionsHandler::getInstance().getDatabasePath()}};
+
+   db->readDatabase( Jval );
 
    CMealDB mealDatabase( Jval );
    CMealGenerator gen( mealDatabase );

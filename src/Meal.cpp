@@ -97,24 +97,6 @@ bool MainCourse::needsSide( void )const
 }
 
 /*..............................................................................
- * @brief SideDish 
- *
- * Input Parameters:
- *    @param:  parameters
- * Return Value:
- *    @returns 
- *
- * External methods/variables:
- *    @extern
- *............................................................................*/
- SideDish::SideDish ( string name, unordered_set<string> ingredients, 
-       vector<string> categories ):
-    MealItem( name, ingredients ),
-    mCategories( categories )
-{
-}
-
-/*..............................................................................
  * @brief ~SideDish 
  *
  * Input Parameters:
@@ -147,3 +129,35 @@ bool SideDish::needsSide ( void )const
     */
    return false;/*bool*/
 }
+/*..............................................................................
+ * @brief getCategory
+ *
+ * Input Parameters:
+ *    @param: void
+ * Return Value:
+ *    @returns string
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+string MainCourse::getCategory ( void )const
+{
+   return mMealCategory;/*string*/
+}
+
+/*..............................................................................
+ * @brief canBeEatenWith
+ *
+ * Input Parameters:
+ *    @param: void
+ * Return Value:
+ *    @returns vector<string>
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+vector<string> MainCourse::canBeEatenWith ( void )const
+{
+   return mEatWith;/*vector<string>*/
+}
+

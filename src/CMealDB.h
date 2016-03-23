@@ -2,9 +2,12 @@
 #include <string>
 #include <vector>
 #include "json.h"
-#include "Meal.h"
+#include "TagDB.h"
 using namespace std;
 
+
+typedef ITagDatabase<string, SideDish> SideDishTagDatabase;
+typedef ITagDatabase<string, MainCourse> MainCourseCategoryDB;
 
 typedef struct _recipeGroup
 {
@@ -18,11 +21,13 @@ class CMealDB final
       vector< RecipeGroup > mRecipeGroups;
       vector< MainCourse > mMainCourseItems;
       vector< SideDish > mSideDishes;
+      SideDishTagDatabase mSideDishTagDB;
+      MainCourseCategoryDB mMainCourseCatDB;
 
       void populateRecipeGroups ( const Json::Value& jsonDB );
       void populateMealItems ( const Json::Value& jsonDB );
       void populateSides ( const Json::Value& jsonDB );
-      
+
    protected:
 
    public:
@@ -30,6 +35,9 @@ class CMealDB final
       CMealDB( const Json::Value& );
       virtual ~CMealDB( );
       vector< RecipeGroup > getRecipeGroups( ) const ;
+      const SideDishTagDatabase& sideDishDB( void )const;
+      void getMainCourseItems( vector<MainCourse>& meals )const;
+      void getSides( vector<SideDish>& sides )const;
 };
 
 namespace JsonHandling

@@ -10,12 +10,12 @@ class MainCourseBuilder
 {
    private:
       MainCourse& mMealItem;
-      CMealDB & mMealDB;
+      const CMealDB & mMealDB;
 
    protected:
 
    public:
-      explicit MainCourseBuilder( MainCourse& mealItem ,  CMealDB & mealDB);
+      explicit MainCourseBuilder( MainCourse& mealItem ,  const CMealDB & mealDB);
       MainCourseBuilder& setName( const string& name );
       MainCourseBuilder& addRecipeGrp( const string& grpName );
       MainCourseBuilder& addIngredient( const string& ingredient );
@@ -27,19 +27,19 @@ class MainCourseBuilder
       {
          return std::move( mMealItem );
       }
-      virtual ~MainCourseBuilder( );
+      virtual ~MainCourseBuilder( ){}
 };
 
 class SideDishBuilder
 {
    private:
       SideDish& mMealItem;
-      CMealDB & mMealDB;
+      const CMealDB & mMealDB;
 
    protected:
 
    public:
-      explicit SideDishBuilder( SideDish& mealItem ,  CMealDB & mealDB);
+      explicit SideDishBuilder( SideDish& mealItem ,  const CMealDB & mealDB);
       SideDishBuilder& setName( const string& name );
       SideDishBuilder& addRecipeGrp( const string& grpName );
       SideDishBuilder& addIngredient( const string& ingredient );
@@ -51,5 +51,5 @@ class SideDishBuilder
       {
          return std::move( mMealItem );
       }
-      virtual ~SideDishBuilder( );
+      virtual ~SideDishBuilder( ){}
 };

@@ -1,5 +1,5 @@
-#include "CMealDB.h"
 #include "MealBuilder.h"
+#include "CMealDB.h"
 using namespace JsonHandling;
 
 
@@ -170,18 +170,6 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
                   builder.addRecipeGrp( recipeGrpItem.asString() );
                }
             }
-            Json::Value categories;
-            if ( true == checkAndRetriveJsonData( 
-                     side, "category", Json::arrayValue, categories ) )
-            {
-               for( auto cat : categories )
-               {
-                  /*
-                   * @todo : build tag database here
-                   */
-                  //sideFromDB.mCategories.push_back( cat.asString() );
-               }
-            }
             Json::Value ingredients( Json::arrayValue );
             if (true == checkAndRetriveJsonData( 
                   side, "ingredients", Json::arrayValue, ingredients ) )
@@ -191,7 +179,18 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
                   builder.addIngredient( ingredient.asString() );
                }
             }
-            mSideDishes.push_back( builder );
+
+            SideDish sideDish = builder;  //side dish has been moved out, do not use builder anymore
+            Json::Value categories;
+            if ( true == checkAndRetriveJsonData( 
+                     side, "category", Json::arrayValue, categories ) )
+            {
+               for( auto cat : categories )
+               {
+                  mSideDishTagDB.insert( cat.asString(), sideDish );
+               }
+            }
+            mSideDishes.push_back( sideDish );
          }
       }
    }
@@ -235,5 +234,53 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
 vector< RecipeGroup > CMealDB::getRecipeGroups (  ) const
 {
    return mRecipeGroups;/*vector< RecipeGroup >*/
+}
+
+/*..............................................................................
+ * @brief getMainCourceItems
+ *
+ * Input Parameters:
+ *    @param: MainCourse& mainCourse
+ * Return Value:
+ *    @returns void
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+void CMealDB::getMainCourseItems ( vector<MainCourse>& mainCourse )const
+{
+   mainCourse = mMainCourseItems;
+}
+
+/*..............................................................................
+ * @brief getSides
+ *
+ * Input Parameters:
+ *    @param: vector<SideDish>& sides
+ * Return Value:
+ *    @returns void
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+void CMealDB::getSides ( vector<SideDish>& sides )const
+{
+   sides = mSideDishes;
+}
+
+/*..............................................................................
+ * @brief getTag
+ *
+ * Input Parameters:
+ *    @param:  
+ * Return Value:
+ *    @returns SideDishTagDatabase&
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+const SideDishTagDatabase& CMealDB::sideDishDB ()const
+{
+   return mSideDishTagDB;/*SideDishTagDatabase&*/
 }
 

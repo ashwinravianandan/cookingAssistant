@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <random>
 #include <vector>
+#include <functional>
 
 template <typename T>
 T getRandIterator( T begin, T end )
@@ -45,6 +46,34 @@ CMealGenerator::~CMealGenerator (  )
 }
 
 /*..............................................................................
+ * @brief addSideDish
+ *
+ * Input Parameters:
+ *    @param: Meal& randomMeal, 
+ *        vector<string>& cat
+ * Return Value:
+ *    @returns bool
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+bool CMealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )const
+{
+   bool success = true;
+
+   auto it = getRandIterator( begin( cat ), end( cat ) );
+
+   auto sideDishes = mMealDatabase.sideDishDB().lookup( *it );
+   auto sideDish = getRandIterator( begin( sideDishes ), end( sideDishes) );
+
+   randomMeal.mRecipeName += " with " + sideDish->getName();
+
+   randomMeal.mIngredients.insert(begin( sideDish->getIngredients()), 
+         end(sideDish->getIngredients()));
+
+   return success;/*bool*/
+}
+/*..............................................................................
  * @brief generateRandomMeal
  *
  * Input Parameters:
@@ -58,87 +87,65 @@ CMealGenerator::~CMealGenerator (  )
 bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
 {
    bool success = false;
-   vector< MealItem >::iterator randomMealItem;
-   vector< MealItem > mealItems = mMealDatabase.getMealItems();
-
-   auto partitionBasedOnCategory = [ cat ]( MealItem mealFromDB ) -> bool
+   do
    {
-      if ( mealFromDB.mMealCategory == cat )
+      vector<MainCourse> mainCourseItems;
+      mMealDatabase.getMainCourseItems( mainCourseItems );
+
+      auto it = std::partition( begin( mainCourseItems ), end( mainCourseItems ),
+            [ cat ]( const MainCourse& mainCourse ){ return mainCourse.getCategory() == cat ;});
+
+      if( begin( mainCourseItems ) == it )
+         break;
+
+      it = getRandIterator( begin( mainCourseItems), it );
+      randomMeal.mRecipeName = it->getName();
+      randomMeal.mIngredients = it->getIngredients();
+      if ( it->needsSide() )
       {
-         return true;
+         success = addSideDish( randomMeal, it->canBeEatenWith() );
       }
       else
       {
-         return false;
-      }
-   };
-
-   auto it = std::partition( begin( mealItems ), end( mealItems ),partitionBasedOnCategory );
-
-   if( it != begin( mealItems ) )
-   {
-      randomMealItem = getRandIterator( begin( mealItems ), it );
-      success = true;
-   }
-
-   if ( true == success )
-   {
-      randomMeal.mRecipeName = randomMealItem->mDishName;
-      randomMeal.mIngredients.insert( begin( randomMealItem->mIngredients ), 
-            end( randomMealItem->mIngredients ) );
-
-      std::for_each( randomMealItem->mRecipeGroups.begin(), 
-            randomMealItem->mRecipeGroups.end(),
-            [ & ]( string recipeGrp )
-            {
-            auto recipeGrps = mMealDatabase.getRecipeGroups();
-            auto it = find_if( begin( recipeGrps ), end( recipeGrps ),
-                  [=]( RecipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
-            if( it != end( recipeGrps ) )
-            {
-            randomMeal.mIngredients.insert(it->mIngredients.begin(), it->mIngredients.end() );
-            }
-            }
-            );
-
-      if ( true == randomMealItem->mNeedsSide )
-      {
-         success = false;
-         vector< Sides >::iterator randSide;
-         string sideCat = *getRandIterator( begin( randomMealItem->mSideCategories ), end( randomMealItem->mSideCategories ) );
-         vector< Sides > sidesFromDB = mMealDatabase.getSides();
-         vector< Sides >::iterator it = std::partition( begin( sidesFromDB ), end( sidesFromDB ), 
-               [ = ] ( Sides fromDB ) -> bool
-               { if ( end( fromDB.mCategories ) != find( begin( fromDB.mCategories ), end( fromDB.mCategories ), sideCat ) )
-               return true; else return false;
-               }
-               );
-         if( begin( sidesFromDB ) != it )
-         {
-            success = true;
-            randSide = getRandIterator( begin( sidesFromDB ), it );
-            randomMeal.mSide = randSide->mDishName;
-            randomMeal.mIngredients.insert( begin( randSide->mIngredients ), end( randSide->mIngredients ) );
-            std::for_each( begin( randSide->mRecipeGroups ), 
-                  end( randSide->mRecipeGroups ),
-                  [ & ]( string recipeGrp )
-                  {
-                  auto recipeGrps = mMealDatabase.getRecipeGroups();
-                  auto it = find_if( begin( recipeGrps ), end( recipeGrps ),
-                        [=]( RecipeGroup rg ) { return ( rg.mGroupName == recipeGrp ); } ) ;
-                  if( it != end( recipeGrps ) )
-                  {
-                  randomMeal.mIngredients.insert( it->mIngredients.begin(), it->mIngredients.end() );
-                  }
-                  }
-                  );
-
-         }
+         success = true;
       }
    }
-   return success;/*Meal*/
+   while( 0 );
+
+   return success;
 }
 
+/*..............................................................................
+ * @brief countMeals
+ *
+ * Input Parameters:
+ *    @param: 
+ *        int& nrOfDishes,
+     
+ *        stringcategory
+ * Return Value:
+ *    @returns 
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+void CMealGenerator::countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const
+{
+   if ( mealItem.needsSide() )
+   {
+      auto canBeEatenWith = mealItem.canBeEatenWith();
+      const SideDishTagDatabase& tagDB = mMealDatabase.sideDishDB();
+      for_each( begin( canBeEatenWith ), end( canBeEatenWith ), [&nrOfDishes, &tagDB]( const string& tag )
+            {
+               auto items = tagDB.lookup( tag );
+               nrOfDishes += items.size();
+            });
+   }
+   else
+   {
+      nrOfDishes++;
+   }
+}
 /*..............................................................................
  * @brief getNrOfDishesByCat
  *
@@ -151,39 +158,19 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-unsigned int CMealGenerator::getNrOfDishesByCat ( const string& cat )const
+unsigned int CMealGenerator::getNrOfDishesByCat ( const string& category )const
 {
    unsigned int nrOfDishes = 0;
-   auto mealItems = mMealDatabase.getMealItems();
-   auto sides = mMealDatabase.getSides();
+   using namespace std::placeholders;
+   vector<MainCourse> mainCourseItems;
+   mMealDatabase.getMainCourseItems( mainCourseItems );
 
-   auto countMeals = [ &nrOfDishes, sides, cat ]( MealItem meal )
-   {
-      if(  cat == meal.mMealCategory )
-      {
-         if( false == meal.mNeedsSide )
-         {
-            ++ nrOfDishes;
-         } 
-         else
-         {
-            for( auto sideCat : meal.mSideCategories )
-            {
-               for_each( begin( sides ), end( sides ), [&nrOfDishes, sideCat]( Sides side)
-                     {
-                     if( end( side.mCategories ) != find_if( begin( side.mCategories ),
-                              end( side.mCategories ), [ &nrOfDishes, sideCat ]( string sideCategory )
-                              { return sideCategory == sideCat; }) )
-                     {
-                     ++nrOfDishes;
-                     }
-                     } );
-            }
-         }
-      }
-   };
+   auto it = std::partition( begin( mainCourseItems) , end( mainCourseItems),
+         [ category ](const MainCourse& item ){ return item.getCategory() == category;});
 
-   for_each( begin( mealItems ), end( mealItems ), countMeals );
+   auto cntMeals = std::bind( &CMealGenerator::countMeals, this, nrOfDishes, _1 );
+
+   for_each( begin( mainCourseItems ), it , cntMeals );
 
    return nrOfDishes;/*unsigned int*/
 }

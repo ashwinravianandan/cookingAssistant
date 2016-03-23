@@ -14,6 +14,8 @@ class CMealGenerator final
 {
    private:
       CMealDB mMealDatabase;
+      bool addSideDish ( Meal& randomMeal, const vector<string>& cat )const;
+      void countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const;
    protected:
 
    public:

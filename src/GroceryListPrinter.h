@@ -19,3 +19,4 @@ class GroceryListConsolePrinter: public IPrint<unordered_set<string>>
       virtual bool print( const unordered_set<string>& ) override;
       virtual ~GroceryListConsolePrinter();
 };
+
