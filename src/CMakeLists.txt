@@ -1,4 +1,23 @@
-add_executable( chef ListGenerator.cpp ListGenerator.h MealDB.cpp MealDB.h MealGenerator.cpp MealGenerator.h OptionsHandler.cpp OptionsHandler.h json-forwards.h json.h jsoncpp.cpp main.cpp Print.h  MealMenuPrinter.cpp MealMenuPrinter.h GroceryListPrinter.cpp GroceryListPrinter.h MealBuilder.cpp MealBuilder.h TagDB.cpp TagDB.h Database.cpp Database.h Meal.h Meal.cpp )
+cmake_minimum_required( VERSION 2.6 )
 
+add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/Database" )
+add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/json" )
+add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/Generator" )
+add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/Meal" )
+add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/UserInterface" )
+
+include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/json" 
+   "${CMAKE_CURRENT_SOURCE_DIR}/Database"  
+   "${CMAKE_CURRENT_SOURCE_DIR}"  
+   "${CMAKE_CURRENT_SOURCE_DIR}/Meal"  
+   "${CMAKE_CURRENT_SOURCE_DIR}/UserInterface"  
+   "${CMAKE_CURRENT_SOURCE_DIR}/Generator"  )
+
+set( CMAKE_CXX_FLAGS "-std=c++1y")
+
+set (SOURCE ${SOURCE}  main.cpp   )
+
+
+add_executable( chef ${SOURCE}) 
 
 install (TARGETS chef DESTINATION bin)
