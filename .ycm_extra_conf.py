@@ -88,6 +88,16 @@ flags = [
 '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
 '-isystem',
 '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+'-I',
+'src/Database',
+'-I',
+'src/UserInterface',
+'-I',
+'src/Generator',
+'-I',
+'src/Meal',
+'-I',
+'src/json'
 ]
 
 
