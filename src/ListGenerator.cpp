@@ -1,10 +1,10 @@
-#include "CMealDB.h"
-#include "CListGenerator.h"
+#include "MealDB.h"
+#include "ListGenerator.h"
 #include <algorithm>
 using namespace std;
 
 /*..............................................................................
- * @brief CListGenerator
+ * @brief ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -14,12 +14,12 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
- CListGenerator::CListGenerator (  )
+ ListGenerator::ListGenerator (  )
 {
 }
 
 /*..............................................................................
- * @brief ~CListGenerator
+ * @brief ~ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -29,12 +29,12 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
- CListGenerator::~CListGenerator (  )
+ ListGenerator::~ListGenerator (  )
 {
 }
 
 /*..............................................................................
- * @brief CListGenerator
+ * @brief ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -45,7 +45,7 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CListGenerator::CListGenerator ( const set< pair< string,
+ListGenerator::ListGenerator ( const set< pair< string,
       unsigned int >>& listOpts )
 {
    mListOptions = listOpts;
@@ -64,7 +64,7 @@ CListGenerator::CListGenerator ( const set< pair< string,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const std::pair< string,
+void ListGenerator::addListCriteria ( const std::pair< string,
       unsigned int>& listOpt )
 {
    mListOptions.insert( listOpt );
@@ -83,7 +83,7 @@ void CListGenerator::addListCriteria ( const std::pair< string,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const set< pair< string,
+void ListGenerator::addListCriteria ( const set< pair< string,
       unsigned int>>& listOpts )
 {
    mListOptions.insert( begin( listOpts ), end( listOpts ) );
@@ -94,14 +94,14 @@ void CListGenerator::addListCriteria ( const set< pair< string,
  *
  * Input Parameters:
  *    @param: 
- *        CMealGenerator& mealGen
+ *        MealGenerator& mealGen
  * Return Value:
  *    @returns bool
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
+bool ListGenerator::generateMenu ( const MealGenerator& mealGen )
 {
    bool success = true;
    for( auto crit: mListOptions )
@@ -160,7 +160,7 @@ bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-const vector<pair<string, string>>& CListGenerator::getMealMenu (  )const
+const vector<pair<string, string>>& ListGenerator::getMealMenu (  )const
 {
    return mMealMenu;/*vector<pair<string, string>>*/
 }
@@ -176,7 +176,7 @@ const vector<pair<string, string>>& CListGenerator::getMealMenu (  )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-const unordered_set<string>& CListGenerator::getGroceryList ( )const
+const unordered_set<string>& ListGenerator::getGroceryList ( )const
 {
    return mIngredients;/*const unordered_set<string>*/
 }

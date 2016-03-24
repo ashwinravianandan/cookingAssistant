@@ -2,7 +2,7 @@
 #include <vector>
 #include <unordered_set>
 #include "Meal.h"
-#include "CMealDB.h"
+#include "MealDB.h"
 
 using namespace std;
 
@@ -10,12 +10,12 @@ class MainCourseBuilder
 {
    private:
       MainCourse& mMealItem;
-      const CMealDB & mMealDB;
+      const MealDB & mMealDB;
 
    protected:
 
    public:
-      explicit MainCourseBuilder( MainCourse& mealItem ,  const CMealDB & mealDB);
+      explicit MainCourseBuilder( MainCourse& mealItem ,  const MealDB & mealDB);
       MainCourseBuilder& setName( const string& name );
       MainCourseBuilder& addRecipeGrp( const string& grpName );
       MainCourseBuilder& addIngredient( const string& ingredient );
@@ -34,12 +34,12 @@ class SideDishBuilder
 {
    private:
       SideDish& mMealItem;
-      const CMealDB & mMealDB;
+      const MealDB & mMealDB;
 
    protected:
 
    public:
-      explicit SideDishBuilder( SideDish& mealItem ,  const CMealDB & mealDB);
+      explicit SideDishBuilder( SideDish& mealItem ,  const MealDB & mealDB);
       SideDishBuilder& setName( const string& name );
       SideDishBuilder& addRecipeGrp( const string& grpName );
       SideDishBuilder& addIngredient( const string& ingredient );

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <fstream>
-#include "CMealDB.h"
+#include "MealDB.h"
 
 template <typename T>
 class IPrint

@@ -1,9 +1,9 @@
-#include "COptionsHandler.h"
+#include "OptionsHandler.h"
 #include <iostream>
 #include <unistd.h>
 
 /*..............................................................................
- * @brief COptionsHandler
+ * @brief OptionsHandler
  *
  * Input Parameters:
  *    @param: 
@@ -13,7 +13,7 @@
  * External methods/variables:
  *    @extern
  *............................................................................*/
- COptionsHandler::COptionsHandler (  ):mMenuFile( "" ), mGroceryFile( "" ), 
+ OptionsHandler::OptionsHandler (  ):mMenuFile( "" ), mGroceryFile( "" ), 
    mDatabaseFile( "" )
 {
    ;
@@ -24,19 +24,19 @@
  * Input Parameters:
  *    @param: 
  * Return Value:
- *    @returns COptionsHandler&
+ *    @returns OptionsHandler&
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-COptionsHandler& COptionsHandler::getInstance (  )
+OptionsHandler& OptionsHandler::getInstance (  )
 {
-   static COptionsHandler optHandler;
-   return optHandler;/*COptionsHandler&*/
+   static OptionsHandler optHandler;
+   return optHandler;/*OptionsHandler&*/
 }
 
 /*..............................................................................
- * @brief ~COptionsHandler
+ * @brief ~OptionsHandler
  *
  * Input Parameters:
  *    @param: 
@@ -46,7 +46,7 @@ COptionsHandler& COptionsHandler::getInstance (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
- COptionsHandler::~COptionsHandler (  )
+ OptionsHandler::~OptionsHandler (  )
 {
 }
 /*..............................................................................
@@ -61,7 +61,7 @@ COptionsHandler& COptionsHandler::getInstance (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool COptionsHandler::initialize ( int argc, char* argv[] )
+bool OptionsHandler::initialize ( int argc, char* argv[] )
 {
    bool success = true;
    int c = 0;
@@ -122,7 +122,7 @@ bool COptionsHandler::initialize ( int argc, char* argv[] )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-string COptionsHandler::getDatabasePath ( )const
+string OptionsHandler::getDatabasePath ( )const
 {
    return mDatabaseFile;/*string*/
 }
@@ -139,7 +139,7 @@ string COptionsHandler::getDatabasePath ( )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool COptionsHandler::interpretListCriteria ( string listArgument )
+bool OptionsHandler::interpretListCriteria ( string listArgument )
 {
    bool success = false;
    bool finalEntry = false;
@@ -210,7 +210,7 @@ bool COptionsHandler::interpretListCriteria ( string listArgument )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-set< pair< string,unsigned int>> COptionsHandler::getListCriteria (  )const
+set< pair< string,unsigned int>> OptionsHandler::getListCriteria (  )const
 {
    return mListCriteria;/*set< pair< string,int>>*/
 }
@@ -226,7 +226,7 @@ set< pair< string,unsigned int>> COptionsHandler::getListCriteria (  )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-string COptionsHandler::getMenuFilePath ( )const
+string OptionsHandler::getMenuFilePath ( )const
 {
    return mMenuFile;/*string*/
 }
@@ -241,7 +241,7 @@ string COptionsHandler::getMenuFilePath ( )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-string  COptionsHandler::getGroceryFilePath ( )const
+string  OptionsHandler::getGroceryFilePath ( )const
 {
    return mGroceryFile;/*string */
 }

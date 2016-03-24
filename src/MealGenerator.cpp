@@ -1,4 +1,4 @@
-#include "CMealGenerator.h"
+#include "MealGenerator.h"
 #include <algorithm>
 #include <random>
 #include <vector>
@@ -15,23 +15,23 @@ T getRandIterator( T begin, T end )
    return begin;
 }
 /*..............................................................................
- * @brief CMealGenerator
+ * @brief MealGenerator
  *
  * Input Parameters:
  *    @param: 
- *        CMealDB& mealDB
+ *        MealDB& mealDB
  * Return Value:
  *    @returns 
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CMealGenerator::CMealGenerator ( const CMealDB& mealDB ): mMealDatabase( mealDB )
+MealGenerator::MealGenerator ( const MealDB& mealDB ): mMealDatabase( mealDB )
 {
 }
 
 /*..............................................................................
- * @brief ~CMealGenerator
+ * @brief ~MealGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -41,7 +41,7 @@ CMealGenerator::CMealGenerator ( const CMealDB& mealDB ): mMealDatabase( mealDB 
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CMealGenerator::~CMealGenerator (  )
+MealGenerator::~MealGenerator (  )
 {
 }
 
@@ -57,7 +57,7 @@ CMealGenerator::~CMealGenerator (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CMealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )const
+bool MealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )const
 {
    bool success = true;
 
@@ -84,7 +84,7 @@ bool CMealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
+bool MealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
 {
    bool success = false;
    do
@@ -129,7 +129,7 @@ bool CMealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealGenerator::countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const
+void MealGenerator::countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const
 {
    if ( mealItem.needsSide() )
    {
@@ -158,7 +158,7 @@ void CMealGenerator::countMeals ( unsigned int& nrOfDishes , const MainCourse& m
  * External methods/variables:
  *    @extern
  *............................................................................*/
-unsigned int CMealGenerator::getNrOfDishesByCat ( const string& category )const
+unsigned int MealGenerator::getNrOfDishesByCat ( const string& category )const
 {
    unsigned int nrOfDishes = 0;
    using namespace std::placeholders;
@@ -168,7 +168,7 @@ unsigned int CMealGenerator::getNrOfDishesByCat ( const string& category )const
    auto it = std::partition( begin( mainCourseItems) , end( mainCourseItems),
          [ category ](const MainCourse& item ){ return item.getCategory() == category;});
 
-   auto cntMeals = std::bind( &CMealGenerator::countMeals, this, std::ref(nrOfDishes), _1 );
+   auto cntMeals = std::bind( &MealGenerator::countMeals, this, std::ref(nrOfDishes), _1 );
 
    for_each( begin( mainCourseItems ), it , cntMeals );
 

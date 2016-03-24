@@ -12,7 +12,7 @@
  * External methods/variables:
  *    @extern
  *............................................................................*/
-MainCourseBuilder::MainCourseBuilder ( MainCourse& mealItem, const CMealDB& mealDB):
+MainCourseBuilder::MainCourseBuilder ( MainCourse& mealItem, const MealDB& mealDB):
    mMealItem( mealItem ), mMealDB( mealDB )
 {
 }
@@ -148,7 +148,7 @@ MainCourseBuilder& MainCourseBuilder::setMealCategory (const string& mealCategor
  * External methods/variables:
  *    @extern
  *............................................................................*/
-SideDishBuilder::SideDishBuilder ( SideDish& mealItem, const CMealDB& mealDB):
+SideDishBuilder::SideDishBuilder ( SideDish& mealItem, const MealDB& mealDB):
    mMealItem( mealItem ), mMealDB( mealDB )
 {
 }

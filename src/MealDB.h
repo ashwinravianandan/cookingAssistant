@@ -15,7 +15,7 @@ typedef struct _recipeGroup
    vector< string > mIngredients;
 }RecipeGroup;
 
-class CMealDB final
+class MealDB final
 {
    private:
       vector< RecipeGroup > mRecipeGroups;
@@ -31,9 +31,9 @@ class CMealDB final
    protected:
 
    public:
-      CMealDB( );
-      CMealDB( const Json::Value& );
-      virtual ~CMealDB( );
+      MealDB( );
+      MealDB( const Json::Value& );
+      virtual ~MealDB( );
       vector< RecipeGroup > getRecipeGroups( ) const ;
       const SideDishTagDatabase& sideDishDB( void )const;
       void getMainCourseItems( vector<MainCourse>& meals )const;

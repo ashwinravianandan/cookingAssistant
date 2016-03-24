@@ -1,10 +1,10 @@
 #include "MealBuilder.h"
-#include "CMealDB.h"
+#include "MealDB.h"
 using namespace JsonHandling;
 
 
 /*..............................................................................
- * @brief CMealDB
+ * @brief MealDB
  *
  * Input Parameters:
  *    @param: 
@@ -14,12 +14,12 @@ using namespace JsonHandling;
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CMealDB::CMealDB (  ) 
+MealDB::MealDB (  ) 
 {
 }
 
 /*..............................................................................
- * @brief ~CMealDB
+ * @brief ~MealDB
  *
  * Input Parameters:
  *    @param: 
@@ -29,7 +29,7 @@ CMealDB::CMealDB (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CMealDB::~CMealDB (  ) 
+MealDB::~MealDB (  ) 
 {
 }
 
@@ -45,7 +45,7 @@ CMealDB::~CMealDB (  )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealDB::populateRecipeGroups ( const Json::Value& jsonDB )
+void MealDB::populateRecipeGroups ( const Json::Value& jsonDB )
 {
    Json::Value recipeGroups;
 
@@ -83,7 +83,7 @@ void CMealDB::populateRecipeGroups ( const Json::Value& jsonDB )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealDB::populateMealItems ( const Json::Value& jsonDB )
+void MealDB::populateMealItems ( const Json::Value& jsonDB )
 {
    Json::Value mealItems;
    if ( true == checkAndRetriveJsonData( jsonDB, "mealItems", Json::arrayValue, mealItems ) )
@@ -147,7 +147,7 @@ void CMealDB::populateMealItems ( const Json::Value& jsonDB )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealDB::populateSides ( const Json::Value& jsonDB )
+void MealDB::populateSides ( const Json::Value& jsonDB )
 {
    
    Json::Value jsonSides;
@@ -197,7 +197,7 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
    return ;/*void*/
 }
 /*..............................................................................
- * @brief CMealDB
+ * @brief MealDB
  *
  * Input Parameters:
  *    @param: 
@@ -208,7 +208,7 @@ void CMealDB::populateSides ( const Json::Value& jsonDB )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CMealDB::CMealDB ( const Json::Value& jsonDB )
+MealDB::MealDB ( const Json::Value& jsonDB )
 {
    // populate recipe groups
    populateRecipeGroups( jsonDB );
@@ -231,7 +231,7 @@ CMealDB::CMealDB ( const Json::Value& jsonDB )
  * External methods/variables:
  *    @extern
  *............................................................................*/
-vector< RecipeGroup > CMealDB::getRecipeGroups (  ) const
+vector< RecipeGroup > MealDB::getRecipeGroups (  ) const
 {
    return mRecipeGroups;/*vector< RecipeGroup >*/
 }
@@ -247,7 +247,7 @@ vector< RecipeGroup > CMealDB::getRecipeGroups (  ) const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealDB::getMainCourseItems ( vector<MainCourse>& mainCourse )const
+void MealDB::getMainCourseItems ( vector<MainCourse>& mainCourse )const
 {
    mainCourse = mMainCourseItems;
 }
@@ -263,7 +263,7 @@ void CMealDB::getMainCourseItems ( vector<MainCourse>& mainCourse )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CMealDB::getSides ( vector<SideDish>& sides )const
+void MealDB::getSides ( vector<SideDish>& sides )const
 {
    sides = mSideDishes;
 }
@@ -279,7 +279,7 @@ void CMealDB::getSides ( vector<SideDish>& sides )const
  * External methods/variables:
  *    @extern
  *............................................................................*/
-const SideDishTagDatabase& CMealDB::sideDishDB ()const
+const SideDishTagDatabase& MealDB::sideDishDB ()const
 {
    return mSideDishTagDB;/*SideDishTagDatabase&*/
 }

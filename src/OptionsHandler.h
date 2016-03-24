@@ -3,7 +3,7 @@
 #include <string>
 #include <set>
 using namespace std;
-class COptionsHandler final
+class OptionsHandler final
 {
    private:
       string mMenuFile;
@@ -11,16 +11,16 @@ class COptionsHandler final
       string mDatabaseFile;
       set< pair<string, unsigned int >> mListCriteria;
 
-      COptionsHandler( );
+      OptionsHandler( );
       bool interpretListCriteria ( string listArgument );
    protected:
    public:
-      virtual ~COptionsHandler( );
-      COptionsHandler( const COptionsHandler& ) = delete;
-      COptionsHandler( const COptionsHandler&& ) = delete;
-      COptionsHandler& operator = ( const COptionsHandler& ) = delete;
+      virtual ~OptionsHandler( );
+      OptionsHandler( const OptionsHandler& ) = delete;
+      OptionsHandler( const OptionsHandler&& ) = delete;
+      OptionsHandler& operator = ( const OptionsHandler& ) = delete;
 
-      static COptionsHandler& getInstance( void );
+      static OptionsHandler& getInstance( void );
       bool initialize( int, char* [] );
       string getDatabasePath() const;
       string getMenuFilePath() const;

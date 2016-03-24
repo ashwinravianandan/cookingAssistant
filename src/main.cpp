@@ -1,10 +1,10 @@
 #include "json.h"
 #include <iostream>
 #include <fstream>
-#include "CMealDB.h"
-#include "CMealGenerator.h"
-#include "COptionsHandler.h"
-#include "CListGenerator.h"
+#include "MealDB.h"
+#include "MealGenerator.h"
+#include "OptionsHandler.h"
+#include "ListGenerator.h"
 #include <algorithm>
 #include "Print.h"
 #include "MealMenuPrinter.h"
@@ -17,29 +17,29 @@ using namespace JsonHandling;
 
 int main(int argc, char* argv[] )
 {
-   if( !COptionsHandler::getInstance().initialize( argc, argv ) )
+   if( !OptionsHandler::getInstance().initialize( argc, argv ) )
    {
       exit( 0 );
    }
    Json::Value Jval;
-   unique_ptr<IInputDatabase<Json::Value>> db = ( COptionsHandler::getInstance().getDatabasePath().empty() )?
+   unique_ptr<IInputDatabase<Json::Value>> db = ( OptionsHandler::getInstance().getDatabasePath().empty() )?
       unique_ptr<IInputDatabase<Json::Value>>{ new JsonConsoleDatabase{} }: 
-      unique_ptr<IInputDatabase<Json::Value>>{ new JsonFileDatabase{COptionsHandler::getInstance().getDatabasePath()}};
+      unique_ptr<IInputDatabase<Json::Value>>{ new JsonFileDatabase{OptionsHandler::getInstance().getDatabasePath()}};
 
    db->readDatabase( Jval );
 
-   CMealDB mealDatabase( Jval );
-   CMealGenerator gen( mealDatabase );
-   CListGenerator listGen;
+   MealDB mealDatabase( Jval );
+   MealGenerator gen( mealDatabase );
+   ListGenerator listGen;
 
-   listGen.addListCriteria( COptionsHandler::getInstance().getListCriteria() );
+   listGen.addListCriteria( OptionsHandler::getInstance().getListCriteria() );
    
    if ( listGen.generateMenu( gen ) )
    {
       cout<< "successfully generated menu";
 
-      string menuFilePath = COptionsHandler::getInstance().getMenuFilePath();
-      string groceryFilePath = COptionsHandler::getInstance().getGroceryFilePath();
+      string menuFilePath = OptionsHandler::getInstance().getMenuFilePath();
+      string groceryFilePath = OptionsHandler::getInstance().getGroceryFilePath();
       
       typedef vector<pair<string,string>> MenuItems;
 
