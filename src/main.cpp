@@ -1,16 +1,13 @@
 #include "json.h"
 #include <iostream>
-#include <fstream>
-#include "MealDB.h"
 #include "MealGenerator.h"
 #include "OptionsHandler.h"
 #include "ListGenerator.h"
-#include <algorithm>
+#include <memory>
+#include "Database.h"
 #include "Print.h"
 #include "MealMenuPrinter.h"
 #include "GroceryListPrinter.h"
-#include <memory>
-#include "Database.h"
 using namespace std;
 using namespace JsonHandling;
 
