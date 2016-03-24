@@ -1,46 +1,58 @@
-#include <json.h>
+#include "json.h"
 #include <iostream>
 #include <fstream>
-#include "CMealDB.h"
-#include "CMealGenerator.h"
-#include "COptionsHandler.h"
-#include "CListGenerator.h"
+#include "MealDB.h"
+#include "MealGenerator.h"
+#include "OptionsHandler.h"
+#include "ListGenerator.h"
 #include <algorithm>
+#include "Print.h"
+#include "MealMenuPrinter.h"
+#include "GroceryListPrinter.h"
+#include <memory>
+#include "Database.h"
 using namespace std;
 using namespace JsonHandling;
 
 
 int main(int argc, char* argv[] )
 {
-   if( !COptionsHandler::getInstance().initialize( argc, argv ) )
+   if( !OptionsHandler::getInstance().initialize( argc, argv ) )
    {
       exit( 0 );
    }
    Json::Value Jval;
-   if ( "" == COptionsHandler::getInstance().getDatabasePath() )
-   {
-      cin>>Jval;
-   }
-   else
-   {
-      ifstream dbFile( COptionsHandler::getInstance().getDatabasePath().c_str() );
-      if (true == dbFile.is_open() )
-      {
-         dbFile>>Jval;
-         dbFile.close();
-      }
-   }
+   unique_ptr<IInputDatabase<Json::Value>> db = ( OptionsHandler::getInstance().getDatabasePath().empty() )?
+      unique_ptr<IInputDatabase<Json::Value>>{ new JsonConsoleDatabase{} }: 
+      unique_ptr<IInputDatabase<Json::Value>>{ new JsonFileDatabase{OptionsHandler::getInstance().getDatabasePath()}};
 
-   CMealDB mealDatabase( Jval );
-   CMealGenerator gen( mealDatabase );
-   CListGenerator listGen;
-   listGen.addListCriteria( COptionsHandler::getInstance().getListCriteria() );
+   db->readDatabase( Jval );
+
+   MealDB mealDatabase( Jval );
+   MealGenerator gen( mealDatabase );
+   ListGenerator listGen;
+
+   listGen.addListCriteria( OptionsHandler::getInstance().getListCriteria() );
    
    if ( listGen.generateMenu( gen ) )
    {
       cout<< "successfully generated menu";
-      listGen.exportMenu( COptionsHandler::getInstance().menuFile() );
-      listGen.exportGroceryList( COptionsHandler::getInstance().groceryFile() );
+
+      string menuFilePath = OptionsHandler::getInstance().getMenuFilePath();
+      string groceryFilePath = OptionsHandler::getInstance().getGroceryFilePath();
+      
+      typedef vector<pair<string,string>> MenuItems;
+
+      unique_ptr<IPrint<MenuItems>> uptr = ( menuFilePath.empty() )?
+         unique_ptr<IPrint<MenuItems>>{ new ConsoleMenuPrinter{}}:
+         unique_ptr<IPrint<MenuItems>>{ new MenuFilePrinter{menuFilePath}};
+
+      unique_ptr<IPrint<unordered_set<string>>> glPrinter = (groceryFilePath.empty())?
+         unique_ptr<IPrint<unordered_set<string>>>{ new GroceryListConsolePrinter{}}:
+         unique_ptr<IPrint<unordered_set<string>>>{ new GroceryListFilePrinter{groceryFilePath}};
+
+      uptr->print( listGen.getMealMenu() );
+      glPrinter->print( listGen.getGroceryList() );
    }
    return 0;
 }

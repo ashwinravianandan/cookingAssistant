@@ -1,10 +1,10 @@
 #pragma once
-#include "CMealDB.h"
-#include "CMealGenerator.h"
+#include "MealDB.h"
+#include "MealGenerator.h"
 #include <set>
 using namespace std;
 
-class CListGenerator final
+class ListGenerator final
 {
    private:
       std::set< std::pair< string, unsigned int > > mListOptions;
@@ -13,12 +13,12 @@ class CListGenerator final
    protected:
 
    public:
-      CListGenerator( );
-      CListGenerator( const std::set< std::pair< string, unsigned int > >& );
-      virtual ~CListGenerator( );
+      ListGenerator( );
+      ListGenerator( const std::set< std::pair< string, unsigned int > >& );
+      virtual ~ListGenerator( );
       void addListCriteria( const std::pair< string, unsigned int >& );
       void addListCriteria( const std::set< std::pair< string, unsigned int > >& );
-      bool generateMenu( const CMealGenerator& );
-      void exportMenu( ostream& outFile ) const;
-      void exportGroceryList(  ostream& outFile ) const;
+      bool generateMenu( const MealGenerator& );
+      const std::vector< pair<string, string>>& getMealMenu( void )const;
+      const std::unordered_set<string>& getGroceryList( void )const;
 };

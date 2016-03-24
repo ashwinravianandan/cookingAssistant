@@ -1,5 +1,5 @@
 #pragma once
-#include "CMealDB.h"
+#include "MealDB.h"
 #include <unordered_set>
 using namespace std;
 
@@ -10,16 +10,18 @@ typedef struct _meal
    unordered_set< string > mIngredients;
 }Meal;
 
-class CMealGenerator final
+class MealGenerator final
 {
    private:
-      CMealDB mMealDatabase;
+      MealDB mMealDatabase;
+      bool addSideDish ( Meal& randomMeal, const vector<string>& cat )const;
+      void countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const;
    protected:
 
    public:
-      CMealGenerator( ) = delete ;
-      CMealGenerator( const CMealDB& );
-      virtual ~CMealGenerator( );
+      MealGenerator( ) = delete ;
+      MealGenerator( const MealDB& );
+      virtual ~MealGenerator( );
       bool generateRandomMeal( Meal& randomMeal, string cat  ) const;
       unsigned int getNrOfDishesByCat( const string& ) const;
 };

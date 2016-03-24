@@ -1,9 +1,10 @@
-#include "CListGenerator.h"
+#include "MealDB.h"
+#include "ListGenerator.h"
 #include <algorithm>
 using namespace std;
 
 /*..............................................................................
- * @brief CListGenerator
+ * @brief ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -13,12 +14,12 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
- CListGenerator::CListGenerator (  )
+ ListGenerator::ListGenerator (  )
 {
 }
 
 /*..............................................................................
- * @brief ~CListGenerator
+ * @brief ~ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -28,12 +29,12 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
- CListGenerator::~CListGenerator (  )
+ ListGenerator::~ListGenerator (  )
 {
 }
 
 /*..............................................................................
- * @brief CListGenerator
+ * @brief ListGenerator
  *
  * Input Parameters:
  *    @param: 
@@ -44,7 +45,7 @@ using namespace std;
  * External methods/variables:
  *    @extern
  *............................................................................*/
-CListGenerator::CListGenerator ( const set< pair< string,
+ListGenerator::ListGenerator ( const set< pair< string,
       unsigned int >>& listOpts )
 {
    mListOptions = listOpts;
@@ -63,7 +64,7 @@ CListGenerator::CListGenerator ( const set< pair< string,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const std::pair< string,
+void ListGenerator::addListCriteria ( const std::pair< string,
       unsigned int>& listOpt )
 {
    mListOptions.insert( listOpt );
@@ -82,7 +83,7 @@ void CListGenerator::addListCriteria ( const std::pair< string,
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::addListCriteria ( const set< pair< string,
+void ListGenerator::addListCriteria ( const set< pair< string,
       unsigned int>>& listOpts )
 {
    mListOptions.insert( begin( listOpts ), end( listOpts ) );
@@ -93,14 +94,14 @@ void CListGenerator::addListCriteria ( const set< pair< string,
  *
  * Input Parameters:
  *    @param: 
- *        CMealGenerator& mealGen
+ *        MealGenerator& mealGen
  * Return Value:
  *    @returns bool
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
+bool ListGenerator::generateMenu ( const MealGenerator& mealGen )
 {
    bool success = true;
    for( auto crit: mListOptions )
@@ -149,50 +150,33 @@ bool CListGenerator::generateMenu ( const CMealGenerator& mealGen )
 }
 
 /*..............................................................................
- * @brief exportMenu
+ * @brief getMealMenu
  *
  * Input Parameters:
- *    @param: ostream& outFile
+ *    @param: 
  * Return Value:
- *    @returns void
+ *    @returns vector<pair<string, string>>
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::exportMenu ( ostream& outFile )const
+const vector<pair<string, string>>& ListGenerator::getMealMenu (  )const
 {
-   outFile<<"\n-----MENU-----\n";
-   for( auto mealItem : mMealMenu )
-   {
-      outFile<<"\t "<<mealItem.first.c_str();
-      if( "" != mealItem.second )
-      {
-         outFile<<" - "<<mealItem.second.c_str()<<"\n";
-      }
-      else
-      {
-         outFile<<endl;
-      }
-   } 
+   return mMealMenu;/*vector<pair<string, string>>*/
 }
 
 /*..............................................................................
- * @brief exportGroceryList
+ * @brief geGr
  *
  * Input Parameters:
- *    @param: ostream& outFile
+ *    @param:  parameters
  * Return Value:
- *    @returns void
+ *    @returns const unordered_set<string>
  *
  * External methods/variables:
  *    @extern
  *............................................................................*/
-void CListGenerator::exportGroceryList ( ostream& outFile )const
+const unordered_set<string>& ListGenerator::getGroceryList ( )const
 {
-   outFile<<"\n-----GROCERY-LIST-----\n";
-   for( auto ingredient : mIngredients )
-   {
-      outFile<<"\t* "<<ingredient.c_str()<<"\n";
-   }
+   return mIngredients;/*const unordered_set<string>*/
 }
-

@@ -1,8 +1,13 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <json.h>
+#include "json.h"
+#include "TagDB.h"
 using namespace std;
+
+
+typedef ITagDatabase<string, SideDish> SideDishTagDatabase;
+typedef ITagDatabase<string, MainCourse> MainCourseCategoryDB;
 
 typedef struct _recipeGroup
 {
@@ -10,44 +15,29 @@ typedef struct _recipeGroup
    vector< string > mIngredients;
 }RecipeGroup;
 
-typedef struct _mealItem
-{
-   string mDishName;
-   string mMealCategory;
-   bool mNeedsSide;
-   vector< string > mSideCategories; // this attribute makes sense only if the dish needs a side
-   vector< string > mIngredients;
-   vector< string > mRecipeGroups; // list of recipe groups
-}MealItem;
-
-typedef struct _sides
-{
-   string mDishName;
-   vector< string > mIngredients;
-   vector< string > mRecipeGroups; // list of recipe groups
-   vector< string > mCategories;
-}Sides;
-
-class CMealDB final
+class MealDB final
 {
    private:
       vector< RecipeGroup > mRecipeGroups;
-      vector< MealItem > mMealItems;
-      vector< Sides > mSideDishes;
+      vector< MainCourse > mMainCourseItems;
+      vector< SideDish > mSideDishes;
+      SideDishTagDatabase mSideDishTagDB;
+      MainCourseCategoryDB mMainCourseCatDB;
 
       void populateRecipeGroups ( const Json::Value& jsonDB );
       void populateMealItems ( const Json::Value& jsonDB );
       void populateSides ( const Json::Value& jsonDB );
-      
+
    protected:
 
    public:
-      CMealDB( );
-      CMealDB( const Json::Value& );
-      virtual ~CMealDB( );
-      vector< Sides > getSides( ) const ;
-      vector< MealItem > getMealItems( ) const ;
+      MealDB( );
+      MealDB( const Json::Value& );
+      virtual ~MealDB( );
       vector< RecipeGroup > getRecipeGroups( ) const ;
+      const SideDishTagDatabase& sideDishDB( void )const;
+      void getMainCourseItems( vector<MainCourse>& meals )const;
+      void getSides( vector<SideDish>& sides )const;
 };
 
 namespace JsonHandling
