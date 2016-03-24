@@ -89,7 +89,7 @@ GroceryListConsolePrinter::~GroceryListConsolePrinter (  )
 bool GroceryListConsolePrinter::print ( const unordered_set<string>& groceryList )
 {
    bool success = true;
-   cout<<"# Grocery List #\n";
+   cout<<"\n# Grocery List #\n";
    for( auto& item: groceryList )
    {
       cout<<"\t* "<<item.c_str()<<endl;

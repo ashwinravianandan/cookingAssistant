@@ -72,7 +72,7 @@ bool MenuFilePrinter::print ( const MenuItems& items )
  *............................................................................*/
 bool ConsoleMenuPrinter::print ( const vector<pair<string,string>>& items )
 {
-   cout<<"\n# Menu #\n"<<endl;
+   cout<<"\n# Menu #\n";
    for( auto& item: items)
    {
       cout<<"\t* "<<item.first.c_str();
