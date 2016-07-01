@@ -3,6 +3,7 @@
 #include <random>
 #include <vector>
 #include <functional>
+#include "assert.h"
 
 template <typename T>
 T getRandIterator( T begin, T end )
@@ -12,6 +13,21 @@ T getRandIterator( T begin, T end )
 
    std::uniform_int_distribution<> intDist( 0, std::distance(begin, end) -1 );
    std::advance( begin, intDist( gen ) );
+   return begin;
+}
+
+template <typename T, typename U>
+T getWeightedRandIterator( T begin, T end, U weightsBegin, U weightsEnd )
+{
+   if( std::distance( begin, end ) != std::distance( weightsBegin, weightsEnd ))
+   {
+      assert( 0 );
+   }
+   std::random_device rand;
+   std::mt19937_64 gen( rand() );
+
+   std::discrete_distribution<> weightedDist{ weightsBegin, weightsEnd };
+   std::advance( begin, weightedDist( gen ));
    return begin;
 }
 /*..............................................................................
@@ -73,6 +89,45 @@ bool MealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )c
 
    return success;/*bool*/
 }
+
+/*..............................................................................
+ * @brief getWeights
+ *
+ * Input Parameters:
+ *    @param: vector<MainCourse>::
+ *        beginvector<MainCourse>::ite
+ * Return Value:
+ *    @returns initializer_list<double>
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+vector<double> MealGenerator::getWeights ( vector<MainCourse>::iterator first,
+     vector<MainCourse>::iterator last)const
+{
+   vector<double> weights;
+   for( auto it = first; it < last ; ++it )
+   {
+      double weight = 0;
+      if( true == it->needsSide() )
+      {
+         auto canBeEatenWith = it->canBeEatenWith();
+         const auto& tagDB =  mMealDatabase.sideDishDB();
+
+         for_each( begin( canBeEatenWith ), end( canBeEatenWith ),
+               [&tagDB, &weight ]( const string& tag ){
+               weight += tagDB.lookup( tag ).size();
+               });
+         weights.push_back( weight );
+      }
+      else
+      {
+         weights.push_back( 1 );
+      }
+   }
+   
+   return weights;/*initializer_list<double>*/
+}
 /*..............................................................................
  * @brief generateRandomMeal
  *
@@ -98,7 +153,10 @@ bool MealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
       if( begin( mainCourseItems ) == it )
          break;
 
-      it = getRandIterator( begin( mainCourseItems), it );
+      auto weights = getWeights( begin( mainCourseItems ), it );
+      it = getWeightedRandIterator( begin( mainCourseItems), it, 
+           begin( weights ), end( weights ) );
+
       randomMeal.mRecipeName = it->getName();
       randomMeal.mIngredients = it->getIngredients();
       if ( it->needsSide() )

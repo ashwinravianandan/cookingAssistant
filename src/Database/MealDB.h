@@ -22,7 +22,6 @@ class MealDB final
       vector< MainCourse > mMainCourseItems;
       vector< SideDish > mSideDishes;
       SideDishTagDatabase mSideDishTagDB;
-      MainCourseCategoryDB mMainCourseCatDB;
 
       void populateRecipeGroups ( const Json::Value& jsonDB );
       void populateMealItems ( const Json::Value& jsonDB );

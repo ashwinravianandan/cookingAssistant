@@ -65,7 +65,7 @@ bool OptionsHandler::initialize ( int argc, char* argv[] )
 {
    bool success = true;
    int c = 0;
-   while( ( c = getopt(argc, argv, "m:g:i:c:abh") ) != -1)
+   while( ( c = getopt(argc, argv, "m:g:i:c:h") ) != -1)
    {
       switch (c )
       {

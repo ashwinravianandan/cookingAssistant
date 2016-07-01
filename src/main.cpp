@@ -26,6 +26,7 @@ int main(int argc, char* argv[] )
    db->readDatabase( Jval );
 
    MealDB mealDatabase( Jval );
+
    MealGenerator gen( mealDatabase );
    ListGenerator listGen;
 
