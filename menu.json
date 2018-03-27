@@ -8,7 +8,7 @@
 
     "mealItems": [
         { "dishName": "rava upma", "category": "breakfast", "eatWith": [ "sambar", "chutney" ] , "recipeGroup": ["seasoning"], "ingredients": [ "rava", "salt", "onions", "tomatoes" ] },
-        { "dishName": "semiya upma", "category": "breakfast", "eatWith": [ "withRice" ] , "recipeGroup": ["seasoning"], "ingredients": [ "anil semiya", "salt", "onions", "tomatoes"] },
+        { "dishName": "semiya upma", "category": "breakfast", "eatWith": [] , "recipeGroup": ["seasoning"], "ingredients": [ "anil semiya", "salt", "onions", "tomatoes"] },
         { "dishName": "pohe", "category": "breakfast", "eatWith": [] , "recipeGroup": ["seasoning"], "ingredients": [ "pohe", "salt", "onions" ] },
         { "dishName": "dosa", "category": "breakfast", "eatWith": ["chutney", "sambar"] , "ingredients": [ "idly rice", "salt", "refined oil", "urad dal" ] },
         { "dishName": "idly", "category": "breakfast", "eatWith": ["chutney", "sambar"] , "ingredients": [ "idly rice", "salt", "refined oil", "urad dal" ] },
