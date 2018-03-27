@@ -75,7 +75,7 @@ bool ConsoleMenuPrinter::print ( const vector<pair<string,string>>& items )
    cout<<"\n# Menu #\n";
    for( auto& item: items)
    {
-      cout<<"\t* "<<item.first.c_str();
+      cout<<"   - [ ] "<<item.first.c_str();
       if ( !item.second.empty() )
       {
          cout<<" - "<<item.second.c_str();
