@@ -120,6 +120,23 @@ MainCourseBuilder& MainCourseBuilder::eatWith ( const string& eatWith )
 }
 
 /*..............................................................................
+ * @brief accompaniments
+ *
+ * Input Parameters:
+ *    @param: 
+ *        string& eatWith
+ * Return Value:
+ *    @returns MainCourseBuilder&
+ *
+ * External methods/variables:
+ *    @extern
+ *............................................................................*/
+MainCourseBuilder& MainCourseBuilder::accompaniments( const string& accompaniment )
+{
+   mMealItem.mAccompaniments.push_back(accompaniment);
+}
+
+/*..............................................................................
  * @brief add
  *
  * Input Parameters:
@@ -134,11 +151,6 @@ MainCourseBuilder& MainCourseBuilder::setMealCategory (const string& mealCategor
 {
    mMealItem.mMealCategory = mealCategory;
    return *this;/*MainCourseBuilder&*/
-}
-
-MainCourseBuilder& MainCourseBuilder::withSecondarySide()
-{
-   mMealItem.mSecondarySide = true;
 }
 
 //-------------------------------------------------------------------------------------------------------

@@ -15,6 +15,7 @@ class MealGenerator final
    private:
       MealDB mMealDatabase;
       bool addSideDish ( Meal& randomMeal, const vector<string>& cat )const;
+      bool addAccompaniment ( Meal& randomMeal, const vector<string>& cat )const;
       void countMeals ( unsigned int& nrOfDishes , const MainCourse& mealItem )const;
       vector<double> getWeights ( 
             vector<MainCourse>::iterator begin, vector<MainCourse>::iterator end)const;

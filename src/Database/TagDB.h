@@ -13,7 +13,7 @@ class ITagDatabase
    public:
       virtual vector<V> lookup( const K& key )const
       {
-         vector<V> valueVector = {};
+         vector<V> valueVector;
 
          auto result = mTagMap.equal_range( key );
          for( auto it = result.first; it != result.second; ++ it )

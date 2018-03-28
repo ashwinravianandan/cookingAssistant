@@ -4,10 +4,14 @@
 #include <vector>
 #include <functional>
 #include "assert.h"
+#include <iostream>
 
 template <typename T>
 T getRandIterator( T begin, T end )
 {
+   if(begin == end){
+      return end;
+   }
    std::random_device rand;
    std::mt19937_64 gen( rand() );
 
@@ -82,11 +86,37 @@ bool MealGenerator::addSideDish ( Meal& randomMeal, const vector<string>& cat )c
    auto sideDishes = mMealDatabase.sideDishDB().lookup( *it );
    auto sideDish = getRandIterator( begin( sideDishes ), end( sideDishes) );
 
-   randomMeal.mRecipeName += " with " + sideDish->getName();
+   if(sideDish != end(sideDishes)){
+      randomMeal.mRecipeName += " with " + sideDish->getName();
 
-   randomMeal.mIngredients.insert(begin( sideDish->getIngredients()), 
-         end(sideDish->getIngredients()));
+      randomMeal.mIngredients.insert(begin( sideDish->getIngredients()), 
+                                     end(sideDish->getIngredients()));
+   }
+   else{
+      success = false;
+   }
 
+   return success;/*bool*/
+}
+
+bool MealGenerator::addAccompaniment ( Meal& randomMeal, const vector<string>& cat )const
+{
+   bool success = true;
+
+   auto it = getRandIterator( begin( cat ), end( cat ) );
+
+   auto sideDishes = mMealDatabase.sideDishDB().lookup( *it );
+   auto sideDish = getRandIterator( begin( sideDishes ), end( sideDishes) );
+
+   if(sideDish != end(sideDishes)){
+      randomMeal.mRecipeName += " and " + sideDish->getName();
+
+      randomMeal.mIngredients.insert(begin( sideDish->getIngredients()), 
+                                     end(sideDish->getIngredients()));
+   }
+   else{
+      success = false;
+   }
    return success;/*bool*/
 }
 
@@ -113,11 +143,18 @@ vector<double> MealGenerator::getWeights ( vector<MainCourse>::iterator first,
       {
          auto canBeEatenWith = it->canBeEatenWith();
          const auto& tagDB =  mMealDatabase.sideDishDB();
-
+         auto nrOfAccompaniments = 1;
+         if(it->hasAccompaniments()){
+            nrOfAccompaniments = 0;
+            for(auto&& item: it->getAccompaniments()){
+               nrOfAccompaniments = tagDB.lookup(item).size();
+            }
+            nrOfAccompaniments = nrOfAccompaniments == 0? 1: nrOfAccompaniments;
+         }
          for_each( begin( canBeEatenWith ), end( canBeEatenWith ),
-               [&tagDB, &weight ]( const string& tag ){
-               weight += tagDB.lookup( tag ).size();
-               });
+                   [&tagDB, &weight, nrOfAccompaniments ]( const string& tag ){
+                      weight += (tagDB.lookup( tag ).size())*nrOfAccompaniments;
+                   });
          weights.push_back( weight );
       }
       else
@@ -162,6 +199,9 @@ bool MealGenerator::generateRandomMeal( Meal& randomMeal, string cat  )const
       if ( it->needsSide() )
       {
          success = addSideDish( randomMeal, it->canBeEatenWith() );
+         if(success && it->hasAccompaniments()){
+            success = addAccompaniment(randomMeal, it->getAccompaniments());
+         }
       }
       else
       {
@@ -193,11 +233,20 @@ void MealGenerator::countMeals ( unsigned int& nrOfDishes , const MainCourse& me
    {
       auto canBeEatenWith = mealItem.canBeEatenWith();
       const SideDishTagDatabase& tagDB = mMealDatabase.sideDishDB();
-      for_each( begin( canBeEatenWith ), end( canBeEatenWith ), [&nrOfDishes, &tagDB]( const string& tag )
-            {
-               auto items = tagDB.lookup( tag );
-               nrOfDishes += items.size();
-            });
+      int nrOfAccompaniments = 1;
+      if(mealItem.hasAccompaniments()){
+         nrOfAccompaniments = 0;
+         auto accompaniments = mealItem.getAccompaniments();
+         for( auto && accompaniment: mealItem.getAccompaniments()){
+            auto items = tagDB.lookup(accompaniment);
+            nrOfAccompaniments+=items.size();
+         }
+         nrOfAccompaniments = nrOfAccompaniments == 0? 1: nrOfAccompaniments;
+      }
+      for(auto&& item: canBeEatenWith){
+         auto items = tagDB.lookup(item);
+         nrOfDishes += (items.size()*nrOfAccompaniments);
+      }
    }
    else
    {

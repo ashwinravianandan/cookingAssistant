@@ -108,11 +108,13 @@ void MealDB::populateMealItems ( const Json::Value& jsonDB )
                }
             }
             bool secondarySide = false;
-            Json::Value secondarySides(Json::arrayValue);
-            if(true == checkAndRetriveJsonData(item, "secondarySide", Json::arrayValue, secondarySides)&&
-               (0 != secondarySides.size()))
+            Json::Value accompaniments(Json::arrayValue);
+            if(true == checkAndRetriveJsonData(item, "accompaniments", Json::arrayValue, accompaniments)&&
+               (0 != accompaniments.size()))
             {
-               secondarySide = true;
+               for(auto accompaniment: accompaniments){
+                  builder.accompaniments(accompaniment.asString());
+               }
             }
             Json::Value recipeGrp;
             if ( true == checkAndRetriveJsonData( item, "recipeGroup", Json::arrayValue,  recipeGrp ) )

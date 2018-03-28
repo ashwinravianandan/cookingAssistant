@@ -14,8 +14,7 @@
  *............................................................................*/
  MealItem::MealItem ( string name, unordered_set<string> ingredients ):
     mName( name ),
-    mIngredients( ingredients ),
-    mSecondarySide(false)
+    mIngredients( ingredients )
 {
 }
 /*..............................................................................
@@ -97,6 +96,9 @@ bool MainCourse::needsSide( void )const
    return !mEatWith.empty();/*bool*/
 }
 
+bool MainCourse::hasAccompaniments()const{
+   return !mAccompaniments.empty();
+}
 /*..............................................................................
  * @brief ~SideDish 
  *
@@ -160,5 +162,8 @@ string MainCourse::getCategory ( void )const
 vector<string> MainCourse::canBeEatenWith ( void )const
 {
    return mEatWith;/*vector<string>*/
+}
+vector<string> MainCourse::getAccompaniments()const{
+   return mAccompaniments;
 }
 
