@@ -16,7 +16,7 @@
         { "dishName": "chapathi", "category": "bread", "eatWith": [ "withChapathi" ] , "ingredients": [ "wheat flour", "salt" ] },
         { "dishName": "aloo paratha","category": "bread", "eatWith": [], "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "potatoes", "onion" ] },
         { "dishName": "gobi paratha", "category": "bread", "eatWith": [], "recipeGroup": ["seasoning"], "ingredients": [ "wheat flour", "salt", "gobi" , "onion"] },
-        { "dishName": "white rice", "category": "rice", "eatWith": [ "withRice" ], "ingredients": [ "rice" ] },
+        { "dishName": "white rice", "category": "rice", "secondarySide": [], "eatWith": [ "withRice" ], "ingredients": [ "rice" ] },
         { "dishName": "ven pongal", "category": "rice", "eatWith": [ "sambar" ], "ingredients": [ "rice", "moong dal", "ghee", "jeera", "pepper" ], "recipeGroup": ["seasoning"] },
         { "dishName": "bisi bele bath", "category": "rice", "eatWith": [], "ingredients": [ "rice", "toor dal", "beans", "carrot", "ghee", "bisi bele bath masala"], "recipeGroup": ["seasoning"] },
         { "dishName": "pulao", "category": "rice", "eatWith": [ "masalaSide" ], "ingredients": [ "rice", "beans", "carrot", "peas", "onion"], "recipeGroup": ["seasoning", "chillyDhanya", "gingerGarlic", "spices"] },

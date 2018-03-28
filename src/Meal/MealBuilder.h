@@ -22,6 +22,7 @@ class MainCourseBuilder
       MainCourseBuilder& addIngredients( const unordered_set<string>& ingredient );
       MainCourseBuilder& eatWith( const string& eatWith );
       MainCourseBuilder& setMealCategory( const string& mealCategory );
+      MainCourseBuilder& withSecondarySide();
 
       operator MainCourse()
       {

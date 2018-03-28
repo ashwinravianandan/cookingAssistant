@@ -136,6 +136,11 @@ MainCourseBuilder& MainCourseBuilder::setMealCategory (const string& mealCategor
    return *this;/*MainCourseBuilder&*/
 }
 
+MainCourseBuilder& MainCourseBuilder::withSecondarySide()
+{
+   mMealItem.mSecondarySide = true;
+}
+
 //-------------------------------------------------------------------------------------------------------
 /*..............................................................................
  * @brief SideDishBuilder

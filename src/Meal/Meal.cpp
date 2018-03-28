@@ -14,7 +14,8 @@
  *............................................................................*/
  MealItem::MealItem ( string name, unordered_set<string> ingredients ):
     mName( name ),
-    mIngredients( ingredients )
+    mIngredients( ingredients ),
+    mSecondarySide(false)
 {
 }
 /*..............................................................................

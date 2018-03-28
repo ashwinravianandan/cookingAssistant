@@ -107,6 +107,13 @@ void MealDB::populateMealItems ( const Json::Value& jsonDB )
                   builder.eatWith( side.asString() );
                }
             }
+            bool secondarySide = false;
+            Json::Value secondarySides(Json::arrayValue);
+            if(true == checkAndRetriveJsonData(item, "secondarySide", Json::arrayValue, secondarySides)&&
+               (0 != secondarySides.size()))
+            {
+               secondarySide = true;
+            }
             Json::Value recipeGrp;
             if ( true == checkAndRetriveJsonData( item, "recipeGroup", Json::arrayValue,  recipeGrp ) )
             {

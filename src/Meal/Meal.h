@@ -12,6 +12,7 @@ class MealItem
    protected:
    string mName;
    unordered_set<string> mIngredients;
+   bool mSecondarySide;
 
    public:
    MealItem() = default;
